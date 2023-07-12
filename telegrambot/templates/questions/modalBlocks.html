@@ -1,0 +1,23 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/modalInformation.css' %}"/>
+
+
+<div class="reveal" id="modal-add-block" data-reveal>
+    <div class="container">
+        <h1>Add Question</h1>
+    </div>
+    <table>
+        <thead>
+            <th>Name</th>
+        </thead>
+        {% for question in questions %}
+        <tr>
+            {{question.title}}
+        </tr>
+        {% endfor %}
+    </table>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>  

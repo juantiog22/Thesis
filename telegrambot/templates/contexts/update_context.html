@@ -1,0 +1,67 @@
+{% extends "contexts/base_contexts.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/add_question.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/list_base.css' %}"/>
+{% endblock css %}
+
+
+<div class="header-block" style="margin-top:15px;">
+  <div class="grid-container fluid">
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-12" style="margin:10px;" >
+          <ul class="tabs" data-tabs id="example-tabs"> 
+            <li class="route tabs-title" style="margin:5px;">
+              <a href="{% url 'home_app:home_panel' %}">Home</a>
+            </li>   
+            <li class="route tabs-title" style="margin:5px;">
+                <a href="{% url 'contexts_app:contexts_all' %}">Contexts</a>
+           </li> 
+            <li class="route tabs-title" style="margin:5px;">
+              <a href="{% url 'contexts_app:update_context' context.id %}">Update Context</a>
+            </li> 
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-block">
+  <hr>
+  <div class="grid-container fluid" >
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-12" >
+        <div class="translucent-form-overlay">
+          <form method='POST'>{% csrf_token %}
+            <h3>Update Context</h3>
+            <div class="row columns">
+              <label>Context
+                <input class="form-control" id="name" name="name"
+                               required
+                               type="text"
+                               value="{{object.name}}"
+                            >
+              </label>
+            </div>
+            <div class="row columns">
+              <label>Messages
+                <textarea class="form-control" id="messages" name="messages" required rows="9">{% for message in object.messages.all %}{{ message.text }}&#10;{% endfor %}</textarea>
+              </label>
+            </div>
+            <button type='submit' class="submit success button" style="margin:5px;">Save</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+
+{% load  static %}
+
+<link rel="stylesheet" href="{% static 'css/side_bar.css' %}"/>
+
+<input type="checkbox" id="check">
+<label for="check">
+<i class="fas fa-bars" id="btn"></i>
+<i class="fas fa-times" id="cancel"></i>
+</label>
+
+<div class="sidebar">
+    <header>TelegramBot</header>
+    <ul>
+     <li><a href="{% url 'home_app:home_panel' %}"><i class="fas fa-qrcode"></i>Home</a></li>
+     <li><a href="{% url 'answers_app:export-to-csv' %}"><i class="fas fa-download"></i>Export answers</a></li>
+     <li><a href="{% url 'usuarios_app:update_user' user.id %}"><i class="fas fa-user"></i>My account</a></li>
+     <li><a href="{% url 'usuarios_app:user-logout' %}"><i class="fas fa-arrow-left"></i>Logout</a></li>
+    </ul>
+</div>
+
+<header>
+    <div class="top-bar" id="realEstateMenu" style=" background-color: #333; overflow: hidden;">
+        <div class="top-bar-right" style=" background-color: #333; overflow: hidden;">
+            <ul class="menu" style="background-color: #333";>
+                <li class="menu-text" style="background-color: #04AA6D; color:white;">TelegramBot</li>
+            </ul>   
+        </div>
+    </div>
+</header>
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+<script>
+  $(document).foundation();
+</script>

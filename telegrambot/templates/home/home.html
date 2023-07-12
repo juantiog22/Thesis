@@ -1,0 +1,69 @@
+{% extends "home/base_home.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+  </head>
+  <body>
+    <div class="off-canvas-wrapper">
+      <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+          <div class="callout success">
+            <div class="row column text-center">
+              <h1>POSTCOVID-AI TelegramBot</h1>
+              <p class="lead">Collecting data from people behaviors</p>
+            </div>
+          </div>
+          
+          <div class="row small-up-2 medium-up-3 large-up-4">
+            <div class="column">
+              <a href="{% url 'questions_app:questions_all' %}">
+                    <img class="thumbnail" src="{% static 'img/preguntas.jpg' %}">
+              </a>
+              <h5>Questions</h5>
+            </div>
+            <div class="column">
+                <a href="{% url 'questions_app:blocks_all' %}">
+                    <img class="thumbnail" src="{% static 'img/bloques.jpg' %}">
+                </a>
+              <h5>Blocks</h5>
+            </div>
+            <div class="column">
+              <a href="{% url 'contexts_app:contexts_all' %}">
+              <img class="thumbnail" src="{% static 'img/contextos.jpg' %}">
+              </a>
+              <h5>Contexts</h5>
+            </div>
+            <div class="column">
+                <a href="{% url 'answers_app:answers_all' %}">
+                    <img class="thumbnail" src="{% static 'img/respuestas.avif' %}">
+                </a>
+              <h5>Answers</h5>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>
+
+
+
+{% endblock content%}
+
+
+
+
+

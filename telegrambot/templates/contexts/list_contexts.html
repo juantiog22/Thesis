@@ -1,0 +1,89 @@
+{% extends "contexts/base_contexts.html" %}
+{% load static %}
+
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/list_base.css' %}"/>
+{% endblock css %}
+
+<div class="header-block" style="margin-top:15px;">
+  <div class="grid-container fluid">
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-12">
+          <ul class="tabs" data-tabs id="example-tabs">
+            <li class="route tabs-title" style="margin:5px;">
+              <a href="{% url 'home_app:home_panel' %}">Home</a>
+           </li>   
+            <li class="route tabs-title" style="margin:5px;">
+                <a href="{% url 'contexts_app:contexts_all' %}">Contexts</a>
+           </li> 
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-block">
+  <hr>
+  <div class="grid-container fluid" >
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-12">
+        <a class="button success" href="{% url 'contexts_app:add_context' %}" style="float: right; margin: 10px;"><i class="fa fa-plus"></i> Context</a>
+          <table class="styled-table">
+            <caption>List of contexts</caption>
+            <thead>
+                <tr>
+                  <th>Context</th>
+                  <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for context in lista_contexts %}
+             <tr data-href="{% url 'contexts_app:update_context' context.id %}">
+                <td center>{{context.name}}</td>
+                <td>
+                  <form method="POST" action="{% url 'contexts_app:delete' context.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn show_confirm"  data-id="{{ context.id }}" name="{{context.name}}"><i class="fas fa-trash-alt"></i></button>
+                  </form>
+                </td>
+             </tr>
+            {% empty %}
+             <tr class="text-center">
+                    <td colspan="4" style="background-color:#F1948A; font-weight: bolder; color:#EC3E30;">No items found.</td>
+             </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          <nav aria-label="Pagination">
+            <ul class="pagination text-center">
+              {% if page_obj.has_previous %}
+                <li class="pagination-previous"><a href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+              {% endif %}
+              {% for pagina in paginator.page_range %}
+                {% if pagina == page_obj.number %}
+                  <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}}</li>
+                {% else %}
+                  <li><a href="?page={{pagina}}">{{pagina}}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if page_obj.has_next %}
+                <li class="pagination-next"><a href="?page={{page_obj.next_page_number}}">Next</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js/list_contexts.js' %}"></script>   
+
+{% endblock js %}

@@ -1,0 +1,98 @@
+
+{% extends "questions/base_questions.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/list_base.css' %}"/>
+{% endblock css %}
+
+
+<div class="header-block" style="margin-top:15px;">
+  <div class="grid-container fluid">
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-12">
+          <ul class="tabs" data-tabs id="example-tabs">
+            <li class="route tabs-title" style="margin:5px;">
+              <a href="{% url 'home_app:home_panel' %}">Home</a>
+           </li>   
+            <li class="route tabs-title" style="margin:5px;">
+                <a href="{% url 'questions_app:questions_all' %}">Questions</a>
+           </li> 
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-block">
+  <hr>
+  <div class="grid-container fluid" >
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-12">
+        <a class="button success" href="{% url 'questions_app:add_question' %}" style="float: right; margin: 10px;"><i class="fa fa-plus"></i> Question</a>
+        <body>
+          <table class='styled-table'>
+            <caption>Total Questions</caption>
+              <thead>
+                <tr>
+                  <th width="200">Question</th>
+                  <th width="150">Block</th>
+                  <th width="150">Creator</th>
+                  <th width="150">Date</th>
+                  <th width="150"></th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for question in lista_questions %}
+                <tr data-href="{% url 'questions_app:update_question' question.id %}">
+                  <td>{{question.title}}</td>
+                  <td>{{question.blocks.first|default:'Sin bloque'}}</td>
+                  <td>{{question.creator}}</td>
+                  <td>{{question.create}}</td>
+                  <td>
+                    <form method="POST" action="{% url 'questions_app:delete_question' question.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn show_confirm"  data-id="{{ question.id }}" name="{{question.title}}"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                  </td>
+                </tr>
+              {% empty %}
+              <tr class="text-center">
+                <td colspan="4" style="background-color:#F1948A; font-weight: bolder; color:#EC3E30;">No items found.</td>
+              </tr>
+              {% endfor %}
+              </tbody>
+          </table>
+          <nav aria-label="Pagination">
+            <ul class="pagination text-center">
+              {% if page_obj.has_previous %}
+                <li class="pagination-previous"><a href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+              {% endif %}
+              {% for pagina in paginator.page_range %}
+                {% if pagina == page_obj.number %}
+                  <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}}</li>
+                {% else %}
+                  <li><a href="?page={{pagina}}">{{pagina}}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if page_obj.has_next %}
+                <li class="pagination-next"><a href="?page={{page_obj.next_page_number}}">Next</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>
+ 
+{% endblock content%}
+
+
+{% block js %}
+<script src="{% static 'js/list_questions.js' %}"></script>   
+
+{% endblock js %}

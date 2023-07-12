@@ -1,0 +1,47 @@
+.translucent-form-overlay {
+    position: relative;
+    max-width: 2500px;
+    min-width: 1000px;
+    width: 100%;
+    background-color: #CDCED7;
+    padding: 20px;
+    color: #313236;
+  }
+  .translucent-form-overlay .columns.row {
+    display: block;
+  }
+  
+  .translucent-form-overlay h3, .translucent-form-overlay label {
+    color: #313236;
+  }
+  
+  .translucent-form-overlay input, .translucent-form-overlay select {
+    color: #8a8a8a;
+  }
+  
+  .translucent-form-overlay input::-webkit-input-placeholder {
+    color: #8a8a8a;
+  }
+  
+  .translucent-form-overlay input:-ms-input-placeholder {
+    color: #8a8a8a;
+  }
+  
+  .translucent-form-overlay input::placeholder {
+    color: #8a8a8a;
+  }
+
+  label{
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  h3{
+    font-size: 30px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #2e14ec, #3daae9);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: center;
+  }

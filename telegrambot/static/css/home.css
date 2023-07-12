@@ -1,0 +1,111 @@
+.menuHome
+{
+   position:relative;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+}
+.conjuntoMenu{
+    margin-bottom: 50px;
+
+}
+.textoMenu{
+    margin-top: 16px;
+    text-align: center;
+}
+
+.globo-alerta{
+    position:absolute;
+    right:8px;
+    top:0px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+}
+
+#subMenu
+{
+    float:right;
+    position:relative;
+    top:-15px;
+    left:-10px;
+}
+
+a:hover, a:focus
+{
+    color: #dddddd;
+}
+
+/* MODALES DE BOOTSTRAP MODIFICADOS */
+
+.modal-transparent.modal-fullscreen .modal-dialog {
+    width: 95% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-transparent.modal-fullscreen .modal-content {
+    background-color: transparent !important;
+    border-width: 0px !important;
+    border-radius: 5px !important;
+    box-shadow: none !important;
+}
+
+.modal-transparent.modal-fullscreen .modal-body, .modal-transparent.modal-fullscreen .modal-dialog, .modal-transparent.modal-fullscreen .modal-content {
+    height: 95%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ruptura {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: normal;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: normal;
+  /* Instead use this non-standard one: */
+  word-break: normal;
+
+}
+
+@media (max-width: 1199px) {
+    #cabecera{
+        height: 120px !important;
+    }
+    #menuLogin{
+        top: -6px !important;
+    }
+    .logoDiv{
+        top: -12px;
+        width: 360px !important;
+    }
+    #content {
+        margin-top: 60px !important;
+    }
+    #usuarioActual .img-circle{
+        position: relative;
+        top: 12px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #cabecera{
+        height: 100px !important;
+    }
+    #menuLogin{
+        top: 13px !important;
+    }
+    .logoDiv{
+        width: 250px !important;
+        top: -6px;
+    }
+    #content {
+        margin-top: 60px !important;
+    }
+    #usuarioActual .img-circle{
+        position: relative;
+        top: 12px;
+    }
+}

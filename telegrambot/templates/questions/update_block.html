@@ -1,0 +1,77 @@
+{% extends "questions/base_questions.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+
+
+<link rel="stylesheet" href="{% static 'css/add_question.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/list_base.css' %}"/>
+
+
+
+<div class="header-block" style="margin-top:15px;">
+  <div class="grid-container fluid">
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-12" style="margin:10px;" >
+          <ul class="tabs" data-tabs id="example-tabs">
+            <li class="route tabs-title" style="margin:5px;">
+              <a href="{% url 'home_app:home_panel' %}">Home</a>
+            </li>   
+            <li class="route tabs-title" style="margin:5px;">
+                <a href="{% url 'questions_app:blocks_all' %}">Blocks</a>
+           </li> 
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-block">
+    <hr>
+    <div class="grid-container fluid" >
+      <div class="grid-x grid-padding-x">
+        <div class="cell small-12" >
+          <div class="translucent-form-overlay">
+            <form method='POST'>{% csrf_token %}
+              <h3>Update block</h3>
+              <div class="row columns">
+                <label>Block:
+                  {{form.block}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Question:
+                  {{form.question}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Context:
+                  {{form.context}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Active:
+                  {{form.active}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Frecuency:
+                  {{form.frecuency}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Importance:
+                  {{form.importance}}
+                </label>
+              </div>
+              <button type='submit' class="submit success button" style="margin:5px;">Save</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

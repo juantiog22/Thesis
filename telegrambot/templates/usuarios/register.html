@@ -1,0 +1,50 @@
+{% extends "usuarios/base_usuarios.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock css %}
+
+
+{% block content %}
+
+
+<body>
+    <form method="POST" class="callout text-center">{% csrf_token %}
+    <div class="translucent-form-overlay">
+        <h2>Sign Up</h2>
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {% endfor %}
+        {% endif %}
+        <div class="floated-label-wrapper">
+            <label for="user">Username</label>
+            {{form.username}}
+        </div>
+        <div class="floated-label-wrapper">
+            <label for="email">Email</label>
+            {{form.email}}
+        </div>
+        <div class="floated-label-wrapper">
+            <label for="pass">Password</label>
+            {{form.password1}}
+        </div>
+        <div class="floated-label-wrapper">
+            <label for="pass">Password</label>
+            {{form.password2}}   
+        </div>
+        <button class="button expanded" type="submit">Register</button>
+    </form>
+    </div>
+</body>
+  
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js/login.js' %}"></script>   
+
+{% endblock js %}

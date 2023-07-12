@@ -1,0 +1,77 @@
+
+  .route{
+    background-color: #cdeaea;
+    border: solid #06b4cb 2px; 
+    -moz-border-radius: 20px; 
+    -webkit-border-radius: 20px; 
+    border-radius: 20px; 
+    -webkit-box-shadow: 0 6px #06b4cb; 
+    -moz-box-shadow: 0 6px #06b4cb; 
+    box-shadow: 0 6px #06b4cb; 
+  }
+
+  .route a{
+    font-size: 15px; 
+    color: black;
+}
+
+  .route:hover a{
+    background: #94dddd;
+    -moz-border-radius: 20px; 
+    -webkit-border-radius: 20px; 
+    border-radius: 20px; 
+  }
+
+
+
+  caption{
+    font-size: 30px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #9897a0, #b393d3);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    }
+
+  .btn {
+    float: right;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: rgb(235, 63, 63);
+    border: 1px solid red;  
+    cursor: pointer;
+  }
+
+  tr[data-href] {
+    cursor: pointer;
+  }
+    
+  tr[data-href]:hover {background-color: #96F25F;}
+
+
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+  .styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+
+  .styled-table th,
+  .styled-table td {
+      padding: 12px 15px;
+  }
+
+  .styled-table tbody tr[data-href] {
+    border-bottom: 1px solid #dddddd;
+  }
+
+

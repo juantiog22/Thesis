@@ -1,0 +1,89 @@
+{% extends "answers/base_answers.html" %}
+{% load static %}
+
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/list_base.css' %}"/>
+{% endblock css %}
+
+
+<div class="header-block" style="margin-top:15px;">
+  <div class="grid-container fluid">
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-12">
+          <ul class="tabs" data-tabs id="example-tabs">
+            <li class="route tabs-title" style="margin:5px;">
+              <a href="{% url 'home_app:home_panel' %}">Home</a>
+           </li>   
+            <li class="route tabs-title" style="margin:5px;">
+                <a href="{% url 'answers_app:answers_all' %}">Answers</a>
+           </li> 
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-block">
+  <hr>
+  <div class="grid-container fluid" >
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-12">
+      <a href="{% url 'answers_app:export-to-csv' %}" class="button success" style="float: right; margin: 10px;"><i class="fa fa-download"></i> Export to CSV</a>
+      <table class="styled-table">
+        <caption>Suscribers responses</caption>
+          <thead>
+            <tr>
+              <th width="150">Question</th>
+              <th width="50">Response</th>
+              <th width="100">Suscriber</th>
+              <th width="100">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for answer in lista_answers %}
+            <tr>
+              <td>{{answer.question.title}}</td>
+              <td>{{answer.response}}</td>
+              {% if answer.suscriber.name is not None %}
+                <td>{{answer.suscriber.username}}</td> 
+              {% else %}
+               < td>{{answer.suscriber.name}}</td> 
+              {%endif%}
+              <td>{{answer.date}}</td>
+            </tr>
+            {% empty %}
+              <tr class="text-center">
+                  <td colspan="4" style="background-color:#F1948A; font-weight: bolder; color:#EC3E30;">No items found.</td>
+              </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        <nav aria-label="Pagination">
+          <ul class="pagination text-center">
+            {% if page_obj.has_previous %}
+              <li class="pagination-previous"><a href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+            {% endif %}
+            {% for pagina in paginator.page_range %}
+              {% if pagina == page_obj.number %}
+                <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}}</li>
+              {% else %}
+                <li><a href="?page={{pagina}}">{{pagina}}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+              <li class="pagination-next"><a href="?page={{page_obj.next_page_number}}">Next</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
