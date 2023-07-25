@@ -73,6 +73,7 @@ def start_handler(update, context):
 
         context.bot.send_message(chat_id=update.effective_chat.id, text=messages['question_explanation'])
 
+        #Poner if
         question = chooseQuestion(suscriber)
         message = chooseMessage(question)
 
@@ -287,9 +288,9 @@ def handle_answer(update, context):
             answer.save()
             
             logging.info(f'User {suscriber.username} answer the question {question.title}')
-
-            #Get next question to answer
             
+            #Get next question to answer
+
             question = chooseQuestion(suscriber)
             if question is not None:
 

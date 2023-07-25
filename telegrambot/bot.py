@@ -3,7 +3,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'telegrambot.settings.local')
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 django.setup()
 from telegram.ext import CommandHandler, MessageHandler, Filters, ContextTypes, Updater, CallbackContext
-#rom handlers import send_typing_action
 from django.db import models
 from applications.questions.models import Question, PosibleAnswers, QuestionBlock
 from chatbot.handlers import  *
