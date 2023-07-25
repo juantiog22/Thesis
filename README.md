@@ -1,4 +1,4 @@
-# Bachelor's Thesis: "*POSTCOVID-AI TelegramBot, facilating data collection of people level human behaviour *"
+# Bachelor's Thesis: "POSTCOVID-AI TelegramBot, facilating data collection of people level human behaviour"
 
 ### **Author** :bust_in_silhouette:: Juan del Río Gómez :octocat: [@juantiog22](https://github.com/juantiog22)
 ### **Tutor** :bust_in_silhouette:: Oresti Baños Legrán, Miguel Damas Hermoso
