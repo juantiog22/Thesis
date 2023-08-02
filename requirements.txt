@@ -3,6 +3,7 @@ Django==4.1.3
 django-tgbot==2.0.0
 django-bootstrap4==22.2
 psycopg2==2.9.6
+#psycopg2-binary for linux
 Unipath==1.1
 Pillow==9.5.0
 sqlparse==0.4.3

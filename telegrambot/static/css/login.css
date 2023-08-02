@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0;
     background-image: url('../img/cubos_background.avif');
-    backdrop-filter: brightness(20%);
+    /*backdrop-filter: brightness(20%);*/
     background-size: 50%;  
 }
 

@@ -23,10 +23,17 @@ class ListContexts(LoginRequiredMixin, DeletionMixin, ListView):
     context_object_name = 'lista_contexts'
     login_url = reverse_lazy('usuarios_app:user-login')
 
+
+
     def get_queryset(self, *args, **kwargs):
         lista_contexts = super(ListContexts, self).get_queryset(*args, **kwargs)
-        lista_contexts = lista_contexts.order_by("-id")
+        query = self.request.GET.get('search')
+        if query:
+            lista_contexts = lista_contexts.filter(name__icontains=query).order_by("-id")
+        else:
+            lista_contexts = lista_contexts.order_by("-id")
         return lista_contexts
+
    
 class NewContextView(LoginRequiredMixin, FormView):
     template_name = 'contexts/add_context.html'

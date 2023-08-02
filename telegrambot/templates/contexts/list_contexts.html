@@ -32,6 +32,12 @@
     <div class="grid-x grid-padding-x">
       <div class="cell small-12">
         <a class="button success" href="{% url 'contexts_app:add_context' %}" style="float: right; margin: 10px;"><i class="fa fa-plus"></i> Context</a>
+        <div class="search-container">
+          <form method="GET" action="{% url 'contexts_app:contexts_all' %}">
+            <input type="text" name="search" placeholder="Search Context...">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
           <table class="styled-table">
             <caption>List of contexts</caption>
             <thead>

@@ -18,14 +18,12 @@ from applications.contexts.models import Context, Message
 
 from .replyMessages import *
 
-
-
 # Set up logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
 
-TOKEN: Final = '6271621243:AAHI2R95h2FSdQ3KaqCMa0zKT_I98IuzCEA'
-BOT_USERNAME: Final =  '@pruebacovidai_bot'
+TOKEN: Final = '6605050919:AAHQHti_iTxcOWaBhyBGvwGH5rVk2nyVfAw'
+BOT_USERNAME: Final =  '@postcovidai_bot'
 
 
 
@@ -38,7 +36,6 @@ BOT_USERNAME: Final =  '@pruebacovidai_bot'
 
 FIRST_STATE, SECOND_STATE, THIRD_STATE, FOURTH_STATE = range(4)
 
-suscriber = None
 
 #Method to give welcome and register user's data
 def welcome(update, context):
@@ -69,23 +66,30 @@ def start_handler(update, context):
 
     user_response = update.message.text.lower()
 
+
     if user_response in affirmation:
 
-        context.bot.send_message(chat_id=update.effective_chat.id, text=messages['question_explanation'])
+        try:
+            suscriber = Suscriber.objects.get(chatid=update.effective_chat.id)
 
-        #Poner if
-        question = chooseQuestion(suscriber)
-        message = chooseMessage(question)
+            question = choose_question(suscriber)
 
-        answers = PosibleAnswers.objects.filter(question=question)
-        reply_markup = custom_keyboard(answers)
+            message = choose_message(question)
 
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"{message}")
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"{question.title}.", reply_markup=reply_markup)
-        return FIRST_STATE
+            answers = PosibleAnswers.objects.filter(question=question)
+            reply_markup = custom_keyboard(answers)
+
+            context.bot.send_message(chat_id=update.effective_chat.id, text=messages['question_explanation'])
+            context.bot.send_message(chat_id=update.effective_chat.id, text=f"{message}")
+            context.bot.send_message(chat_id=update.effective_chat.id, text=f"{question.title}.", reply_markup=reply_markup)
+            return FIRST_STATE
+        
+        except:
+            context.bot.send_message(chat_id=update.effective_chat.id, text='No tienes preguntas por responder')
+            return SECOND_STATE
     
     else: 
-        context.bot.send_message(chat_id=update.effective_chat.id, text=messages['not'])
+        context.bot.send_message(chat_id=update.effective_chat.id, text=messages['negation']['0'])
         return SECOND_STATE
 
 
@@ -98,32 +102,32 @@ def start_handler(update, context):
 ""                                                        ""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-#Method to handle user's interaction
+#Function to handle user's interaction
 def generate_response(update, context):
 
     user_response = update.message.text.lower()
+    message = user_response.split()
     user = update.message.from_user
 
-    suscriber = Suscriber.objects.get(chatid=user.id)
+    suscriber = Suscriber.objects.get(chatid=user.id) 
 
-    random_var = random.randint(0,2)
-    
-    if user_response in greetings:
-        context.bot.send_message(chat_id=user.id, text=messages['greetings'][str(random_var)])
-    elif user_response in farewell:
-        context.bot.send_message(chat_id=user.id, text=messages['farewell'][str(random_var)])
-    elif user_response in gratitude:
-        context.bot.send_message(chat_id=user.id, text=messages['gratitude'][str(random_var)])
-    elif user_response in negation:
-        context.bot.send_message(chat_id=user.id, text=messages['not'])
-    elif user_response in affirmation:
-        context.bot.send_message(chat_id=user.id, text=messages['redirect'])
-        #Remove the user's job
-        if context.job_queue.jobs():
-            MessageJob.remove_job(context, suscriber)    
-        return THIRD_STATE
+    con = find_context(user_response)
+
+    if con is not None:
+        
+        if con == 'affirmation':
+            context.bot.send_message(chat_id=user.id, text=messages['redirect'])
+            #Remove the user's job
+            if context.job_queue.jobs():
+                MessageJob.remove_job(context, suscriber)    
+            return THIRD_STATE
+        else:
+            length = len(messages[con])
+            random_var = random.randint(0,length-1)
+            context.bot.send_message(chat_id=user.id, text=messages[con][str(random_var)])
+
     else:
-        if chooseQuestion(suscriber):
+        if choose_question(suscriber):
             context.bot.send_message(chat_id=user.id, text=messages['questions_pending'])
         else: 
             buttons = [
@@ -150,14 +154,42 @@ def button_click(update, context):
     return SECOND_STATE
 
 
+#Function to find context of user's response
+def find_context(response):
+    words = response.split()
+    for word in words:
+        if word in greetings:
+            return 'greetings'
+        elif word in farewell:
+            return 'farewell'
+        elif word in gratitude:
+            return 'gratitude'
+        elif word in negation:
+            return 'negation'
+        elif word in affirmation:
+            return 'affirmation'
+        elif word in mood:
+            return 'mood'
+        elif word in name:
+            return 'name'
+        elif word in goodmood:
+            return 'goodmod'
+        elif word in badmood:
+            return 'badmood'
+        elif word in joke:
+            return 'joke'
+            
+        
+    return None
+        
+    
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""                                                        ""
 ""                 'Job Creator'                          ""
 ""                                                        ""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 
 class MessageJob(object):
 
@@ -168,13 +200,13 @@ class MessageJob(object):
 
     def create_job(self, context):
         #Create a user's job
-        context.job_queue.run_repeating(callback=self.job, interval=86400, first=0, context=self.suscriber.chatid, name=self.suscriber.chatid)
+        context.job_queue.run_repeating(callback=self.job, interval=30, first=0, context=self.suscriber.chatid, name=self.suscriber.chatid)
         
         
     def job(self, context):
-        # This function will be executed every 30 seconds
-        question = chooseQuestion(suscriber)
-        if chooseQuestion(self.suscriber) is not None:
+        # This function will be executed every 24 hours
+        question = choose_question(self.suscriber)
+        if question is not None:
             context.bot.send_message(chat_id=self.suscriber.chatid, text=f"Hey {self.suscriber.name} tienes preguntas por responder. ¿Te gustaría empezar el cuestionario?")
     
     def remove_job(context, suscriber):
@@ -193,12 +225,10 @@ class MessageJob(object):
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-#global bloques
-#bloques = QuestionBlock.objects.filter(active=True).order_by('frecuency')
 
 
 #Function that return if a question is answered by an user
-def isAnswerQuestion(user, question):
+def is_answered(user, question):
     frecuency = QuestionBlock.objects.filter(question=question).first().frecuency
 
     #Check block frecuency and assign a value
@@ -217,8 +247,8 @@ def isAnswerQuestion(user, question):
     
 
 #Function that choose the next question to ask according to the user
-def chooseQuestion(user):
-    bloques = QuestionBlock.objects.filter(active=True).order_by('importance')
+def choose_question(user):
+    bloques = QuestionBlock.objects.filter(active=True).order_by('-importance')
     global first
     first = False
     block_counter = 0
@@ -227,7 +257,7 @@ def chooseQuestion(user):
         questions = Question.objects.filter(blocks=block).order_by('create')
         first_value = questions.first()
         for question in questions:
-            if isAnswerQuestion(user, question) == False:
+            if is_answered(user, question) == False:
                 question_result = question
                 #if is the first question in the block show message
                 if first_value == question:
@@ -240,8 +270,8 @@ def chooseQuestion(user):
 
 
 #Function that choose the message to display on the chat
-def chooseMessage(question):
-    contexts_block = getContextsbyBlock(question.blocks.first().id)
+def choose_message(question):
+    contexts_block = get_contexts_by_block(question.blocks.first().id)
     messages = Message.objects.filter(context=contexts_block)
     random_message = random.randint(0,messages.count()-1)
     
@@ -249,7 +279,7 @@ def chooseMessage(question):
 
 
 #Function that returns the contexts related to a block
-def getContextsbyBlock(bloque):
+def get_contexts_by_block(bloque):
     context = Context.objects.filter(block__id=bloque).first()
     return context
 
@@ -261,7 +291,7 @@ def custom_keyboard(values):
 
 
 #Function that check if the user response is valid
-def isValidAnswer(question, response):
+def valid_answer(question, response):
     answers = PosibleAnswers.objects.filter(question=question)
     posible_answers = []
     for answer in answers:
@@ -276,9 +306,9 @@ def handle_answer(update, context):
         user_response = update.message.text
 
         suscriber = Suscriber.objects.get(chatid=user.id)
-        question = chooseQuestion(suscriber)
+        question = choose_question(suscriber)
         
-        if isValidAnswer(question, user_response): 
+        if valid_answer(question, user_response): 
             #Store the answer in the DB if is valid
             answer = Answer.objects.create(
                     response=str(user_response),
@@ -291,11 +321,11 @@ def handle_answer(update, context):
             
             #Get next question to answer
 
-            question = chooseQuestion(suscriber)
+            question = choose_question(suscriber)
             if question is not None:
 
                 #Choose next message 
-                message = chooseMessage(question)
+                message = choose_message(question)
 
                 #if is the first question in the block show message
                 if first:

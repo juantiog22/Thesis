@@ -31,6 +31,12 @@
       <div class="cell small-12">
         <a class="button success" href="{% url 'questions_app:add_block' %}" style="float: right; margin: 10px;"><i class="fa fa-plus"></i> Block</a>
         <body>
+          <div class="search-container">
+            <form method="GET" action="{% url 'questions_app:blocks_all' %}">
+              <input type="text" name="search" placeholder="Search Block...">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
           <table class='styled-table'>
             <caption>List of Blocks</caption>
               <thead>

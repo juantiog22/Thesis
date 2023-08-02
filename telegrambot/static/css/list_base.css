@@ -75,3 +75,34 @@
   }
 
 
+  .search-container {
+    float: left;
+    display: flex;
+  }
+
+  .search-container form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-container input[type=text] {
+    padding: 6px; 
+    margin-top: 15px;
+    font-size: 17px;
+    border: 1px solid #82E0AA;  
+  }
+  
+  .search-container button {
+    padding: 10px 15px;
+    background: #ddd;
+    font-size: 20px;
+    margin-right: 16px;
+    border: none;
+    cursor: pointer;
+    vertical-align: baseline;
+  }
+  
+  .search-container button:hover {
+    background: #ccc;
+  }
+

@@ -7,7 +7,6 @@ app_name='questions_app'
 
 urlpatterns = [
     path('questions/', views.ListQuestions.as_view(), name='questions_all'),
-    path('respuestas/<pk>/', views.ListarRespuestas.as_view(), name='answers_all'),
     path('add_question/', views.NewQuestionView.as_view(), name='add_question'),
     path('update-question/<pk>/', views.QuestionUpdateView.as_view(), name='update_question'),
     path('blocks/', views.ListQuestionsBlock.as_view(), name='blocks_all'),

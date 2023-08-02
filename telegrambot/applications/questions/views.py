@@ -19,25 +19,19 @@ from .forms import PreguntaForm, PosibleAnswersFormSet, BlockForm
 
 class ListQuestions(LoginRequiredMixin, DeletionMixin, ListView):
     template_name = 'questions/list_questions.html'
-    paginate_by = 10
+    paginate_by = 20
     model = Question
     context_object_name = 'lista_questions'
     login_url = reverse_lazy('usuarios_app:user-login')
 
     def get_queryset(self, *args, **kwargs):
         lista_questions = super(ListQuestions, self).get_queryset(*args, **kwargs)
-        lista_questions = lista_questions.order_by("-create")
+        query = self.request.GET.get('search')
+        if query:
+            lista_questions = lista_questions.filter(title__icontains=query).order_by("-create")
+        else:
+            lista_questions = lista_questions.order_by("-create")
         return lista_questions
-    
-
-class ListarRespuestas(DetailView):
-    template_name = 'questions/list_answers.html'
-    model = Question
-    
-    def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
-
-
     
 
 class NewQuestionView(LoginRequiredMixin, FormView):
@@ -134,7 +128,11 @@ class ListQuestionsBlock(LoginRequiredMixin, ListView):
 
     def get_queryset(self, *args, **kwargs):
         lista_blocks = super(ListQuestionsBlock, self).get_queryset(*args, **kwargs)
-        lista_blocks = lista_blocks.order_by("importance")
+        query = self.request.GET.get('search')
+        if query:
+            lista_blocks = lista_blocks.filter(block__icontains=query).order_by("importance")
+        else:
+            lista_blocks = lista_blocks.order_by("importance")
         return lista_blocks
     
     def get_context_data(self, **kwargs):
