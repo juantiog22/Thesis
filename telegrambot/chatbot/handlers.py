@@ -54,9 +54,9 @@ def welcome(update, context):
 
     logging.info(f'User {username} just enter/registered in the system')
 
-    context.bot.send_message(chat_id=update.effective_chat.id, text=messages['welcome'], reply_markup=ReplyKeyboardRemove())
-    context.bot.send_message(chat_id=update.effective_chat.id, text=messages['confidential_information'])
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"De acuerdo {name}, estas listo/a para empezar?")
+    context.bot.send_message(chat_id=chat_id, text=messages['welcome'], reply_markup=ReplyKeyboardRemove())
+    context.bot.send_message(chat_id=chat_id, text=messages['confidential_information'])
+    context.bot.send_message(chat_id=chat_id, text=f"De acuerdo {name}, estas listo/a para empezar?")
 
     return THIRD_STATE
    
@@ -65,7 +65,6 @@ def welcome(update, context):
 def start_handler(update, context):
 
     user_response = update.message.text.lower()
-
 
     if user_response in affirmation:
 
@@ -239,7 +238,7 @@ def is_answered(user, question):
     elif frecuency == 'M':
         date_interval = timedelta(weeks=4)
     else:
-        date_interval = timedelta(weeks=12)
+        date_interval = timedelta(seconds=20)
 
     date = timezone.now() - date_interval
 
@@ -308,6 +307,7 @@ def handle_answer(update, context):
         suscriber = Suscriber.objects.get(chatid=user.id)
         question = choose_question(suscriber)
         
+        #Only jump to next question if the answer is valid
         if valid_answer(question, user_response): 
             #Store the answer in the DB if is valid
             answer = Answer.objects.create(
@@ -320,9 +320,8 @@ def handle_answer(update, context):
             logging.info(f'User {suscriber.username} answer the question {question.title}')
             
             #Get next question to answer
-
-            question = choose_question(suscriber)
-            if question is not None:
+            try:
+                question = choose_question(suscriber)
 
                 #Choose next message 
                 message = choose_message(question)
@@ -337,17 +336,17 @@ def handle_answer(update, context):
 
                 update.message.reply_text(f"{question.title}", reply_markup=reply_markup)
 
-            else:
+            except:
+                context.bot.send_message(chat_id=update.effective_chat.id, text=messages['no_questions'], reply_markup=ReplyKeyboardRemove())
                 logging.info(f'User {suscriber.username} has no questions to answer')
-                context.bot.send_message(chat_id=update.effective_chat.id, text="Gracias por tu respuestas, por ahora no tengo más preguntas para hacerte!", reply_markup=ReplyKeyboardRemove())
+
                 MessageJob(context, suscriber)
                 return SECOND_STATE
                 
         else:
             answers = PosibleAnswers.objects.filter(question=question)
             reply_markup = custom_keyboard(answers)
-            reply_markup=reply_markup
-            update.message.reply_text("Respuesta incorrecta. Por favor selecciona una de las proporcionadas", reply_markup=reply_markup)   
+            context.bot.send_message(chat_id=update.effective_chat.id, text=messages['wrong_answer'], reply_markup=reply_markup)
             update.message.reply_text(f"{question.title}") 
 
 

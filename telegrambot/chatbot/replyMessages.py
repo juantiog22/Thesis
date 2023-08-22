@@ -56,6 +56,10 @@ messages = {
 
     'questions_pending': 'Lo siento no te entiendo. Por cierto tienes preguntas pendientes ¿Te gustaría empezar el cuestionario?',
 
+    'no_questions': 'Gracias por tu respuestas, por ahora no tengo más preguntas para hacerte!',
+
+    'wrong_answer':'Respuesta incorrecta. Por favor selecciona una de las proporcionadas',
+
     'greetings':{
         '0': 'Hola!¿Que tal estas?',
         '1': 'Muy buenas!¿Como estas hoy?',

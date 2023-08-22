@@ -5,6 +5,7 @@
 \usepackage[spanish]{babel}
 \usepackage{listings}
 \usepackage{subcaption}
+\usepackage{minted}
 
 % Define Colors
 
@@ -62,7 +63,7 @@ pdfproducer = {pdflatex}
 
 %\hyphenation{}
 
-\usepackage[backend=biber, style=authoryear,]{biblatex}
+\usepackage[backend=biber, style=authoryear]{biblatex}
 \bibliography{bibliografia}
 
 
@@ -131,7 +132,7 @@ pdfproducer = {pdflatex}
  
 % minimizar fragmentado de listados
 \lstnewenvironment{listing}[1][]
-   {\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+%{\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
 
 
 \lstdefinestyle{CodigoC++}
@@ -200,11 +201,11 @@ pdfproducer = {pdflatex}
 %
 \input{capitulos/05_InterfazWeb}
 %
-%\input{capitulos/06_Implementacion}
+\input{capitulos/07_Despliegue}
 %
-%\input{capitulos/07_Pruebas}
+\input{capitulos/08_Conclusiones}
 %
-%\input{capitulos/08_Conclusiones}
+\input{capitulos/Apendice}
 %
 %%\chapter{Conclusiones y Trabajos Futuros}
 %
