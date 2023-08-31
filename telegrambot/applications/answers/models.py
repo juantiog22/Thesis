@@ -5,7 +5,6 @@ from applications.questions.models import Question, PosibleAnswers
 #from applications.suscribers.models import Suscriber
 from applications.usuarios.models import Suscriber
 
-# Create your models here.
 
 class Answer(models.Model):
     response = models.CharField(max_length=50)

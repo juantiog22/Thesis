@@ -10,11 +10,11 @@ Para asegurar la eficacia, se hace uso de una base de datos tipo PostgreSQL que 
     \centering
     \includegraphics[width=1\textwidth, height=15cm]{imagenes/myapp_models.png}
     \caption{ Diagrama de clases }
-    \label{fig:enter-label}
+    \label{fig:diagrama}
 \end{figure}
 
 
-Esta base de datos consta de cinco entidades principales:
+En la \textit{\hyperref[fig:diagrama]{figura 4.1}} vemos el diagrama de clases que muestra las relaciones entre las entidades existentes en el sistema. Esta base de datos consta de cinco entidades principales:
 \begin{itemize}
 \item \textbf{Peguntas}: Contiene la información de todas las preguntas almacenadas. Esta se divide en dos: Pregunta y Posibles respuestas. Dentro de la primera especificaría el título de la pregunta junto con otros campos como la fecha o usuario de creación y la segunda contiene las respuestas a esa pregunta. 
 \item \textbf{Bloques de Preguntas}: Las preguntas se almacenan en bloques. Cada bloque puede tener las preguntas que desee, además de un atributo booleano que indicará que ese bloque de preguntas se encuentra activo. Los bloques también tienen asociado un contexto. 
@@ -25,13 +25,13 @@ Esta base de datos consta de cinco entidades principales:
 
 La parte del chatbot está formada por tres módulos. Un primer módulo de bienvenida y registro, donde el bot se presenta con el usuario y lo registra en nuestra base de datos. Un segundo módulo que actúa como agente conversacional y un tercer módulo que representa el cuestionario de preguntas. Posteriormente los analizaremos con más detalle.
 
-Esta arquitectura permite creación de cuestionarios interactivos, almacenamiento de datos y análisis de respuestas de forma confidencial para su posterior evaluación.
+Tal como se ve en la \textit{\hyperref[fig:arquitectura]{figura 4.2}}, esta arquitectura permite la creación de cuestionarios interactivos a través de la aplicación web y su realización por el bot, almacenamiento de datos y análisis de respuestas de forma confidencial para su posterior evaluación.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{imagenes/arquitecture.png}
     \caption{\textit{POSTCOVID-AI TELEGRAMBOT} arquitectura}
-    \label{fig:enter-label}
+    \label{fig:arquitectura}
 \end{figure}
 
 \section{Implementación}

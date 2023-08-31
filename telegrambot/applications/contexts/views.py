@@ -14,7 +14,6 @@ from django.views.generic import (
 
 from .models import Context, Message
 from .forms import ContextForm
-# Create your views here.
 
 class ListContexts(LoginRequiredMixin, DeletionMixin, ListView):
     template_name = 'contexts/list_contexts.html'

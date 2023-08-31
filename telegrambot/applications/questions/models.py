@@ -8,7 +8,6 @@ class Question(models.Model):
     title = models.CharField(max_length=300)
     create = models.DateTimeField(default=timezone.now)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
-    #objects = QuestionbyActiveBlocks()
 
 
     class Meta:

@@ -15,7 +15,7 @@ from django.views.generic import (
 
 from .models import Question, PosibleAnswers, QuestionBlock
 from .forms import PreguntaForm, PosibleAnswersFormSet, BlockForm
-# Create your views here.
+
 
 class ListQuestions(LoginRequiredMixin, DeletionMixin, ListView):
     template_name = 'questions/list_questions.html'

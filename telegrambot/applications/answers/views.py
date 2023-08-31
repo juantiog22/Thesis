@@ -13,7 +13,6 @@ from applications.usuarios.models import Suscriber
 
 import csv
 
-# Create your views here.
 
 
 class AnswersListView(LoginRequiredMixin, ListView):

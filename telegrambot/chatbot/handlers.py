@@ -61,7 +61,7 @@ def welcome(update, context):
     return THIRD_STATE
    
 
-    
+#Function that redirects to the corresponding state depending on the question history of the user
 def start_handler(update, context):
 
     user_response = update.message.text.lower()
@@ -190,6 +190,7 @@ def find_context(response):
 ""                                                        ""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+#Class that creates an user's job
 class MessageJob(object):
 
     def __init__(self, context, suscriber):
@@ -198,8 +199,8 @@ class MessageJob(object):
         
 
     def create_job(self, context):
-        #Create a user's job
-        context.job_queue.run_repeating(callback=self.job, interval=30, first=0, context=self.suscriber.chatid, name=self.suscriber.chatid)
+        #Create an user's job
+        context.job_queue.run_repeating(callback=self.job, interval=86400, first=0, context=self.suscriber.chatid, name=self.suscriber.chatid)
         
         
     def job(self, context):
@@ -238,7 +239,7 @@ def is_answered(user, question):
     elif frecuency == 'M':
         date_interval = timedelta(weeks=4)
     else:
-        date_interval = timedelta(seconds=20)
+        date_interval = timedelta(weeks=12)
 
     date = timezone.now() - date_interval
 

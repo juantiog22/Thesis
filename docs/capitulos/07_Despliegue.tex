@@ -5,30 +5,30 @@
 
 El despliegue del proyecto se ha realizado en un repositorio público de mi cuenta de \href{https://github.com/juantiog22}{GitHub}, en el que encontramos todo el código disponible. \vspace{0.3cm}
 
-Para la creación del bot y que se encuentre activo para todo aquel que quiera conversar se ha utilizado la API de Telegram. La aplicación de mensajería pone a disposición de cualquier usuario la creación de de bots en su plataforma de manera relativamente sencilla con la ayuda de su robot \textit{BotFather}. Se trata de un bot disponible en cualquier versión de Telegram, escritorio o app móvil, y que se encarga de controlar otros bots.
+Para la creación del bot y que se encuentre activo para todo aquel que quiera conversar se ha utilizado la API de Telegram. La aplicación de mensajería pone a disposición de cualquier usuario la creación de bots en su plataforma de manera relativamente sencilla con la ayuda de su robot \textit{BotFather}. Se trata de un bot disponible en cualquier versión de Telegram, escritorio o app móvil, y que se encarga de controlar otros bots.
 
-Gracias a la API de que dispone Telegram para bots vamos a podemos acceder a una gran cantidad de herramientas que nos ayuda a la hora de desarrrollar la lógica de nuestro bot.
+Gracias a la API de que dispone Telegram para bots vamos a poder acceder a una gran cantidad de herramientas que nos ayuda a la hora de desarrrollar la lógica de nuestro bot.
 
 
 Para ello debemos bucar a \textit{@BotFather} en el buscador de Telegram y empezar una conversación con él. Este es el bot oficial que te permitirá crear y administrar tus propios bots. 
 
-Escribiendo el comando /newbot iniciamos el proceso de creación. Nos solicitará que elijamos un nombre, que será el mostrado en las conversaciones, y un username que deberá de terminar en \_bot o Bot. Ya creado, nos proporcionará un token de acceso único para nuestro bot. Este es el token con el que vamos a interactuar con la API de Telegram. \vspace{2cm}
+Como observamos en la \textit{\hyperref[fig:creacion-bot]{figura 7.1}}, escribiendo el comando /newbot iniciamos el proceso de creación. Nos solicitará que elijamos un nombre, que será el mostrado en las conversaciones, y un username que deberá de terminar en \_bot o Bot. Ya creado, nos proporcionará un token de acceso único para nuestro bot. Este es el token con el que vamos a interactuar con la API de Telegram. \vspace{2cm}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.7\textwidth, height=8cm]{imagenes/bot_creation.png}
+    \includegraphics[width=0.7\textwidth, height=7.5cm]{imagenes/bot_creation.png}
     \caption{ Creación del bot en Telegram }
-    \label{fig:planificacion}
+    \label{fig:creacion-bot}
 \end{figure}
 
 
-Hecho esto, podemos personalizar nuestro bot como deseemos, cambiando la descripción, el estado, la foto de perfil, comandos personalizados...
+Hecho esto, tal como se muestra en la \textit{\hyperref[fig:customize-bot]{figura 7.2}}, podemos personalizar nuestro bot como deseemos, cambiando la descripción, el estado, la foto de perfil, comandos personalizados...
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth, height=9cm]{imagenes/bot_custom.png}
+    \includegraphics[width=0.8\textwidth, height=8.5cm]{imagenes/bot_custom.png}
     \caption{ Customización del bot }
-    \label{fig:planificacion}
+    \label{fig:customize-bot}
 \end{figure}
 
 
@@ -59,7 +59,7 @@ La primera de ella es Docker. Dependiendo del sistema operativo que estemos util
 
 El lenguaje de programación utilizado es python, por lo que debemos de tenerlo descargado y declarado como variable de entorno en nuestro sistema. En su página oficial, explica como hacerlo \textit({\cite{python})}
 
-El gestor de base de datos utilizado es PostgreSQL. También es posible descargarlo en Windows utilizando del instalador que proveen \textit({\cite{postgres})} o en el caso de Linux ejecutando los siguientes comandos:
+El gestor de base de datos utilizado es PostgreSQL. También es posible descargarlo en Windows utilizando el instalador que proveen \textit({\cite{postgres})} o en el caso de Linux ejecutando los siguientes comandos:
 
 \begin{minted}{bash}
     $ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt
@@ -73,7 +73,7 @@ El gestor de base de datos utilizado es PostgreSQL. También es posible descarga
 
 \subsection{Montaje de desarrollo}
 
-Una vez lo tengamos todo lo necesario, ya podemos pasar al montaje del proyecto. Para ello, descargamos el código del repositorio público de github que contiene el proyecto. Podemos hacerlo a mano o mediante comando.
+Una vez tengamos todo lo necesario, ya podemos pasar al montaje del proyecto. Para ello, descargamos el código del repositorio público de github que contiene el proyecto. Podemos hacerlo a mano o mediante comando.
 
 \begin{minted}{bash}
     $ git clone https://github.com/juantiog22/Thesis.git
@@ -85,8 +85,8 @@ Se ha usado Docker ya que permite entregar código con mayor rapidez, estandariz
     $ docker-compose up -d --build  
 \end{minted}
 
-Esto creará las imágenes de docker correspondientes a la interfaz web, el bot y la base de datos. Además instalará todos los paquetes necesarios situado dentro del archivo \textit{requirements.txt} . 
-Para la creación de la base de datos, he exportado la mía que se encuentra dentro del archivo \textit{dumpfile.dump}. Esta base de datos cuenta con preguntas, bloques y contextos previamente creados con ejemplos reales de como serían algunos cuestionarios guiándome según las reglas e información relevante que me proveen desde \textit({\cite{postcovid})}. En el caso de querer establecer esta base de datos tras haber hecho el paso anterior debemos restaurar la nuestra con la información que contiene este archivo. Para ello:
+Esto creará las imágenes de docker correspondientes a la interfaz web, el bot y la base de datos. Además instalará todos los paquetes necesarios situado dentro del archivo \textit{'requirements.txt'}. 
+Para la creación de la base de datos, he exportado la mía que se encuentra dentro del archivo \textit{'dumpfile.dump'}. Esta base de datos cuenta con preguntas, bloques y contextos previamente creados con ejemplos reales de como serían algunos cuestionarios guiándome según las reglas e información relevante que me proveen desde \textit({\cite{postcovid})}. En el caso de querer establecer esta base de datos tras haber hecho el paso anterior debemos restaurar la nuestra con la información que contiene este archivo. Para ello:
 
 \begin{minted}{bash}
     $ docker-compose exec db bash
@@ -95,13 +95,13 @@ Para la creación de la base de datos, he exportado la mía que se encuentra den
 
 Esto vuelca toda la información en nuestra base de datos y migrará todos los datos de forma automática en la base de datos que provee PostgreSQL por defecto. 
 
-En el caso de no querer usar esa y querer crear otra nueva pero con todos los cambios debemos de crearla previamente. Desde la terminal de psql podemos hacerlo con el siguiente comando:
+En el caso de no querer usar esa base de datos y querer crear otra nueva pero con todos los cambios debemos de crearla previamente. Desde la terminal de psql podemos hacerlo con el siguiente comando:
 
 \begin{minted}{bash}
     $ createdb -U "nombre_propietario" "nombre_base_datos"
 \end{minted}
 
-Si hacemos esto, debemos hacer un par de cambios antes de la instalación. En el archivo \textit{docker-compose.yml}, podemos cambiar las variables relacionadas con el entorno de la base de datos antes de construir la imagen.
+Si hacemos esto, debemos hacer un par de cambios antes de la instalación. En el archivo \textit{'docker-compose.yml'}, podemos cambiar las variables relacionadas con el entorno de la base de datos antes de construir la imagen.
 
 \begin{minted}{bash}
     - POSTGRES_USER=postgres
@@ -109,7 +109,7 @@ Si hacemos esto, debemos hacer un par de cambios antes de la instalación. En el
     - POSTGRES_PASSWORD=postgres
 \end{minted}
 
-También dentro de la ruta \textit{/telegrambot/telegrambot/settings/local.py} es donde se define la base de datos con la que vamos a trabajar, podemos cambiarlo modificando los parámetros como deseemos. 
+También dentro de la ruta \textit{'/telegrambot/telegrambot/settings/local.py'} es donde se define la base de datos con la que vamos a trabajar, podemos cambiarlo modificando los parámetros como deseemos. 
 
 
 \begin{minted}{Python}
@@ -127,7 +127,7 @@ DATABASES = {
 
 Tendríamos que cambiar los datos relacionados al usuario, contraseña y nombre. 
 
-Si queremos crear una base de datos desde 0 y completamente nueva, simplemente tras construir la imágenes de docker ejecutamos lo siguiente:
+Si queremos crear una base de datos desde cero y completamente nueva, simplemente tras construir la imágenes de docker ejecutamos lo siguiente:
 
 \begin{minted}{bash}
     $ docker-compose run web python manage.py makemigrations

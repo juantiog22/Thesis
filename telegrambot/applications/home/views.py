@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import (
     TemplateView,
 )
-# Create your views here.
+
 
 class PanelHomeView(LoginRequiredMixin, TemplateView):
     template_name = "home/home.html"
