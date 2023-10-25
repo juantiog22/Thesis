@@ -1,10 +1,12 @@
 from typing import Any, Dict
 from django.db.models.query import QuerySet
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView, FormMixin, DeletionMixin
 from django.core.paginator import Paginator
+from django.contrib import messages
 from django.views.generic import (
     ListView,
     CreateView,
@@ -14,7 +16,10 @@ from django.views.generic import (
 )
 
 from .models import Question, PosibleAnswers, QuestionBlock
-from .forms import PreguntaForm, PosibleAnswersFormSet, BlockForm
+from .forms import PreguntaForm, PosibleAnswersFormSet, BlockForm, BlockUpdateForm
+from applications.usuarios.models import User
+from applications.contexts.models import Context
+from applications.answers.models import Answer
 
 
 class ListQuestions(LoginRequiredMixin, DeletionMixin, ListView):
@@ -28,7 +33,7 @@ class ListQuestions(LoginRequiredMixin, DeletionMixin, ListView):
         lista_questions = super(ListQuestions, self).get_queryset(*args, **kwargs)
         query = self.request.GET.get('search')
         if query:
-            lista_questions = lista_questions.filter(title__icontains=query).order_by("-create")
+            lista_questions = lista_questions.filter(title__icontains=query).order_by("-create") 
         else:
             lista_questions = lista_questions.order_by("-create")
         return lista_questions
@@ -52,8 +57,10 @@ class NewQuestionView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         titulo = form.cleaned_data['titulo']
         responses = form.cleaned_data['responses_field']
+        user = User.objects.get(id=self.request.user.id)
         quest=Question.objects.create(
-            title=titulo 
+            title=titulo,
+            creator=user
         )
         for response in responses:
             PosibleAnswers.objects.create(
@@ -117,6 +124,20 @@ def delete_question(request, pk):
     question.delete()
     return HttpResponseRedirect(reverse_lazy('questions_app:questions_all'))
 
+def clone_question(request, pk):
+    question = Question.objects.get(id=pk)
+    quest = Question.objects.create(
+        title = question.title,
+    )
+    quest.save()
+    answers = PosibleAnswers.objects.filter(question=question)
+    for answer in answers:
+        PosibleAnswers.objects.create(
+            texto = answer.texto,
+            question = quest
+        )
+    return HttpResponseRedirect(reverse_lazy('questions_app:questions_all'))
+
 
 class ListQuestionsBlock(LoginRequiredMixin, ListView):
     template_name = 'questions/list_blocks.html'
@@ -130,9 +151,9 @@ class ListQuestionsBlock(LoginRequiredMixin, ListView):
         lista_blocks = super(ListQuestionsBlock, self).get_queryset(*args, **kwargs)
         query = self.request.GET.get('search')
         if query:
-            lista_blocks = lista_blocks.filter(block__icontains=query).order_by("importance")
+            lista_blocks = lista_blocks.filter(block__icontains=query).order_by("-create") 
         else:
-            lista_blocks = lista_blocks.order_by("importance")
+            lista_blocks = lista_blocks.order_by("-create")
         return lista_blocks
     
     def get_context_data(self, **kwargs):
@@ -148,30 +169,110 @@ class BlockCreateView(LoginRequiredMixin, CreateView):
     success_url  = reverse_lazy('questions_app:blocks_all')
     login_url = reverse_lazy('usuarios_app:user-login')
 
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(QuestionBlock, pk=pk)
+     
     def form_valid(self, form):
         quest = form.cleaned_data['question']
-        for title in quest:
-            question = Question.objects.get(title=title)
-            question.blocks.clear()
-            question.save()    
+        if form.cleaned_data['frecuency'] == 'O':
+            form.instance.active = True
+ 
+
         return super(BlockCreateView, self).form_valid(form)
 
-class BlockUpdateView(LoginRequiredMixin, UpdateView):
+class BlockUpdateView(LoginRequiredMixin, UpdateView, DeletionMixin):
     model = QuestionBlock
     template_name = "questions/update_block.html"
     form_class = BlockForm
     success_url  = reverse_lazy('questions_app:blocks_all')
     login_url = reverse_lazy('usuarios_app:user-login')
+        
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
+     
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(QuestionBlock, pk=pk)
+     
+    def get_context_data(self, **kwargs):
+         return super().get_context_data(**kwargs)
+    
+    def compare(self, time, days, duration, frecuency):
+        self.object = self.get_object()
+        if self.object.time != time or self.object.days != days or self.object.duration != duration or self.object.frecuency != frecuency:
+            return True
+        else:
+            return False
+
 
     def form_valid(self, form):
-        quest = form.cleaned_data['question']
-        for title in quest:
-            question = Question.objects.get(title=title)
-            question.blocks.clear()
-            question.save()    
-        return super(BlockUpdateView, self).form_valid(form)
+        self.object = self.get_object()
+        time = form.cleaned_data['time']    
+        days = form.cleaned_data['days']
+        duration = form.cleaned_data['duration']
+        frecuency = form.cleaned_data['frecuency']
+        if self.compare(time, days, duration, frecuency):
+            self.udpate_block(form)
+            return self.delete(self.request)
+        else:
+            return super(BlockUpdateView, self).form_valid(form)
+        
     
+    def udpate_block(self, form):
+        block = form.cleaned_data['block']
+        importance = form.cleaned_data['importance']
+        questions = form.cleaned_data['question']
+        contexts = form.cleaned_data['context']
+        time = form.cleaned_data['time']    
+        days = form.cleaned_data['days']
+        duration = form.cleaned_data['duration']
+        frecuency = form.cleaned_data['frecuency']
+        blo = QuestionBlock.objects.create(
+            block = block,
+            frecuency = frecuency,
+            importance = importance,
+            time = time,
+            days = days,
+            duration = duration
+        )
+        blo.save()
+        for question in questions:
+            question.blocks.add(blo)
+        for context in contexts:
+            context.block.add(blo)
+        answers = Answer.objects.filter(block=self.get_object())
+        for answer in answers:
+            answer.block = blo
+            answer.save()
+
 def delete_block(request, pk):
     block = QuestionBlock.objects.get(id=pk)
     block.delete()
     return HttpResponseRedirect(reverse_lazy('questions_app:blocks_all'))
+
+
+def clone_block(request, pk):
+    block = QuestionBlock.objects.get(id=pk)
+    blo = QuestionBlock.objects.create(
+        block = block.block,
+        frecuency = block.frecuency,
+        importance = block.importance,
+        time = block.time,
+        days = block.days,
+        duration = block.duration
+    )
+    blo.save()
+    questions = Question.objects.filter(blocks=block)
+    for question in questions:
+        question.blocks.add(blo)
+    contexts = Context.objects.filter(block=block)
+    for context in contexts:
+        context.block.add(blo)
+    return HttpResponseRedirect(reverse_lazy('questions_app:blocks_all'))
+
+
+
+        
+

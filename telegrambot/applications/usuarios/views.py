@@ -5,6 +5,8 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+
 
 from .forms import UserRegisterForm, LoginForm, UpdatePasswordForm
 from .models import User
@@ -61,6 +63,7 @@ class UpdatePassword(FormView):
     form_class = UpdatePasswordForm
     success_url = reverse_lazy('usuarios_app:user-login')
 
+
     def form_valid(self, form):
         usuario = self.request.user
         user = authenticate(
@@ -71,6 +74,10 @@ class UpdatePassword(FormView):
             new_password = form.cleaned_data['password2']
             usuario.set_password(new_password)
             usuario.save()
-        logout(self.request)
-        
-        return super(UpdatePassword, self).form_valid(form)
+            logout(self.request)
+            return super(UpdatePassword, self).form_valid(form)
+        else:
+            form.add_error(None, 'Incorrect old password')
+            messages.error(self.request, 'Incorrect old password. Please try again.')
+            return self.form_invalid(form)
+            

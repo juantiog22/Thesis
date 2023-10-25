@@ -48,11 +48,25 @@ class UserRegisterForm(forms.ModelForm):
 
 
     def clean(self):
+
+        usernames = User.objects.all()
+        userna = User.objects.filter(username=self.cleaned_data['username']).first()
+        userem = User.objects.filter(email=self.cleaned_data['email']).first()
+
+        if userna is not None:
+            if usernames.contains(userna):
+                raise forms.ValidationError('The user already exists in the system. Please choose another username')
+        
+        if userem is not None:
+            if usernames.contains(userem):
+                raise forms.ValidationError('The user already exists in the system. Please choose another email')
+
         if self.cleaned_data['password1'] != self.cleaned_data['password2']:
             raise forms.ValidationError('Passwords do not match')
 
         if len(self.cleaned_data['password1']) < 8:
             raise forms.ValidationError('Password must contains at least 8 characters')
+        
         
 
 class LoginForm(forms.Form):
@@ -89,6 +103,7 @@ class LoginForm(forms.Form):
 
 
 class UpdatePasswordForm(forms.Form):
+
     password1 = forms.CharField(
         label = 'Password',
         required = True,
@@ -109,6 +124,14 @@ class UpdatePasswordForm(forms.Form):
     )
     
     def clean(self):
-         
+
+        cleaned_data = super(UpdatePasswordForm, self).clean()
+        password1 = self.cleaned_data['password1']
+        password2 = self.cleaned_data['password2']
+
+        
+    
         if len(self.cleaned_data['password2']) < 8:
             raise forms.ValidationError('Password must contains at least 8 characters')
+        
+        return self.cleaned_data

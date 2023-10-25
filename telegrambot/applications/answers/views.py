@@ -12,7 +12,8 @@ from .models import Answer
 from applications.usuarios.models import Suscriber
 
 import csv
-
+import io
+from django.utils.encoding import smart_str
 
 
 class AnswersListView(LoginRequiredMixin, ListView):
@@ -29,13 +30,40 @@ class AnswersListView(LoginRequiredMixin, ListView):
         return lista_answers
 
 
-def export_to_csv(request):
+"""def export_to_csv(request):
     answers = Answer.objects.all()
     response = HttpResponse('text/csv')
     response['Content-Disposition'] = 'attachment; filename=answers_export.csv'
-    writer = csv.writer(response)
+    writer = csv.writer(response, delimitier=';')
     writer.writerow(['Question', 'Response', 'Suscriber', 'Date'])
-    answer_fields = answers.values_list('question__title', 'response', 'suscriber__username', 'date')
+    date = answer.date.strftime('%Y-%m-%d')
+    answer_fields = answers.values_list('question__title', 'response', 'suscriber__username', d)
     for answer in answer_fields:
         writer.writerow(answer)
+    return response"""
+
+def export_to_csv(request):
+    answers = Answer.objects.all().order_by('-date')
+    buffer = io.StringIO()
+    writer = csv.writer(buffer, delimiter=';')
+
+    writer.writerow([smart_str('Block'), smart_str('Question'), smart_str('Response'), smart_str('Subscriber'), smart_str('Date')])
+    
+    for answer in answers:
+        block = smart_str(answer.block.block)
+        question = smart_str(answer.question.title)
+        response = smart_str(answer.response)
+        subscriber_username = smart_str(answer.suscriber.username)
+        date = smart_str(answer.date.strftime('%Y-%m-%d'))
+
+        writer.writerow([block, question, response, subscriber_username, date])
+    
+    csv_file_name = 'answers_export.csv'
+    with open(csv_file_name, 'w', encoding='latin1') as csv_file:
+        csv_file.write(buffer.getvalue())
+    
+    with open(csv_file_name, 'rb') as csv_file:
+        response = HttpResponse(csv_file.read(), content_type='text/csv')
+        response['Content-Disposition'] = f'attachment; filename={csv_file_name}'
+    
     return response

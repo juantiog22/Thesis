@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import formset_factory
 from django.core.exceptions import ValidationError
+from django.contrib.admin.widgets import AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
 from .models import Question, PosibleAnswers, QuestionBlock
 from applications.contexts.models import Context
 
@@ -35,9 +36,29 @@ class BlockForm(forms.ModelForm):
             'block',
             'question',
             'context',
-            'active',
             'frecuency',
             'importance',
+            'time',
+            'days',
+            'duration',
         )
+    block = forms.CharField(widget=forms.TextInput(attrs={'name':'titulo', 'placeholder': 'Block name'}))
     question = forms.ModelMultipleChoiceField(queryset=Question.objects.all().order_by('-create'), widget=forms.CheckboxSelectMultiple)
-   
+
+
+class BlockUpdateForm(forms.ModelForm):
+    class Meta:
+        model = QuestionBlock
+        fields = (
+            'block',
+            'question',
+            'context',
+            'importance',
+        )
+
+    question = forms.ModelMultipleChoiceField(queryset=Question.objects.all().order_by('-create'), widget=forms.CheckboxSelectMultiple)
+
+
+    
+            
+    

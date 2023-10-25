@@ -5,9 +5,15 @@ import logging
 import random
 
 import telegram
+import pytz
+import threading
 from telegram import Update
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton
 from telegram.ext import CommandHandler, MessageHandler, Filters, ContextTypes, Updater, CallbackQueryHandler, ConversationHandler, Job, JobQueue
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
+from apscheduler.triggers.date import DateTrigger
+
 
 from django.utils import timezone
 from django.db import models
@@ -34,12 +40,17 @@ BOT_USERNAME: Final =  '@postcovidai_bot'
 ""                                                        ""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 FIRST_STATE, SECOND_STATE, THIRD_STATE, FOURTH_STATE = range(4)
+
+executed = False
+scheduler = BackgroundScheduler()
+aux_blocks = list(QuestionBlock.objects.all().values('id'))
+
 
 
 #Method to give welcome and register user's data
 def welcome(update, context):
-
     chat_id=update.effective_chat.id
     name=update.message.from_user.first_name
     surname=update.message.from_user.last_name
@@ -54,6 +65,10 @@ def welcome(update, context):
 
     logging.info(f'User {username} just enter/registered in the system')
 
+    #ScheduleJob(context)
+    if not executed: 
+        start(context)
+
     context.bot.send_message(chat_id=chat_id, text=messages['welcome'], reply_markup=ReplyKeyboardRemove())
     context.bot.send_message(chat_id=chat_id, text=messages['confidential_information'])
     context.bot.send_message(chat_id=chat_id, text=f"De acuerdo {name}, estas listo/a para empezar?")
@@ -65,15 +80,18 @@ def welcome(update, context):
 def start_handler(update, context):
 
     user_response = update.message.text.lower()
+    con = find_context(user_response)
 
-    if user_response in affirmation:
+    if con == 'affirmation':
 
         try:
             suscriber = Suscriber.objects.get(chatid=update.effective_chat.id)
 
-            question = choose_question(suscriber)
+            question_block = choose_question(suscriber)
+            question = question_block[0]
+            block = question_block[1]
 
-            message = choose_message(question)
+            message = choose_message(block)
 
             answers = PosibleAnswers.objects.filter(question=question)
             reply_markup = custom_keyboard(answers)
@@ -84,7 +102,7 @@ def start_handler(update, context):
             return FIRST_STATE
         
         except:
-            context.bot.send_message(chat_id=update.effective_chat.id, text='No tienes preguntas por responder')
+            context.bot.send_message(chat_id=update.effective_chat.id, text=messages['no_active'])
             return SECOND_STATE
     
     else: 
@@ -93,6 +111,36 @@ def start_handler(update, context):
 
 
 
+def actualize(context):
+    global aux_blocks
+    current_blocks = list(QuestionBlock.objects.all().values('id'))
+    id_list1 = [item['id'] for item in current_blocks]
+    id_list2 = [item['id'] for item in aux_blocks]
+    different_blocks = list(set(id_list1) ^ set(id_list2))
+    if different_blocks is not None:
+        for item in different_blocks:
+                try:
+                    block = QuestionBlock.objects.get(id=item)
+                    ScheduleJob(context, block, scheduler)
+
+                except:
+                    ScheduleJob.remove_schedule(context, str(item))
+
+    aux_blocks = current_blocks
+
+ 
+
+def start(context): 
+    global executed
+    blocks = QuestionBlock.objects.all()
+    executed = True
+    for block in blocks:
+        ScheduleJob(context, block, scheduler)
+        
+    scheduler.start()
+    context.job_queue.run_repeating(actualize, interval=30, first=0, context=context, name='searching')
+
+                
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -116,9 +164,6 @@ def generate_response(update, context):
         
         if con == 'affirmation':
             context.bot.send_message(chat_id=user.id, text=messages['redirect'])
-            #Remove the user's job
-            if context.job_queue.jobs():
-                MessageJob.remove_job(context, suscriber)    
             return THIRD_STATE
         else:
             length = len(messages[con])
@@ -176,44 +221,83 @@ def find_context(response):
         elif word in badmood:
             return 'badmood'
         elif word in joke:
-            return 'joke'
-            
+            return 'joke'   
         
     return None
+
+    
         
     
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""                                                        ""
-""                 'Job Creator'                          ""
+""                 'Schedule Creator'                     ""
 ""                                                        ""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-#Class that creates an user's job
-class MessageJob(object):
 
-    def __init__(self, context, suscriber):
-        self.suscriber = suscriber
-        self.create_job(context)
-        
+class ScheduleJob(object):
 
-    def create_job(self, context):
-        #Create an user's job
-        context.job_queue.run_repeating(callback=self.job, interval=86400, first=0, context=self.suscriber.chatid, name=self.suscriber.chatid)
-        
-        
-    def job(self, context):
-        # This function will be executed every 24 hours
-        question = choose_question(self.suscriber)
-        if question is not None:
-            context.bot.send_message(chat_id=self.suscriber.chatid, text=f"Hey {self.suscriber.name} tienes preguntas por responder. ¿Te gustaría empezar el cuestionario?")
-    
-    def remove_job(context, suscriber):
-        for job in context.job_queue.jobs():
-                if str(job.name) == str(suscriber.chatid):
-                    job.schedule_removal()
+    def __init__(self, context, block, scheduler):
+        self.block = block
+        self.context = context
+        self.scheduler = scheduler
+        self.create_schedule(context)
 
+    def create_schedule(self, context):
+        if self.block.frecuency == 'W' or self.block.frecuency == 'O':
+            self.scheduler.add_job(
+                self.advise,
+                replace_existing=True,
+                trigger=CronTrigger(day_of_week=self.block.days, hour=self.block.time.hour, minute=self.block.time.minute, second=self.block.time.second, timezone=pytz.timezone('Europe/Madrid')),
+                id=str(self.block.id),
+                name=self.block.block,
+            )
+        elif self.block.frecuency == 'D':
+            self.scheduler.add_job(
+                self.advise,
+                replace_existing=True,
+                trigger=CronTrigger(day_of_week='*', hour=self.block.time.hour, minute=self.block.time.minute, second=self.block.time.second, timezone=pytz.timezone('Europe/Madrid')),
+                id=str(self.block.id),
+                name=self.block.block,
+            )
+
+        
+    def advise(self):
+        message = "Buenas, tienes un cuestionario activo disponible para responder. ¿Te gustaria empezar?"
+        self.block.active = True
+        self.block.save()
+        #send message to all users
+        suscribers = Suscriber.objects.all()
+        for keys in suscribers:
+            self.context.bot.send_message(chat_id=keys.chatid, text=message)
+        #remove questionary in one hour 
+        if self.block.frecuency == 'W':
+            self.scheduler.add_job(
+                self.remove,
+                replace_existing=True,
+                trigger=CronTrigger(day_of_week=self.block.days, hour=self.block.time.hour, minute=self.block.time.minute+self.block.duration, second=self.block.time.second, timezone=pytz.timezone('Europe/Madrid')),
+                name='Deactivate block',
+            )
+        elif self.block.frecuency == 'D':
+            self.scheduler.add_job(
+                self.remove,
+                replace_existing=True,
+                trigger=CronTrigger(day_of_week='*', hour=self.block.time.hour, minute=self.block.time.minute+self.block.duration, second=self.block.time.second, timezone=pytz.timezone('Europe/Madrid')),
+                name='Deactivate block',
+            )
+        
+    def remove_schedule(context, block):
+        try:
+            scheduler.remove_job(block)
+        except: 
+            pass
+
+    def remove(self):
+        if self.block.frecuency != 'O':
+            self.block.active = False
+            self.block.save()
 
 
 
@@ -228,51 +312,55 @@ class MessageJob(object):
 
 
 #Function that return if a question is answered by an user
-def is_answered(user, question):
-    frecuency = QuestionBlock.objects.filter(question=question).first().frecuency
+def is_answered(user, question, block):
+    frecuency = block.frecuency
 
     #Check block frecuency and assign a value
     if frecuency == 'D':
-        date_interval = timedelta(days=1)
+        date_interval = timedelta(hours=12)
     elif frecuency == 'W':
-        date_interval = timedelta(weeks=1)
-    elif frecuency == 'M':
-        date_interval = timedelta(weeks=4)
+        date_interval = timedelta(days=6)
     else:
         date_interval = timedelta(weeks=12)
 
     date = timezone.now() - date_interval
 
-    return Answer.objects.filter(question=question, suscriber=user, date__gt=date).exists()
+    return Answer.objects.filter(question=question, suscriber=user, block=block, date__gt=date).exists()
     
 
 #Function that choose the next question to ask according to the user
 def choose_question(user):
-    bloques = QuestionBlock.objects.filter(active=True).order_by('-importance')
     global first
     first = False
+    bloques = QuestionBlock.objects.filter(active=True).order_by('-importance')
     block_counter = 0
-    question_result = None
+    question_result = []
     for block in bloques:
         questions = Question.objects.filter(blocks=block).order_by('create')
         first_value = questions.first()
         for question in questions:
-            if is_answered(user, question) == False:
-                question_result = question
+            answered = is_answered(user, question, block)
+            if not answered:
+                question_result.append(question)
+                question_result.append(block)
                 #if is the first question in the block show message
-                if first_value == question:
+                if question == first_value:
                     first = True
                 else:
                     first = False
                 break
         block_counter += 1
+        if not answered:
+            break
     return question_result
 
 
 #Function that choose the message to display on the chat
-def choose_message(question):
-    contexts_block = get_contexts_by_block(question.blocks.first().id)
-    messages = Message.objects.filter(context=contexts_block)
+def choose_message(block):
+    contexts_block = get_contexts_by_block(block.id)
+    messages = Message.objects.none()
+    for cont in contexts_block:
+        messages |= Message.objects.filter(context=cont)
     random_message = random.randint(0,messages.count()-1)
     
     return messages[random_message]
@@ -280,7 +368,7 @@ def choose_message(question):
 
 #Function that returns the contexts related to a block
 def get_contexts_by_block(bloque):
-    context = Context.objects.filter(block__id=bloque).first()
+    context = Context.objects.filter(block__id=bloque)
     return context
 
 
@@ -306,51 +394,59 @@ def handle_answer(update, context):
         user_response = update.message.text
 
         suscriber = Suscriber.objects.get(chatid=user.id)
-        question = choose_question(suscriber)
-        
-        #Only jump to next question if the answer is valid
-        if valid_answer(question, user_response): 
-            #Store the answer in the DB if is valid
-            answer = Answer.objects.create(
-                    response=str(user_response),
-                    question=question,
-                    suscriber=suscriber,
-                )
-            answer.save()
-            
-            logging.info(f'User {suscriber.username} answer the question {question.title}')
-            
-            #Get next question to answer
-            try:
-                question = choose_question(suscriber)
 
-                #Choose next message 
-                message = choose_message(question)
+        try:
+            question_block = choose_question(suscriber)
+            question = question_block[0]
+            block = question_block[1]
 
-                #if is the first question in the block show message
-                if first:
-                    update.message.reply_text(f"{message}")   
+            #Only jump to next question if the answer is valid
+            if valid_answer(question, user_response): 
+                #Store the answer in the DB if is valid
+                answer = Answer.objects.create(
+                        response=str(user_response),
+                        question=question,
+                        suscriber=suscriber,
+                        block=block
+                    )
+                answer.save()
                 
-                #Show next questioni
+                logging.info(f'User {suscriber.username} answer the question {question.title}')
+                
+                #Get next question to answer
+                try:
+
+                    question_block = choose_question(suscriber)
+                    question = question_block[0]
+                    block = question_block[1]
+
+                    #Choose next message 
+                    message = choose_message(block)
+
+                    #if is the first question in the block show message
+                    if first:
+                        update.message.reply_text(f"{message}")   
+                    
+                    #Show next question
+                    answers = PosibleAnswers.objects.filter(question=question)
+                    reply_markup = custom_keyboard(answers)
+
+                    update.message.reply_text(f"{question.title}", reply_markup=reply_markup)
+
+                except:
+                    context.bot.send_message(chat_id=update.effective_chat.id, text=messages['no_questions'], reply_markup=ReplyKeyboardRemove())
+                    logging.info(f'User {suscriber.username} has no questions to answer')
+
+                    return SECOND_STATE
+                    
+            else:
                 answers = PosibleAnswers.objects.filter(question=question)
                 reply_markup = custom_keyboard(answers)
+                context.bot.send_message(chat_id=update.effective_chat.id, text=messages['wrong_answer'], reply_markup=reply_markup)
+                update.message.reply_text(f"{question.title}") 
 
-                update.message.reply_text(f"{question.title}", reply_markup=reply_markup)
-
-            except:
-                context.bot.send_message(chat_id=update.effective_chat.id, text=messages['no_questions'], reply_markup=ReplyKeyboardRemove())
-                logging.info(f'User {suscriber.username} has no questions to answer')
-
-                MessageJob(context, suscriber)
-                return SECOND_STATE
-                
-        else:
-            answers = PosibleAnswers.objects.filter(question=question)
-            reply_markup = custom_keyboard(answers)
-            context.bot.send_message(chat_id=update.effective_chat.id, text=messages['wrong_answer'], reply_markup=reply_markup)
-            update.message.reply_text(f"{question.title}") 
-
-
+        except:
+            return SECOND_STATE
         
 
 

@@ -12,7 +12,9 @@ urlpatterns = [
     path('blocks/', views.ListQuestionsBlock.as_view(), name='blocks_all'),
     path('add-block/', views.BlockCreateView.as_view(), name='add_block'),
     path('delete-question/<pk>/', views.delete_question, name='delete_question'),
+    path('clone-question/<pk>/', views.clone_question, name='clone_question'),
     path('delete-block/<pk>/', views.delete_block, name='delete_block'),
     path('update-block/<pk>', views.BlockUpdateView.as_view(), name='update_block'),
+    path('clone-block/<pk>/', views.clone_block, name='clone_block'),
 ]
 

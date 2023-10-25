@@ -100,11 +100,12 @@ AUTH_USER_MODEL = 'usuarios.User'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Madrid'
 
 USE_I18N = True
 
 USE_TZ = True
 
+USE_L10N = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

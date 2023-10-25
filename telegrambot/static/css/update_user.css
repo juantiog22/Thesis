@@ -5,12 +5,12 @@ body{
 }
 
 .callout{
-  min-width: 500px;
+  min-width: 600px;
   position: absolute;
   text-align: center;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-30%, -50%);
   border: solid .5px;
   border-color: #b4acac;
   background-color: rgb(250, 250, 250, 0.7);
@@ -19,20 +19,14 @@ body{
 
 .floated-label-wrapper {
     position: relative;
+    text-align: left;
+
 }
   
 .floated-label-wrapper label {
-  background: #fefefe;
-  color: #1779ba;
-  font-size: 0.75rem;
-  font-weight: 600;
-  left: 0.75rem;
-  opacity: 0;
-  padding: 0 0.25rem;
-  position: absolute;
-  top: 2rem;
-  transition: all 0.15s ease-in;
-  z-index: -1;
+  display: block;
+  margin-bottom: 5px;
+  color: #555555;
 }
 
 #error{
@@ -45,19 +39,7 @@ body{
 
 }
 
-p{
-    font-family: 'Dekko';
-    color: #200574;
-}
-.callout h2{
-  font-family: 'Dekko';
-  font-size: 28px;
-  color: #070216;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: 2px;
-  text-align: center;
-  margin: 20px;
-} 
+
   
 
 .floated-label-wrapper label.show {

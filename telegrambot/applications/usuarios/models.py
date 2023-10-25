@@ -31,7 +31,7 @@ class Suscriber(models.Model):
     )
     
     chatid = models.CharField(max_length=20, blank=True, null=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, blank=True, null=True)
     surname = models.CharField(max_length=50, blank=True, null=True)
     username = models.CharField(max_length=50, blank=True, null=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)

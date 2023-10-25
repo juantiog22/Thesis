@@ -1,6 +1,6 @@
-tr {
-    cursor: pointer;
-  }
+  tr {
+      cursor: pointer;
+    }
   tr:hover {background-color: #0bc0ff;}
 
   .table{

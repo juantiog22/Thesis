@@ -6,6 +6,8 @@ body{
     background-size: 50%;  
 }
 
+
+
 .callout{
   min-width: 500px;
   position: absolute;
@@ -15,7 +17,7 @@ body{
   transform: translate(-50%, -50%);
   border: solid 1px;
   border-color: #b4acac;
-  background-color: rgb(250, 250, 250, 0.7);
+  background-color: rgba(179, 172, 172, 0.7);
 }
 
 .floated-label-wrapper {

@@ -14,16 +14,16 @@
 <div class="header-block" style="margin-top:15px;">
   <div class="grid-container fluid">
     <div class="grid-x grid-padding-x">
-      <div class="cell small-12" style="margin:10px;" >
+      <div class="cell small-12">
           <ul class="tabs" data-tabs id="example-tabs">
             <li class="route tabs-title" style="margin:5px;">
               <a href="{% url 'home_app:home_panel' %}">Home</a>
             </li>   
             <li class="route tabs-title" style="margin:5px;">
-                <a href="{% url 'contexts_app:contexts_all' %}">Contexts</a>
+                <a href="{% url 'contexts_app:contexts_all' %}">Preambles</a>
            </li> 
             <li class="route tabs-title" style="margin:5px;">
-              <a href="{% url 'contexts_app:add_context' %}">Add Context</a>
+              <a href="{% url 'contexts_app:add_context' %}">Add Preambles</a>
             </li> 
           </ul>
       </div>
@@ -32,24 +32,23 @@
 </div>
 
 <div class="table-block">
-  <hr>
   <div class="grid-container fluid" >
     <div class="grid-x grid-padding-x">
       <div class="cell small-12" >
         <div class="translucent-form-overlay">
           <form method='POST'>{% csrf_token %}
-            <h3>Add new Context</h3>
+            <h3>Add Preamble</h3>
             <div class="row columns">
-              <label>Context
+              <label>Preamble
                 {{form.name}}
               </label>
             </div>
             <div class="row columns">
-              <label>Messages
+              <label>Messages (Please write one message per line)
                 {{form.messages}}
               </label>
             </div>
-            <button type='submit' class="submit success button" style="margin:5px;">Save</button>
+            <button type='submit' class="bn632-hover bn26">Save</button>
           </div>
           </form>
         </div>

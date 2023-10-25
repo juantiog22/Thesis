@@ -15,7 +15,6 @@
 <body>
     <form method="POST" class="callout text-center">{% csrf_token %}
     <div class="translucent-form-overlay">
-        <i class="far fa-user fa-4x" style="margin:30px;"></i>
         {% if form.non_field_errors %}
             {% for error in form.non_field_errors %}
             <div class="alert alert-danger" role="alert">
@@ -23,8 +22,14 @@
             </div>
             {% endfor %}
         {% endif %}
-        <p>Name: {{user.username}}</p>
-        <p>Email: {{user.email}}</p>
+        <div class="floated-label-wrapper">
+            <label for="pass">Username</label>
+            <input type="text" id="username" value="{{user.username}}" disabled>
+        </div>
+        <div class="floated-label-wrapper">
+            <label for="pass">Email</label>
+            <input type="text" id="username" value="{{user.email}}" disabled>
+        </div>
         <div class="floated-label-wrapper">
             <label for="pass">Actual password</label>
             {{form.password1}}

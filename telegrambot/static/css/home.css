@@ -5,6 +5,45 @@
    margin-right: auto;
    text-align: center;
 }
+
+.dashboard-nav-card {
+    margin: 5px 0;
+    border-radius: 5%;
+    color: #fefefe;
+    display: block;
+    min-height: 100px;
+    padding: 2rem;
+    position: relative;
+    width: 100%;
+  }
+  
+  .dashboard-nav-card:hover .dashboard-nav-card-title,
+  .dashboard-nav-card:hover .dashboard-nav-card-icon {
+    color: #fefefe;
+  }
+  
+  .dashboard-nav-card:hover .dashboard-nav-card-icon {
+    opacity: 1;
+    transition: all 0.2s ease;
+  }
+  
+  .dashboard-nav-card-icon {
+    font-size: 1.25rem;
+    left: 1rem;
+    opacity: 0.5;
+    position: absolute;
+    top: 1rem;
+    transition: all 0.2s ease;
+    width: auto;
+  }
+  
+  .dashboard-nav-card-title {
+    bottom: 0;
+    position: absolute;
+    right: 1rem;
+    text-align: right;
+  }
+
 .conjuntoMenu{
     margin-bottom: 50px;
 
@@ -14,22 +53,6 @@
     text-align: center;
 }
 
-.globo-alerta{
-    position:absolute;
-    right:8px;
-    top:0px;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-}
-
-#subMenu
-{
-    float:right;
-    position:relative;
-    top:-15px;
-    left:-10px;
-}
 
 a:hover, a:focus
 {

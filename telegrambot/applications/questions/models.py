@@ -4,6 +4,7 @@ from applications.contexts.models import Context
 from applications.usuarios.models import User
 
 
+
 class Question(models.Model):
     title = models.CharField(max_length=300)
     create = models.DateTimeField(default=timezone.now)
@@ -30,13 +31,22 @@ class QuestionBlock(models.Model):
         ('O', 'Once'),
         ('D', 'Daily'),
         ('W', 'Weekly'),
-        ('M', 'Monthly'),
     )
 
     IMPORTANCE_CHOICES = (
         (1, 'High priority'),
         (2, 'Normal priority'),
-        (3, 'Low important'),
+        (3, 'Low priority'),
+    )
+
+    DAYS_CHOICES = (
+        ('mon', 'Monday'),
+        ('tue', 'Tuesday'),
+        ('wed', 'Wednesday'),
+        ('thu', 'Thursday'),
+        ('fri', 'Friday'),
+        ('sat', 'Saturday'),
+        ('sun', 'Sunday'),
     )
 
     block = models.CharField(max_length=50)
@@ -45,6 +55,11 @@ class QuestionBlock(models.Model):
     active = models.BooleanField(default=False)
     frecuency = models.CharField(max_length=1, choices=FRECUENCY_CHOICES, default='O')
     importance = models.IntegerField(choices=IMPORTANCE_CHOICES, default=1)
+    time = models.TimeField(blank=True, null=True, default=timezone.now)
+    days = models.CharField(max_length=5, blank=True, null=True, choices=DAYS_CHOICES, default='mon')
+    create = models.DateTimeField(default=timezone.now)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    duration = models.IntegerField(blank=True, null=True, default=60)
 
     class Meta:
         verbose_name = 'Block'

@@ -10,4 +10,5 @@ urlpatterns = [
     path('add-context/', views.NewContextView.as_view(), name='add_context'),
     path('update-context/<pk>/', views.ContextUpdateView.as_view(), name='update_context'),
     path('delete-context/<pk>/', views.delete, name='delete'),
+    path('clone-context/<pk>/', views.clone_context, name='clone_context'),
 ]

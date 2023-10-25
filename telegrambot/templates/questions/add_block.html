@@ -32,44 +32,58 @@
   </div>
 </div>
 <div class="table-block">
-  <hr>
   <div class="grid-container fluid" >
     <div class="grid-x grid-padding-x">
       <div class="cell small-12" >
         <div class="translucent-form-overlay">
           <form method='POST'>{% csrf_token %}
-            <h3>Add new Block</h3>
+            <h3>Add Block</h3>
             <div class="row columns">
-              <label>Block
+              <label>Block: 
                 {{form.block}}
               </label>
             </div>
             <div class="row columns">
-              <label>Question:
-                {{form.question}}
-              </label>
-            </div>
-            <div class="row columns">
-              <label>Context:
+              <label> Preamble:
                 {{form.context}}
               </label>
             </div>
+            <h4>Features</h4>
+              <div class="row columns">
+                <label>Frecuency:
+                  {{form.frecuency}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Importance:
+                  {{form.importance}}
+                </label>
+              </div>
+            <h4>Planning</h4>
+            <div class="column" style="display: flex;">
+              <div class="row columns">
+                <label>Time (HH:MM:SS):
+                  {{form.time}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Day:
+                  {{form.days}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Duration (Minutes):
+                  {{form.duration}}
+                </label>
+              </div>
+            </div>
+            <h4>Questions</h4>
             <div class="row columns">
-              <label>Active:
-                {{form.active}}
+              <label>
+                {{form.question}}
               </label>
             </div>
-            <div class="row columns">
-              <label>Frecuency:
-                {{form.frecuency}}
-              </label>
-            </div>
-            <div class="row columns">
-              <label>Importance:
-                {{form.importance}}
-              </label>
-            </div>
-            <button type='submit' class="submit success button" style="margin:5px;">Save</button>
+            <button type='submit' class="bn632-hover bn26">Save</button>
           </div>
           </form>
         </div>

@@ -114,3 +114,17 @@ def delete(request, pk):
     context = Context.objects.get(id=pk)
     context.delete()
     return HttpResponseRedirect(reverse_lazy('contexts_app:contexts_all'))
+
+def clone_context(request, pk):
+    context = Context.objects.get(id=pk)
+    con = Context.objects.create(
+        name = context.name,
+    )
+    con.save()
+    messages = Message.objects.filter(context=context)
+    for message in messages:
+        Message.objects.create(
+            text = message.text,
+            context = con
+        )
+    return HttpResponseRedirect(reverse_lazy('contexts_app:contexts_all'))

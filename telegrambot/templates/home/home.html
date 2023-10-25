@@ -1,9 +1,13 @@
 {% extends "home/base_home.html" %}
 {% load static %}
 
+
 {% block content %}
 
-{% include "includes/header.html" %}
+{% include 'includes/header.html' %}
+
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}"/>
 
 
 <!doctype html>
@@ -14,48 +18,45 @@
     <title>TelegramBot | Welcome</title>
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
   </head>
-  <body>
+  <body style="margin-left: 220px;">
     <div class="off-canvas-wrapper">
       <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
           <div class="callout success">
             <div class="row column text-center">
-              <h1>POSTCOVID-AI TelegramBot</h1>
+              <h1>POSTCOVID-AI Chatbot</h1>
               <p class="lead">Collecting data from people behaviors</p>
             </div>
           </div>
-          
-          <div class="row small-up-2 medium-up-3 large-up-4">
+          <div class="row small-up-2 medium-up-4 large-up-2">
             <div class="column">
-              <a href="{% url 'questions_app:questions_all' %}">
-                    <img class="thumbnail" src="{% static 'img/preguntas.jpg' %}">
+              <a class="dashboard-nav-card" href="{% url 'questions_app:questions_all' %}" style="background: #F39C12;">
+                <i class="dashboard-nav-card-icon fa fa-question" aria-hidden="true"></i>
+                <h3 class="dashboard-nav-card-title">Questions</h3>
               </a>
-              <h5 style="text-align:center;">Questions</h5>
             </div>
             <div class="column">
-                <a href="{% url 'questions_app:blocks_all' %}">
-                    <img class="thumbnail" src="{% static 'img/bloques.jpg' %}">
-                </a>
-              <h5 style="text-align:center;">Blocks</h5>
-            </div>
-            <div class="column">
-              <a href="{% url 'contexts_app:contexts_all' %}">
-              <img class="thumbnail" src="{% static 'img/contextos.jpg' %}">
+              <a class="dashboard-nav-card" href="{% url 'contexts_app:contexts_all' %}" style="background: #9B59B6;">
+                <i class="dashboard-nav-card-icon fa fa-comments" aria-hidden="true"></i>
+                <h3 class="dashboard-nav-card-title">Preambles</h3>
               </a>
-              <h5 style="text-align:center;">Contexts</h5>
             </div>
             <div class="column">
-                <a href="{% url 'answers_app:answers_all' %}">
-                    <img class="thumbnail" src="{% static 'img/respuestas.avif' %}">
-                </a>
-              <h5 style="text-align:center;">Answers</h5>
+              <a class="dashboard-nav-card" href="{% url 'questions_app:blocks_all' %}" style="background: #2ECC71;">
+                <i class="dashboard-nav-card-icon fa fa-th" aria-hidden="true"></i>
+                <h3 class="dashboard-nav-card-title">Blocks</h3>
+              </a>
+            </div>
+            <div class="column">
+              <a class="dashboard-nav-card" href="{% url 'answers_app:answers_all' %}" style="background: #85C1E9;">
+                <i class="dashboard-nav-card-icon fa fa-users" aria-hidden="true"></i>
+                <h3 class="dashboard-nav-card-title">Answers</h3>
+              </a>
             </div>
           </div>
           <hr>
         </div>
       </div>
     </div>
-
-
   </body>
 </html>
 

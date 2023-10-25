@@ -38,13 +38,13 @@ contact = ['quien']
 
 messages = {
 
-    'welcome': 'Bienvenido a POSTCOVID-AI TelegramBot. Soy un bot conversacional diseñado para ayudar y evaluar el bienestar general de la población',
+    'welcome': 'Bienvenido a POSTCOVID-AI Chatbot. Soy un bot conversacional diseñado para ayudar y evaluar el bienestar general de la población',
 
     'confidential_information': 'Toda la información que me proporciones será tratada de manera confidencial y no se compartirá con nadie más sin tu consentimiento',
 
     'question_explanation': 'Por favor, responde a las siguientes preguntas seleccionando la opción que consideres',
 
-    'whoami': 'Soy POSTCOVID-AI TelegramBot.Un bot conversacional diseñado para ayudar y evaluar el bienestar general de la población',
+    'whoami': 'Soy POSTCOVID-AI Chatbot.Un bot conversacional diseñado para ayudar y evaluar el bienestar general de la población',
 
     'purpose': 'POSTCOVID-AI ayudará a identificar indicadores cuantitativos a través del desarrollo de una novedosa plataforma inteligente para la adquisición y análisis en tiempo real de datos sociales, conductuales y emocionales, gracias a la cual será posible medir el impacto del contexto diario posterior a COVID-19 en el bienestar de la población española',
 
@@ -57,6 +57,8 @@ messages = {
     'questions_pending': 'Lo siento no te entiendo. Por cierto tienes preguntas pendientes ¿Te gustaría empezar el cuestionario?',
 
     'no_questions': 'Gracias por tu respuestas, por ahora no tengo más preguntas para hacerte!',
+
+    'no_active': 'No hay cuestionarios activos en este momento',
 
     'wrong_answer':'Respuesta incorrecta. Por favor selecciona una de las proporcionadas',
 

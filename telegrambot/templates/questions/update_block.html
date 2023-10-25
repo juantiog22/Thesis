@@ -14,7 +14,7 @@
 <div class="header-block" style="margin-top:15px;">
   <div class="grid-container fluid">
     <div class="grid-x grid-padding-x">
-      <div class="cell small-12" style="margin:10px;" >
+      <div class="cell small-12">
           <ul class="tabs" data-tabs id="example-tabs">
             <li class="route tabs-title" style="margin:5px;">
               <a href="{% url 'home_app:home_panel' %}">Home</a>
@@ -22,39 +22,35 @@
             <li class="route tabs-title" style="margin:5px;">
                 <a href="{% url 'questions_app:blocks_all' %}">Blocks</a>
            </li> 
+           <li class="route tabs-title" style="margin:5px;">
+            <a href="{% url 'questions_app:update_block' object.id %}">Update Block</a>
+          </li> 
           </ul>
       </div>
     </div>
   </div>
 </div>
 <div class="table-block">
-    <hr>
     <div class="grid-container fluid" >
       <div class="grid-x grid-padding-x">
         <div class="cell small-12" >
           <div class="translucent-form-overlay">
             <form method='POST'>{% csrf_token %}
-              <h3>Update block</h3>
+              <div class="button-title-container">
+                <h3>Update block</h3>
+                <button type='submit' class="bn632-hover bn26">Save</button>
+              </div>
               <div class="row columns">
                 <label>Block:
                   {{form.block}}
                 </label>
               </div>
               <div class="row columns">
-                <label>Question:
-                  {{form.question}}
-                </label>
-              </div>
-              <div class="row columns">
-                <label>Context:
+                <label>Preamble:
                   {{form.context}}
                 </label>
               </div>
-              <div class="row columns">
-                <label>Active:
-                  {{form.active}}
-                </label>
-              </div>
+              <h4>Features</h4>
               <div class="row columns">
                 <label>Frecuency:
                   {{form.frecuency}}
@@ -65,7 +61,30 @@
                   {{form.importance}}
                 </label>
               </div>
-              <button type='submit' class="submit success button" style="margin:5px;">Save</button>
+            <h4>Planning</h4>
+            <div class="column" style="display: flex;">
+              <div class="row columns">
+                <label>Time (HH:MM:SS):
+                  {{form.time}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Day:
+                  {{form.days}}
+                </label>
+              </div>
+              <div class="row columns">
+                <label>Duration (Minutes):
+                  {{form.duration}}
+                </label>
+              </div>
+            </div>
+            <div class="row columns">
+              <label>Question:
+                {{form.question}}
+              </label>
+            </div>
+              <button type='submit' class="bn632-hover bn26">Save</button>
             </div>
             </form>
           </div>
@@ -75,3 +94,4 @@
   </div>
 
 {% endblock content %}
+

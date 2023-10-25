@@ -19,7 +19,7 @@
               <a href="{% url 'home_app:home_panel' %}">Home</a>
            </li>   
             <li class="route tabs-title" style="margin:5px;">
-                <a href="{% url 'contexts_app:contexts_all' %}">Contexts</a>
+                <a href="{% url 'contexts_app:contexts_all' %}">Preambles</a>
            </li> 
           </ul>
       </div>
@@ -27,33 +27,35 @@
   </div>
 </div>
 <div class="table-block">
-  <hr>
   <div class="grid-container fluid" >
     <div class="grid-x grid-padding-x">
       <div class="cell small-12">
-        <a class="button success" href="{% url 'contexts_app:add_context' %}" style="float: right; margin: 10px;"><i class="fa fa-plus"></i> Context</a>
+        <a class="bn632-hover bn25" href="{% url 'contexts_app:add_context' %}" style="float: right; margin: 10px;">+ Preamble</a>
         <div class="search-container">
           <form method="GET" action="{% url 'contexts_app:contexts_all' %}">
-            <input type="text" name="search" placeholder="Search Context...">
+            <input type="text" name="search" placeholder="Search Preambles...">
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
         </div>
           <table class="styled-table">
-            <caption>List of contexts</caption>
             <thead>
                 <tr>
-                  <th>Context</th>
-                  <th></th>
+                  <th>Preambles</th>
+                  <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for context in lista_contexts %}
              <tr data-href="{% url 'contexts_app:update_context' context.id %}">
                 <td center>{{context.name}}</td>
-                <td>
+                <td style=" display: flex; justify-content: center; align-items: center;">
+                  <form method="POST" action="{% url 'contexts_app:clone_context' context.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn2" data-id="{{ context.id }}" name="{{context.name}}" title="Clone"><i class="fas fa-clone"></i></button>
+                  </form>
                   <form method="POST" action="{% url 'contexts_app:delete' context.id %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn show_confirm"  data-id="{{ context.id }}" name="{{context.name}}"><i class="fas fa-trash-alt"></i></button>
+                    <button type="submit" class="btn show_confirm"  data-id="{{ context.id }}" name="{{context.name}}" title="Delete"><i class="fas fa-trash-alt"></i></button>
                   </form>
                 </td>
              </tr>
