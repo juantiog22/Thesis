@@ -5,7 +5,7 @@ negation = ['no', 'nunca', 'jamas', 'jamás', 'ninguna', 'tampoco', 'ni', 'not']
 
 
 #HELLO AND GOOD BYE
-greetings = ['hola', 'hello', 'buenos dias', 'buenos días', 'buenas tardes', 'dias', 'tardes', 'buenos', 'buenas', 'saludos', 'hi', 'good', 'que', 'tal']
+greetings = ['hola', 'hello', 'buenos dias', 'buenos días', 'buenas tardes', 'dias', 'tardes', 'buenos', 'buenas', 'saludos', 'hi', 'good']
 farewell = ['adios', 'adiós', 'bye', 'good bye', 'hasta', 'luego', 'vemos', 'pronto', 'buenas noches', 'noches', 'proxima', 'vaya']
 
 #THANKS
@@ -52,9 +52,9 @@ messages = {
 
     'redirect': 'Redireccionando al cuestionario. Por favor escriba "si" para continuar',
 
-    'frecuent_quest': 'Lo siento no te entiendo. Aquí tienes algunas preguntas frecuentes por si tienes alguna duda',
+    'frecuent_quest': 'Lo siento no te entiendo... Aquí tienes algunas preguntas frecuentes por si tienes alguna duda',
 
-    'questions_pending': 'Lo siento no te entiendo. Por cierto tienes preguntas pendientes ¿Te gustaría empezar el cuestionario?',
+    'questions_pending': 'Lo siento no te entiendo... Por cierto tienes preguntas pendientes ¿Te gustaría empezar el cuestionario?',
 
     'no_questions': 'Gracias por tu respuestas, por ahora no tengo más preguntas para hacerte!',
 

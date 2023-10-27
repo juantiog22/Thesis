@@ -41,6 +41,7 @@ class BlockForm(forms.ModelForm):
             'time',
             'days',
             'duration',
+            'active',
         )
     block = forms.CharField(widget=forms.TextInput(attrs={'name':'titulo', 'placeholder': 'Block name'}))
     question = forms.ModelMultipleChoiceField(queryset=Question.objects.all().order_by('-create'), widget=forms.CheckboxSelectMultiple)

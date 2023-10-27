@@ -60,6 +60,7 @@ class QuestionBlock(models.Model):
     create = models.DateTimeField(default=timezone.now)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     duration = models.IntegerField(blank=True, null=True, default=60)
+    operating = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Block'

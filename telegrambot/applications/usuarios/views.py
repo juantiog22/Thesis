@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from datetime import datetime, timedelta
 
 
 from .forms import UserRegisterForm, LoginForm, UpdatePasswordForm

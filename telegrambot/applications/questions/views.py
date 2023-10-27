@@ -199,9 +199,9 @@ class BlockUpdateView(LoginRequiredMixin, UpdateView, DeletionMixin):
     def get_context_data(self, **kwargs):
          return super().get_context_data(**kwargs)
     
-    def compare(self, time, days, duration, frecuency):
+    def compare(self, time, days, duration, frecuency, active):
         self.object = self.get_object()
-        if self.object.time != time or self.object.days != days or self.object.duration != duration or self.object.frecuency != frecuency:
+        if self.object.time != time or self.object.days != days or self.object.duration != duration or self.object.frecuency != frecuency or self.object.active != active:
             return True
         else:
             return False
@@ -213,7 +213,8 @@ class BlockUpdateView(LoginRequiredMixin, UpdateView, DeletionMixin):
         days = form.cleaned_data['days']
         duration = form.cleaned_data['duration']
         frecuency = form.cleaned_data['frecuency']
-        if self.compare(time, days, duration, frecuency):
+        active = form.cleaned_data['active']
+        if self.compare(time, days, duration, frecuency, active):
             self.udpate_block(form)
             return self.delete(self.request)
         else:
@@ -229,13 +230,15 @@ class BlockUpdateView(LoginRequiredMixin, UpdateView, DeletionMixin):
         days = form.cleaned_data['days']
         duration = form.cleaned_data['duration']
         frecuency = form.cleaned_data['frecuency']
+        active = form.cleaned_data['active']
         blo = QuestionBlock.objects.create(
             block = block,
             frecuency = frecuency,
             importance = importance,
             time = time,
             days = days,
-            duration = duration
+            duration = duration,
+            active = active,
         )
         blo.save()
         for question in questions:

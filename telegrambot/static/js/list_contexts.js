@@ -1,25 +1,4 @@
 
-function addRow() {
-  var table = document.getElementById("mytable");
-  var newRow = table.insertRow(table.rows.length);
-  var cell = newRow.insertCell(0);
-  
-  var input1 = document.createElement("input");
-    input1.type = "text";
-    input1.name = "messages"; 
-    cell.appendChild(input1);
-}
-
-function deleteRow() {
-  var table = document.getElementById("mytable");
-  if (table.rows.length > 1) {
-    table.deleteRow(table.rows.length - 1);
-  } else {
-    alert("Cannot delete the last row.");
-  }
-}
-
-
 $( document ).ready(function() {
 
 
@@ -30,7 +9,7 @@ $( document ).ready(function() {
         event.preventDefault();
         event.stopPropagation();
         Swal.fire({
-          title: `Are you sure you want to delete the Context: `,
+          title: `Are you sure you want to delete the Preamble: `,
           text: context,
           icon: "warning",
           showCancelButton: true,
@@ -44,17 +23,6 @@ $( document ).ready(function() {
         });
       });
 
-    $('.add').click(function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-    });
-
-    
-    $('.del').click(function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-    });
-  
     const rows = document.querySelectorAll("tr[data-href]");
     rows.forEach(row => {
       row.addEventListener('click', () => {

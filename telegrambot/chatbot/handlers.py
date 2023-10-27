@@ -86,7 +86,6 @@ def start_handler(update, context):
 
         try:
             suscriber = Suscriber.objects.get(chatid=update.effective_chat.id)
-
             question_block = choose_question(suscriber)
             question = question_block[0]
             block = question_block[1]
@@ -121,18 +120,19 @@ def actualize(context):
         for item in different_blocks:
                 try:
                     block = QuestionBlock.objects.get(id=item)
-                    ScheduleJob(context, block, scheduler)
+                    if block.active:
+                        ScheduleJob(context, block, scheduler)
 
                 except:
                     ScheduleJob.remove_schedule(context, str(item))
 
     aux_blocks = current_blocks
 
- 
+
 
 def start(context): 
     global executed
-    blocks = QuestionBlock.objects.all()
+    blocks = QuestionBlock.objects.filter(active=True)
     executed = True
     for block in blocks:
         ScheduleJob(context, block, scheduler)
@@ -140,7 +140,7 @@ def start(context):
     scheduler.start()
     context.job_queue.run_repeating(actualize, interval=30, first=0, context=context, name='searching')
 
-                
+               
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -263,30 +263,31 @@ class ScheduleJob(object):
                 name=self.block.block,
             )
 
-        
+       
     def advise(self):
         message = "Buenas, tienes un cuestionario activo disponible para responder. ¿Te gustaria empezar?"
-        self.block.active = True
+        self.block.operating = True
         self.block.save()
-        #send message to all users
-        suscribers = Suscriber.objects.all()
-        for keys in suscribers:
-            self.context.bot.send_message(chat_id=keys.chatid, text=message)
-        #remove questionary in one hour 
-        if self.block.frecuency == 'W':
+        time = self.calculate_duration()
+        if self.block.frecuency == 'W': 
             self.scheduler.add_job(
                 self.remove,
                 replace_existing=True,
-                trigger=CronTrigger(day_of_week=self.block.days, hour=self.block.time.hour, minute=self.block.time.minute+self.block.duration, second=self.block.time.second, timezone=pytz.timezone('Europe/Madrid')),
+                trigger=CronTrigger(day_of_week=self.block.days, hour=self.block.time.hour+time[0], minute=self.block.time.minute+time[1], second=self.block.time.second, timezone=pytz.timezone('Europe/Madrid')),
                 name='Deactivate block',
             )
         elif self.block.frecuency == 'D':
             self.scheduler.add_job(
                 self.remove,
                 replace_existing=True,
-                trigger=CronTrigger(day_of_week='*', hour=self.block.time.hour, minute=self.block.time.minute+self.block.duration, second=self.block.time.second, timezone=pytz.timezone('Europe/Madrid')),
+                trigger=CronTrigger(day_of_week='*', hour=self.block.time.hour+time[0], minute=self.block.time.minute+time[1], second=self.block.time.second, timezone=pytz.timezone('Europe/Madrid')),
                 name='Deactivate block',
             )
+        #send message to all users
+        suscribers = Suscriber.objects.all()
+        for keys in suscribers:
+            self.context.bot.send_message(chat_id=keys.chatid, text=message)
+
         
     def remove_schedule(context, block):
         try:
@@ -295,9 +296,17 @@ class ScheduleJob(object):
             pass
 
     def remove(self):
+        print('removing bloque')
         if self.block.frecuency != 'O':
-            self.block.active = False
+            self.block.operating = False
             self.block.save()
+
+    def calculate_duration(self):
+        duration = []
+        hours = self.block.duration // 60
+        minutes = self.block.duration % 60
+        time_duple = (hours, minutes)
+        return time_duple
 
 
 
@@ -317,7 +326,7 @@ def is_answered(user, question, block):
 
     #Check block frecuency and assign a value
     if frecuency == 'D':
-        date_interval = timedelta(hours=12)
+        date_interval = timedelta(hours=12) 
     elif frecuency == 'W':
         date_interval = timedelta(days=6)
     else:
@@ -332,7 +341,7 @@ def is_answered(user, question, block):
 def choose_question(user):
     global first
     first = False
-    bloques = QuestionBlock.objects.filter(active=True).order_by('-importance')
+    bloques = QuestionBlock.objects.filter(operating=True, active=True).order_by('-importance')
     block_counter = 0
     question_result = []
     for block in bloques:
@@ -465,7 +474,9 @@ def cancel(update: Update, context):
 
 
 question_handler = ConversationHandler(
-    entry_points=[(CommandHandler('start', welcome))],
+    entry_points=[CommandHandler('start', welcome),
+                  MessageHandler(Filters.text & (~Filters.command), generate_response),
+                  ],
     states={
         FIRST_STATE: [MessageHandler(Filters.text & (~Filters.command), handle_answer)],
         SECOND_STATE: [MessageHandler(Filters.text & (~Filters.command), generate_response)],

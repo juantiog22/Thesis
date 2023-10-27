@@ -30,17 +30,6 @@ class AnswersListView(LoginRequiredMixin, ListView):
         return lista_answers
 
 
-"""def export_to_csv(request):
-    answers = Answer.objects.all()
-    response = HttpResponse('text/csv')
-    response['Content-Disposition'] = 'attachment; filename=answers_export.csv'
-    writer = csv.writer(response, delimitier=';')
-    writer.writerow(['Question', 'Response', 'Suscriber', 'Date'])
-    date = answer.date.strftime('%Y-%m-%d')
-    answer_fields = answers.values_list('question__title', 'response', 'suscriber__username', d)
-    for answer in answer_fields:
-        writer.writerow(answer)
-    return response"""
 
 def export_to_csv(request):
     answers = Answer.objects.all().order_by('-date')
