@@ -354,7 +354,8 @@ CREATE TABLE public.questions_questionblock (
     days character varying(5),
     "create" timestamp with time zone NOT NULL,
     creator_id bigint NOT NULL,
-    duration integer
+    duration integer,
+    operating boolean NOT NULL
 );
 
 
@@ -548,188 +549,64 @@ ALTER TABLE public.usuarios_user_user_permissions ALTER COLUMN id ADD GENERATED 
 --
 
 COPY public.answers_answer (id, response, date, question_id, suscriber_id, block_id) FROM stdin;
-655	Ligeramente en desacuerdo	2023-10-10 11:58:26.20088+00	20	1	4
-656	Totalmente en desacuerdo	2023-10-10 11:58:28.940139+00	21	1	4
-657	Ni de acuerdo ni en desacuerdo	2023-10-10 11:58:34.051223+00	22	1	4
-658	Totalmente en desacuerdo	2023-10-10 11:58:36.827041+00	23	1	4
-659	Ligeramente en desacuerdo	2023-10-10 11:58:38.899101+00	24	1	4
-660	Ligeramente de acuerdo	2023-10-10 11:58:40.440985+00	25	1	4
-661	Ligeramente en desacuerdo	2023-10-10 11:58:43.158558+00	26	1	4
-662	Totalmente en desacuerdo	2023-10-10 11:58:44.87194+00	73	1	4
-833	Muy insatisfecho	2023-10-17 09:01:04.401205+00	12	1	3
-766	Ligeramente en desacuerdo	2023-10-16 08:44:22.423973+00	25	36	4
-834	Insatisfecho	2023-10-17 09:01:05.723557+00	13	1	3
-758	Muy insatisfecho	2023-10-14 10:28:37.698504+00	19	1	3
-835	Satisfecho	2023-10-17 09:01:06.921325+00	14	1	3
-736	Varios dias	2023-10-11 15:10:50.452612+00	36	1	102
-737	Mas de la mitad de los dias	2023-10-11 15:10:54.049275+00	37	1	102
-836	Muy satisfecho	2023-10-17 09:01:07.960001+00	15	1	3
-837	Satisfecho	2023-10-17 09:01:09.194691+00	16	1	3
-838	Muy insatisfecho	2023-10-17 09:01:10.221423+00	17	1	3
-738	Mas de la mitad de los dias	2023-10-11 15:11:06.265097+00	38	1	102
-683	Ligeramente en desacuerdo	2023-10-10 12:08:45.142017+00	25	34	4
-739	Ningun dia	2023-10-11 15:11:33.136897+00	39	1	102
-684	Totalmente en desacuerdo	2023-10-10 12:08:46.967618+00	26	34	4
-740	Varios dias	2023-10-11 15:11:34.177839+00	40	1	102
-685	En desacuerdo	2023-10-10 12:08:48.111285+00	73	34	4
-741	Casi todos los dias	2023-10-11 15:11:35.180722+00	41	1	102
-742	Mas de la mitad de los dias	2023-10-11 15:11:36.085352+00	42	1	102
-743	Insatisfecho	2023-10-11 15:18:24.584899+00	12	1	3
-744	Satisfecho	2023-10-11 15:18:26.294087+00	13	1	3
-745	Muy insatisfecho	2023-10-11 15:18:27.269968+00	14	1	3
-746	Muy satisfecho	2023-10-11 15:18:28.273139+00	15	1	3
-747	Satisfecho	2023-10-11 15:18:28.896928+00	16	1	3
-748	Insatisfecho	2023-10-11 15:18:29.576395+00	17	1	3
-749	Muy insatisfecho	2023-10-11 15:18:30.675536+00	18	1	3
-750	Satisfecho	2023-10-11 15:18:31.444098+00	19	1	3
-751	Muy insatisfecho	2023-10-14 10:28:30.952691+00	12	1	3
-752	Satisfecho	2023-10-14 10:28:31.958979+00	13	1	3
-753	Insatisfecho	2023-10-14 10:28:32.798621+00	14	1	3
-754	Muy satisfecho	2023-10-14 10:28:33.545664+00	15	1	3
-755	Muy insatisfecho	2023-10-14 10:28:34.27108+00	16	1	3
-839	Insatisfecho	2023-10-17 09:01:11.186234+00	18	1	3
-756	Satisfecho	2023-10-14 10:28:35.036975+00	17	1	3
-840	Satisfecho	2023-10-17 09:01:12.248347+00	19	1	3
-767	Ni de acuerdo ni en desacuerdo	2023-10-16 08:44:23.828008+00	26	36	4
-678	Ligeramente en desacuerdo	2023-10-10 12:08:36.413985+00	20	34	4
-679	Totalmente en desacuerdo	2023-10-10 12:08:38.817221+00	21	34	4
-680	Ligeramente en desacuerdo	2023-10-10 12:08:40.093177+00	22	34	4
-681	Ligeramente de acuerdo	2023-10-10 12:08:41.380072+00	23	34	4
-682	Ni de acuerdo ni en desacuerdo	2023-10-10 12:08:42.769268+00	24	34	4
-849	Satisfecho	2023-10-19 09:46:18.463043+00	12	1	3
-850	Muy insatisfecho	2023-10-19 09:46:19.280032+00	13	1	3
-761	Ligeramente de acuerdo	2023-10-16 08:43:53.174138+00	20	36	4
-851	Insatisfecho	2023-10-19 09:46:20.06194+00	14	1	3
-757	Insatisfecho	2023-10-14 10:28:36.567813+00	18	1	3
-768	En desacuerdo	2023-10-16 08:44:25.168795+00	73	36	4
-762	De acuerdo	2023-10-16 08:44:07.495937+00	21	36	4
-852	Muy satisfecho	2023-10-19 09:46:20.911273+00	15	1	3
-763	Ni de acuerdo ni en desacuerdo	2023-10-16 08:44:09.764698+00	22	36	4
-769	Satisfecho	2023-10-16 08:44:27.108461+00	59	36	105
-764	Ligeramente en desacuerdo	2023-10-16 08:44:11.365565+00	23	36	4
-853	Satisfecho	2023-10-19 09:46:21.803902+00	16	1	3
-765	Ni de acuerdo ni en desacuerdo	2023-10-16 08:44:13.190996+00	24	36	4
-770	Insatisfecho	2023-10-16 08:44:29.538768+00	60	36	105
-771	Muy insatisfecho	2023-10-16 08:44:32.381416+00	61	36	105
-772	Satisfecho	2023-10-16 08:44:34.048858+00	62	36	105
-773	Insatisfecho	2023-10-16 08:44:35.854962+00	63	36	105
-774	Muy insatisfecho	2023-10-16 08:44:37.450043+00	64	36	105
-775	Satisfecho	2023-10-16 08:44:39.337694+00	65	36	105
-776	Satisfecho	2023-10-16 08:44:40.85072+00	12	36	3
-777	Insatisfecho	2023-10-16 08:44:42.230265+00	13	36	3
-778	Satisfecho	2023-10-16 08:44:43.541123+00	14	36	3
-779	Muy insatisfecho	2023-10-16 08:44:44.999232+00	15	36	3
-780	Muy satisfecho	2023-10-16 08:44:46.567949+00	16	36	3
-781	Satisfecho	2023-10-16 08:44:48.051516+00	17	36	3
-782	Insatisfecho	2023-10-16 08:44:49.906301+00	18	36	3
-783	Satisfecho	2023-10-16 08:44:51.52208+00	19	36	3
-784	Casi todos los dias	2023-10-16 08:44:53.010073+00	36	36	102
-785	Varios dias	2023-10-16 08:44:54.643019+00	37	36	102
-786	Mas de la mitad de los dias	2023-10-16 08:44:56.107958+00	38	36	102
-787	Varios dias	2023-10-16 08:45:00.533643+00	39	36	102
-788	Mas de la mitad de los dias	2023-10-16 08:45:02.117163+00	40	36	102
-789	Mas de la mitad de los dias	2023-10-16 08:45:03.343813+00	41	36	102
-790	Ningun dia	2023-10-16 08:45:04.845972+00	42	36	102
-791	Varios dias	2023-10-16 09:07:48.104238+00	27	1	5
-792	Ningun dia	2023-10-16 09:09:12.574128+00	28	1	5
-793	Varios dias	2023-10-16 09:15:37.231518+00	29	1	5
-794	Ningun dia	2023-10-16 09:15:47.912947+00	30	1	5
-795	Ningun dia	2023-10-16 09:19:57.35732+00	31	1	5
-796	Mas de la mitad de los dias	2023-10-16 09:20:01.816475+00	32	1	5
-797	Varios dias	2023-10-16 09:20:04.873642+00	33	1	5
-798	Ningun dia	2023-10-16 09:20:07.115109+00	34	1	5
-799	casi todos los dias	2023-10-16 09:20:08.092331+00	35	1	5
-800	Insatisfecho	2023-10-16 09:20:12.672438+00	59	1	105
-801	Muy insatisfecho	2023-10-16 09:20:15.890775+00	60	1	105
-802	Insatisfecho	2023-10-16 09:20:16.583479+00	61	1	105
-803	Satisfecho	2023-10-16 09:20:17.308893+00	62	1	105
-804	Muy insatisfecho	2023-10-16 09:20:18.037517+00	63	1	105
-805	Insatisfecho	2023-10-16 09:20:18.747652+00	64	1	105
-806	Satisfecho	2023-10-16 09:20:19.933458+00	65	1	105
-807	Tengo sintomas pero no me han diagnosticado	2023-10-16 09:20:23.484765+00	54	1	106
-808	Autonomo/a	2023-10-16 09:20:24.288646+00	55	1	106
-809	Teletrabajo parcial	2023-10-16 09:20:25.110228+00	56	1	106
-810	Menos de 2h	2023-10-16 09:20:26.012896+00	57	1	106
-811	Me falta una dosis de la vacuna	2023-10-16 09:20:26.86729+00	58	1	106
-812	Insatisfecho	2023-10-16 09:27:10.340381+00	12	1	3
-813	Muy insatisfecho	2023-10-16 09:27:11.983077+00	13	1	3
-814	Satisfecho	2023-10-16 09:27:13.092585+00	14	1	3
-815	Muy satisfecho	2023-10-16 09:27:14.124437+00	15	1	3
-816	Insatisfecho	2023-10-16 09:27:14.890878+00	16	1	3
-817	Satisfecho	2023-10-16 09:27:15.576915+00	17	1	3
-818	Muy insatisfecho	2023-10-16 09:27:16.416718+00	18	1	3
-819	Satisfecho	2023-10-16 09:27:17.693483+00	19	1	3
-854	Insatisfecho	2023-10-19 09:46:23.149369+00	17	1	3
-855	Satisfecho	2023-10-19 09:46:24.183229+00	18	1	3
-856	Muy insatisfecho	2023-10-19 09:46:24.952886+00	19	1	3
-857	Varios dias	2023-10-19 09:56:36.795748+00	27	36	5
-858	Varios dias	2023-10-19 09:56:41.913774+00	28	36	5
-859	Varios dias	2023-10-19 09:56:44.68071+00	29	36	5
-860	Varios dias	2023-10-19 09:56:46.932997+00	30	36	5
-861	Ningun dia	2023-10-19 09:56:49.596619+00	31	36	5
-862	Ningun dia	2023-10-19 09:56:51.747422+00	32	36	5
-863	Varios dias	2023-10-19 09:56:55.437276+00	33	36	5
-864	Mas de la mitad de los dias	2023-10-19 09:56:56.767682+00	34	36	5
-865	Mas de la mitad de los dias	2023-10-19 09:56:58.306052+00	35	36	5
-866	No tengo sintomas	2023-10-19 09:57:01.692545+00	54	36	106
-867	Empleado/a	2023-10-19 09:57:04.247754+00	55	36	106
-868	Sin cambios	2023-10-19 09:57:07.120353+00	56	36	106
-869	4 a 6h	2023-10-19 09:57:08.241689+00	57	36	106
-870	Me falta una dosis de la vacuna	2023-10-19 09:57:09.376304+00	58	36	106
-871	Satisfecho	2023-10-19 09:57:10.610774+00	12	36	3
-872	Muy insatisfecho	2023-10-19 09:57:11.659864+00	13	36	3
-873	Satisfecho	2023-10-19 09:57:12.663808+00	14	36	3
-874	Insatisfecho	2023-10-19 09:57:13.753861+00	15	36	3
-875	Muy satisfecho	2023-10-19 09:57:14.65156+00	16	36	3
-876	Insatisfecho	2023-10-19 09:57:15.950266+00	17	36	3
-877	Satisfecho	2023-10-19 09:57:16.977893+00	18	36	3
-878	Muy insatisfecho	2023-10-19 09:57:18.002644+00	19	36	3
-879	Ni mal ni bien	2023-10-19 09:57:19.219973+00	50	36	116
-880	Poca energía	2023-10-19 09:57:20.257016+00	51	36	116
-881	Normal	2023-10-19 09:57:21.685923+00	52	36	116
-882	Moderadamente	2023-10-19 09:57:44.912775+00	2	36	117
-883	Un poco	2023-10-19 09:57:45.931788+00	3	36	117
-884	Moderadamente	2023-10-19 09:57:46.879173+00	4	36	117
-885	Bastante	2023-10-19 09:57:47.984469+00	5	36	117
-886	Un poco	2023-10-19 09:57:49.114493+00	6	36	117
-887	Moderadamente	2023-10-19 09:57:50.03706+00	7	36	117
-888	Bastante	2023-10-19 09:57:51.158124+00	8	36	117
-889	Un poco	2023-10-19 09:57:52.090903+00	9	36	117
-890	Moderadamente	2023-10-19 09:57:53.206684+00	10	36	117
-891	Bastante	2023-10-19 09:57:54.340378+00	11	36	117
-892	Insatisfecho	2023-10-25 10:10:57.363244+00	59	1	105
-893	Satisfecho	2023-10-25 10:10:58.20391+00	60	1	105
-894	Muy insatisfecho	2023-10-25 10:10:59.002058+00	61	1	105
-895	Insatisfecho	2023-10-25 10:11:00.101576+00	62	1	105
-896	Satisfecho	2023-10-25 10:11:00.765419+00	63	1	105
-897	Muy insatisfecho	2023-10-25 10:11:01.407846+00	64	1	105
-898	Insatisfecho	2023-10-25 10:11:01.89746+00	65	1	105
-899	Me han diagnosticado	2023-10-25 10:11:02.587666+00	54	1	106
-900	Desempleado/a	2023-10-25 10:11:03.670677+00	55	1	106
-901	Teletrabajo exclusivo	2023-10-25 10:11:04.406805+00	56	1	106
-902	Menos de 2h	2023-10-25 10:11:04.971561+00	57	1	106
-903	Me falta una dosis de la vacuna	2023-10-25 10:11:05.537679+00	58	1	106
-904	Bastante	2023-10-25 10:11:06.159346+00	2	1	117
-905	Un poco	2023-10-25 10:11:06.821628+00	3	1	117
-906	Nada o muy ligeramente	2023-10-25 10:11:07.363542+00	4	1	117
-907	Moderadamente	2023-10-25 10:11:07.987258+00	5	1	117
-908	Un poco	2023-10-25 10:11:08.750812+00	6	1	117
-909	Nada o muy ligeramente	2023-10-25 10:11:09.334289+00	7	1	117
-910	Bastante	2023-10-25 10:11:10.452706+00	8	1	117
-911	Moderadamente	2023-10-25 10:11:11.117534+00	9	1	117
-912	Un poco	2023-10-25 10:11:11.717884+00	10	1	117
-913	Nada o muy ligeramente	2023-10-25 10:11:12.308222+00	11	1	117
-914	Satisfecho	2023-10-25 10:11:12.91231+00	12	1	3
-915	Satisfecho	2023-10-25 10:11:13.85951+00	13	1	3
-916	Insatisfecho	2023-10-25 10:11:14.829518+00	14	1	3
-917	Muy insatisfecho	2023-10-25 10:11:15.423538+00	15	1	3
-918	Satisfecho	2023-10-25 10:11:16.172349+00	16	1	3
-919	Muy satisfecho	2023-10-25 10:11:16.789992+00	17	1	3
-920	Satisfecho	2023-10-25 10:11:17.450377+00	18	1	3
-921	Insatisfecho	2023-10-25 10:11:18.594197+00	19	1	3
-922	Muy mal	2023-10-25 10:11:24.47659+00	50	1	116
-923	Normal	2023-10-25 10:11:25.081361+00	51	1	116
-924	Tranquilo/a	2023-10-25 10:11:25.650588+00	52	1	116
+1002	Mas de la mitad de los dias	2023-10-26 15:34:15.025882+00	36	34	161
+1003	Casi todos los dias	2023-10-26 15:34:18.898905+00	37	34	161
+1004	Varios dias	2023-10-26 15:34:19.697489+00	38	34	161
+1005	Mas de la mitad de los dias	2023-10-26 15:34:20.333221+00	39	34	161
+1006	Ningun dia	2023-10-26 15:34:21.079742+00	40	34	161
+1007	Varios dias	2023-10-26 15:34:21.855957+00	41	34	161
+1008	Mas de la mitad de los dias	2023-10-26 15:34:22.497069+00	42	34	161
+981	Raramente es verdad	2023-10-26 15:30:25.109752+00	66	1	160
+982	Muy raramente es verdad	2023-10-26 15:30:26.018285+00	67	1	160
+1035	Satisfecho	2023-10-27 10:21:26.224784+00	19	34	174
+1015	Ligeramente de acuerdo	2023-10-27 10:19:09.053377+00	23	1	176
+1016	Ni de acuerdo ni en desacuerdo	2023-10-27 10:19:09.977373+00	24	1	176
+1017	Ligeramente en desacuerdo	2023-10-27 10:19:10.9005+00	25	1	176
+1018	Totalmente en desacuerdo	2023-10-27 10:19:11.82427+00	26	1	176
+983	A veces es verdad	2023-10-26 15:30:26.956526+00	68	1	160
+984	Nunca es verdad	2023-10-26 15:30:27.792637+00	69	1	160
+985	Raramente es verdad	2023-10-26 15:30:28.508565+00	70	1	160
+986	Muy raramente es verdad	2023-10-26 15:30:29.22116+00	71	1	160
+987	A veces es verdad	2023-10-26 15:30:30.079752+00	72	1	160
+988	Raramente es verdad	2023-10-26 15:31:24.460404+00	66	34	160
+989	Muy raramente es verdad	2023-10-26 15:31:25.201189+00	67	34	160
+990	Nunca es verdad	2023-10-26 15:31:25.913916+00	68	34	160
+991	A veces es verdad	2023-10-26 15:31:26.539326+00	69	34	160
+992	Raramente es verdad	2023-10-26 15:31:27.328742+00	70	34	160
+993	Muy raramente es verdad	2023-10-26 15:31:28.055922+00	71	34	160
+994	Raramente es verdad	2023-10-26 15:31:28.846346+00	72	34	160
+995	Mas de la mitad de los dias	2023-10-26 15:32:16.727835+00	36	1	161
+996	Varios dias	2023-10-26 15:32:18.248753+00	37	1	161
+997	Ningun dia	2023-10-26 15:32:19.138032+00	38	1	161
+998	Mas de la mitad de los dias	2023-10-26 15:32:19.949588+00	39	1	161
+1019	En desacuerdo	2023-10-27 10:19:12.642938+00	73	1	176
+1020	Totalmente en desacuerdo	2023-10-27 10:20:55.045797+00	20	34	176
+999	Casi todos los dias	2023-10-26 15:32:20.619858+00	40	1	161
+1000	Mas de la mitad de los dias	2023-10-26 15:32:21.298328+00	41	1	161
+1001	Casi todos los dias	2023-10-26 15:32:21.937856+00	42	1	161
+1021	Ligeramente en desacuerdo	2023-10-27 10:21:09.477473+00	21	34	176
+1022	Totalmente en desacuerdo	2023-10-27 10:21:10.216748+00	22	34	176
+1023	Ni de acuerdo ni en desacuerdo	2023-10-27 10:21:10.938098+00	23	34	176
+1025	Ligeramente de acuerdo	2023-10-27 10:21:12.592437+00	25	34	176
+1012	Ligeramente en desacuerdo	2023-10-27 10:19:06.936692+00	20	1	176
+1013	Ni de acuerdo ni en desacuerdo	2023-10-27 10:19:07.618442+00	21	1	176
+1014	Totalmente en desacuerdo	2023-10-27 10:19:08.257488+00	22	1	176
+1024	Ligeramente en desacuerdo	2023-10-27 10:21:11.631305+00	24	34	176
+1026	Ni de acuerdo ni en desacuerdo	2023-10-27 10:21:15.419529+00	26	34	176
+1027	Ligeramente en desacuerdo	2023-10-27 10:21:16.757609+00	73	34	176
+978	Ni mal ni bien	2023-10-26 15:25:49.38253+00	50	1	172
+979	Sin energía	2023-10-26 15:25:50.400928+00	51	1	172
+980	Tranquilo/a	2023-10-26 15:25:51.208615+00	52	1	172
+1009	Ni mal ni bien	2023-10-26 15:34:25.699769+00	50	34	172
+1010	Poca energía	2023-10-26 15:34:26.364319+00	51	34	172
+1011	Muy tranquilo/a	2023-10-26 15:34:27.120126+00	52	34	172
+1028	Muy insatisfecho	2023-10-27 10:21:19.420527+00	12	34	174
+1029	Insatisfecho	2023-10-27 10:21:20.446524+00	13	34	174
+1030	Satisfecho	2023-10-27 10:21:21.161897+00	14	34	174
+1031	Muy satisfecho	2023-10-27 10:21:22.186621+00	15	34	174
+1032	Satisfecho	2023-10-27 10:21:23.447474+00	16	34	174
+1033	Insatisfecho	2023-10-27 10:21:24.444086+00	17	34	174
+1034	Satisfecho	2023-10-27 10:21:25.367965+00	18	34	174
 \.
 
 
@@ -1528,6 +1405,238 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 664	2023-10-25 10:14:47.700502+00	105	Bloque Satisfaccion semanal	2	[{"changed": {"fields": ["Active"]}}]	9	3
 665	2023-10-25 10:14:53.241555+00	106	Bloque COVID-19	2	[{"changed": {"fields": ["Active"]}}]	9	3
 666	2023-10-25 10:15:16.31427+00	116	Bloque Diario	2	[{"changed": {"fields": ["Active"]}}]	9	3
+667	2023-10-26 10:37:19.538916+00	936	Answer object (936)	3		11	3
+668	2023-10-26 10:37:19.570878+00	935	Answer object (935)	3		11	3
+669	2023-10-26 10:37:19.574895+00	934	Answer object (934)	3		11	3
+670	2023-10-26 10:37:19.579026+00	933	Answer object (933)	3		11	3
+671	2023-10-26 10:37:19.583396+00	932	Answer object (932)	3		11	3
+672	2023-10-26 10:37:19.588227+00	931	Answer object (931)	3		11	3
+673	2023-10-26 10:37:19.592401+00	930	Answer object (930)	3		11	3
+674	2023-10-26 10:37:19.596752+00	929	Answer object (929)	3		11	3
+675	2023-10-26 10:37:19.602008+00	928	Answer object (928)	3		11	3
+676	2023-10-26 10:44:18.879244+00	939	Answer object (939)	3		11	3
+677	2023-10-26 10:44:18.906661+00	938	Answer object (938)	3		11	3
+678	2023-10-26 10:44:18.9109+00	937	Answer object (937)	3		11	3
+679	2023-10-26 10:44:18.914925+00	924	Answer object (924)	3		11	3
+680	2023-10-26 10:44:18.918812+00	923	Answer object (923)	3		11	3
+681	2023-10-26 10:44:18.923247+00	922	Answer object (922)	3		11	3
+682	2023-10-26 10:44:18.927372+00	921	Answer object (921)	3		11	3
+683	2023-10-26 10:44:18.931269+00	920	Answer object (920)	3		11	3
+684	2023-10-26 10:44:18.93507+00	919	Answer object (919)	3		11	3
+685	2023-10-26 10:44:18.938812+00	918	Answer object (918)	3		11	3
+686	2023-10-26 10:44:18.94276+00	917	Answer object (917)	3		11	3
+687	2023-10-26 10:44:18.946872+00	916	Answer object (916)	3		11	3
+688	2023-10-26 10:44:18.95149+00	915	Answer object (915)	3		11	3
+689	2023-10-26 10:44:18.955681+00	914	Answer object (914)	3		11	3
+690	2023-10-26 10:44:18.959844+00	913	Answer object (913)	3		11	3
+691	2023-10-26 10:44:18.964025+00	912	Answer object (912)	3		11	3
+692	2023-10-26 10:44:18.968036+00	911	Answer object (911)	3		11	3
+693	2023-10-26 10:44:18.972678+00	910	Answer object (910)	3		11	3
+694	2023-10-26 10:44:18.977095+00	909	Answer object (909)	3		11	3
+695	2023-10-26 10:44:18.981281+00	908	Answer object (908)	3		11	3
+696	2023-10-26 10:44:18.98545+00	907	Answer object (907)	3		11	3
+697	2023-10-26 10:44:18.989539+00	906	Answer object (906)	3		11	3
+698	2023-10-26 10:44:18.993979+00	905	Answer object (905)	3		11	3
+699	2023-10-26 10:44:18.998149+00	904	Answer object (904)	3		11	3
+700	2023-10-26 10:44:19.002075+00	903	Answer object (903)	3		11	3
+701	2023-10-26 10:44:19.006136+00	902	Answer object (902)	3		11	3
+702	2023-10-26 10:44:19.010075+00	901	Answer object (901)	3		11	3
+703	2023-10-26 10:44:19.014525+00	900	Answer object (900)	3		11	3
+704	2023-10-26 10:44:19.018589+00	899	Answer object (899)	3		11	3
+705	2023-10-26 10:44:19.022558+00	898	Answer object (898)	3		11	3
+706	2023-10-26 10:44:19.026452+00	897	Answer object (897)	3		11	3
+707	2023-10-26 10:44:19.030451+00	896	Answer object (896)	3		11	3
+708	2023-10-26 10:44:19.034909+00	895	Answer object (895)	3		11	3
+709	2023-10-26 10:44:19.039144+00	894	Answer object (894)	3		11	3
+710	2023-10-26 10:44:19.043005+00	893	Answer object (893)	3		11	3
+711	2023-10-26 10:44:19.04691+00	892	Answer object (892)	3		11	3
+712	2023-10-26 10:44:19.0508+00	891	Answer object (891)	3		11	3
+713	2023-10-26 10:44:19.054794+00	890	Answer object (890)	3		11	3
+714	2023-10-26 10:44:19.058896+00	889	Answer object (889)	3		11	3
+715	2023-10-26 10:44:19.063064+00	888	Answer object (888)	3		11	3
+716	2023-10-26 10:44:19.067051+00	887	Answer object (887)	3		11	3
+717	2023-10-26 10:44:19.07084+00	886	Answer object (886)	3		11	3
+718	2023-10-26 10:44:19.074702+00	885	Answer object (885)	3		11	3
+719	2023-10-26 10:44:19.078584+00	884	Answer object (884)	3		11	3
+720	2023-10-26 10:44:19.082382+00	883	Answer object (883)	3		11	3
+721	2023-10-26 10:44:19.086127+00	882	Answer object (882)	3		11	3
+722	2023-10-26 10:44:19.090438+00	881	Answer object (881)	3		11	3
+723	2023-10-26 10:44:19.094523+00	880	Answer object (880)	3		11	3
+724	2023-10-26 10:44:19.098486+00	879	Answer object (879)	3		11	3
+725	2023-10-26 10:44:19.102338+00	878	Answer object (878)	3		11	3
+726	2023-10-26 10:44:19.106329+00	877	Answer object (877)	3		11	3
+727	2023-10-26 10:44:19.110249+00	876	Answer object (876)	3		11	3
+728	2023-10-26 10:44:19.113994+00	875	Answer object (875)	3		11	3
+729	2023-10-26 10:44:19.11816+00	874	Answer object (874)	3		11	3
+730	2023-10-26 10:44:19.122346+00	873	Answer object (873)	3		11	3
+731	2023-10-26 10:44:19.126179+00	872	Answer object (872)	3		11	3
+732	2023-10-26 10:44:19.129969+00	871	Answer object (871)	3		11	3
+733	2023-10-26 10:44:19.133827+00	870	Answer object (870)	3		11	3
+734	2023-10-26 10:44:19.137708+00	869	Answer object (869)	3		11	3
+735	2023-10-26 10:44:19.141588+00	868	Answer object (868)	3		11	3
+736	2023-10-26 10:44:19.145741+00	867	Answer object (867)	3		11	3
+737	2023-10-26 10:44:19.149982+00	866	Answer object (866)	3		11	3
+738	2023-10-26 10:44:19.154065+00	865	Answer object (865)	3		11	3
+739	2023-10-26 10:44:19.157901+00	864	Answer object (864)	3		11	3
+740	2023-10-26 10:44:19.161718+00	863	Answer object (863)	3		11	3
+741	2023-10-26 10:44:19.165619+00	862	Answer object (862)	3		11	3
+742	2023-10-26 10:44:19.169592+00	861	Answer object (861)	3		11	3
+743	2023-10-26 10:44:19.173822+00	860	Answer object (860)	3		11	3
+744	2023-10-26 10:44:19.177935+00	859	Answer object (859)	3		11	3
+745	2023-10-26 10:44:19.181774+00	858	Answer object (858)	3		11	3
+746	2023-10-26 10:44:19.185591+00	857	Answer object (857)	3		11	3
+747	2023-10-26 10:44:19.189397+00	856	Answer object (856)	3		11	3
+748	2023-10-26 10:44:19.193362+00	855	Answer object (855)	3		11	3
+749	2023-10-26 10:44:19.197279+00	854	Answer object (854)	3		11	3
+750	2023-10-26 10:44:19.20126+00	853	Answer object (853)	3		11	3
+751	2023-10-26 10:44:19.205203+00	852	Answer object (852)	3		11	3
+752	2023-10-26 10:44:19.209468+00	851	Answer object (851)	3		11	3
+753	2023-10-26 10:44:19.213477+00	850	Answer object (850)	3		11	3
+754	2023-10-26 10:44:19.217389+00	849	Answer object (849)	3		11	3
+755	2023-10-26 10:44:19.221198+00	840	Answer object (840)	3		11	3
+756	2023-10-26 10:44:19.225164+00	839	Answer object (839)	3		11	3
+757	2023-10-26 10:44:19.229316+00	838	Answer object (838)	3		11	3
+758	2023-10-26 10:44:19.233355+00	837	Answer object (837)	3		11	3
+759	2023-10-26 10:44:19.237513+00	836	Answer object (836)	3		11	3
+760	2023-10-26 10:44:19.241348+00	835	Answer object (835)	3		11	3
+761	2023-10-26 10:44:19.245072+00	834	Answer object (834)	3		11	3
+762	2023-10-26 10:44:19.24944+00	833	Answer object (833)	3		11	3
+763	2023-10-26 10:44:19.253431+00	819	Answer object (819)	3		11	3
+764	2023-10-26 10:44:19.258291+00	818	Answer object (818)	3		11	3
+765	2023-10-26 10:44:19.262653+00	817	Answer object (817)	3		11	3
+766	2023-10-26 10:44:19.266564+00	816	Answer object (816)	3		11	3
+767	2023-10-26 10:44:19.270731+00	815	Answer object (815)	3		11	3
+768	2023-10-26 10:44:19.274718+00	814	Answer object (814)	3		11	3
+769	2023-10-26 10:44:19.278931+00	813	Answer object (813)	3		11	3
+770	2023-10-26 10:44:19.28313+00	812	Answer object (812)	3		11	3
+771	2023-10-26 10:44:19.287037+00	811	Answer object (811)	3		11	3
+772	2023-10-26 10:44:19.294472+00	810	Answer object (810)	3		11	3
+773	2023-10-26 10:44:19.298758+00	809	Answer object (809)	3		11	3
+774	2023-10-26 10:44:19.30328+00	808	Answer object (808)	3		11	3
+775	2023-10-26 10:44:19.310073+00	807	Answer object (807)	3		11	3
+776	2023-10-26 10:44:27.322178+00	806	Answer object (806)	3		11	3
+777	2023-10-26 10:44:27.338926+00	805	Answer object (805)	3		11	3
+778	2023-10-26 10:44:27.343199+00	804	Answer object (804)	3		11	3
+779	2023-10-26 10:44:27.346949+00	803	Answer object (803)	3		11	3
+780	2023-10-26 10:44:27.35092+00	802	Answer object (802)	3		11	3
+781	2023-10-26 10:44:27.354856+00	801	Answer object (801)	3		11	3
+782	2023-10-26 10:44:27.359413+00	800	Answer object (800)	3		11	3
+783	2023-10-26 10:44:27.363545+00	799	Answer object (799)	3		11	3
+784	2023-10-26 10:44:27.367692+00	798	Answer object (798)	3		11	3
+785	2023-10-26 10:44:27.371941+00	797	Answer object (797)	3		11	3
+786	2023-10-26 10:44:27.37597+00	796	Answer object (796)	3		11	3
+787	2023-10-26 10:44:27.380657+00	795	Answer object (795)	3		11	3
+788	2023-10-26 10:44:27.38484+00	794	Answer object (794)	3		11	3
+789	2023-10-26 10:44:27.389023+00	793	Answer object (793)	3		11	3
+790	2023-10-26 10:44:27.393366+00	792	Answer object (792)	3		11	3
+791	2023-10-26 10:44:27.397439+00	791	Answer object (791)	3		11	3
+792	2023-10-26 10:44:27.401884+00	790	Answer object (790)	3		11	3
+793	2023-10-26 10:44:27.406263+00	789	Answer object (789)	3		11	3
+794	2023-10-26 10:44:27.41038+00	788	Answer object (788)	3		11	3
+795	2023-10-26 10:44:27.414854+00	787	Answer object (787)	3		11	3
+796	2023-10-26 10:44:27.419337+00	786	Answer object (786)	3		11	3
+797	2023-10-26 10:44:27.423706+00	785	Answer object (785)	3		11	3
+798	2023-10-26 10:44:27.427761+00	784	Answer object (784)	3		11	3
+799	2023-10-26 10:44:27.431638+00	783	Answer object (783)	3		11	3
+800	2023-10-26 10:44:27.435992+00	782	Answer object (782)	3		11	3
+801	2023-10-26 10:44:27.440174+00	781	Answer object (781)	3		11	3
+802	2023-10-26 10:44:27.444677+00	780	Answer object (780)	3		11	3
+803	2023-10-26 10:44:27.448834+00	779	Answer object (779)	3		11	3
+804	2023-10-26 10:44:27.453207+00	778	Answer object (778)	3		11	3
+805	2023-10-26 10:44:27.4576+00	777	Answer object (777)	3		11	3
+806	2023-10-26 10:44:27.461778+00	776	Answer object (776)	3		11	3
+807	2023-10-26 10:44:27.466194+00	775	Answer object (775)	3		11	3
+808	2023-10-26 10:44:27.470973+00	774	Answer object (774)	3		11	3
+809	2023-10-26 10:44:27.475313+00	773	Answer object (773)	3		11	3
+810	2023-10-26 10:44:27.479675+00	772	Answer object (772)	3		11	3
+811	2023-10-26 10:44:27.483949+00	771	Answer object (771)	3		11	3
+812	2023-10-26 10:44:27.487957+00	770	Answer object (770)	3		11	3
+813	2023-10-26 10:44:27.492473+00	769	Answer object (769)	3		11	3
+814	2023-10-26 10:44:27.496551+00	768	Answer object (768)	3		11	3
+815	2023-10-26 10:44:27.500694+00	767	Answer object (767)	3		11	3
+816	2023-10-26 10:44:27.505205+00	766	Answer object (766)	3		11	3
+817	2023-10-26 10:44:27.509539+00	765	Answer object (765)	3		11	3
+818	2023-10-26 10:44:27.513971+00	764	Answer object (764)	3		11	3
+819	2023-10-26 10:44:27.517974+00	763	Answer object (763)	3		11	3
+820	2023-10-26 10:44:27.521955+00	762	Answer object (762)	3		11	3
+821	2023-10-26 10:44:27.526556+00	761	Answer object (761)	3		11	3
+822	2023-10-26 10:44:27.530732+00	758	Answer object (758)	3		11	3
+823	2023-10-26 10:44:27.534757+00	757	Answer object (757)	3		11	3
+824	2023-10-26 10:44:27.538667+00	756	Answer object (756)	3		11	3
+825	2023-10-26 10:44:27.542535+00	755	Answer object (755)	3		11	3
+826	2023-10-26 10:44:27.546878+00	754	Answer object (754)	3		11	3
+827	2023-10-26 10:44:27.551167+00	753	Answer object (753)	3		11	3
+828	2023-10-26 10:44:27.555199+00	752	Answer object (752)	3		11	3
+829	2023-10-26 10:44:27.559122+00	751	Answer object (751)	3		11	3
+830	2023-10-26 10:44:27.562993+00	750	Answer object (750)	3		11	3
+831	2023-10-26 10:44:27.566984+00	749	Answer object (749)	3		11	3
+832	2023-10-26 10:44:27.570991+00	748	Answer object (748)	3		11	3
+833	2023-10-26 10:44:27.575496+00	747	Answer object (747)	3		11	3
+834	2023-10-26 10:44:27.579587+00	746	Answer object (746)	3		11	3
+835	2023-10-26 10:44:27.583608+00	745	Answer object (745)	3		11	3
+836	2023-10-26 10:44:27.587581+00	744	Answer object (744)	3		11	3
+837	2023-10-26 10:44:27.591604+00	743	Answer object (743)	3		11	3
+838	2023-10-26 10:44:27.5961+00	742	Answer object (742)	3		11	3
+839	2023-10-26 10:44:27.60011+00	741	Answer object (741)	3		11	3
+840	2023-10-26 10:44:27.604109+00	740	Answer object (740)	3		11	3
+841	2023-10-26 10:44:27.607985+00	739	Answer object (739)	3		11	3
+842	2023-10-26 10:44:27.611904+00	738	Answer object (738)	3		11	3
+843	2023-10-26 10:44:27.616078+00	737	Answer object (737)	3		11	3
+844	2023-10-26 10:44:27.620119+00	736	Answer object (736)	3		11	3
+845	2023-10-26 10:44:27.624416+00	685	Answer object (685)	3		11	3
+846	2023-10-26 10:44:27.628481+00	684	Answer object (684)	3		11	3
+847	2023-10-26 10:44:27.632374+00	683	Answer object (683)	3		11	3
+848	2023-10-26 10:44:27.636284+00	682	Answer object (682)	3		11	3
+849	2023-10-26 10:44:27.64039+00	681	Answer object (681)	3		11	3
+850	2023-10-26 10:44:27.6451+00	680	Answer object (680)	3		11	3
+851	2023-10-26 10:44:27.649096+00	679	Answer object (679)	3		11	3
+852	2023-10-26 10:44:27.65297+00	678	Answer object (678)	3		11	3
+853	2023-10-26 10:44:27.656883+00	662	Answer object (662)	3		11	3
+854	2023-10-26 10:44:27.660772+00	661	Answer object (661)	3		11	3
+855	2023-10-26 10:44:27.664962+00	660	Answer object (660)	3		11	3
+856	2023-10-26 10:44:27.669349+00	659	Answer object (659)	3		11	3
+857	2023-10-26 10:44:27.673535+00	658	Answer object (658)	3		11	3
+858	2023-10-26 10:44:27.677527+00	657	Answer object (657)	3		11	3
+859	2023-10-26 10:44:27.681307+00	656	Answer object (656)	3		11	3
+860	2023-10-26 10:44:27.685291+00	655	Answer object (655)	3		11	3
+861	2023-10-26 15:05:05.58265+00	977	Answer object (977)	3		11	3
+862	2023-10-26 15:05:05.60145+00	976	Answer object (976)	3		11	3
+863	2023-10-26 15:05:05.605439+00	975	Answer object (975)	3		11	3
+864	2023-10-26 15:05:05.609397+00	974	Answer object (974)	3		11	3
+865	2023-10-26 15:05:05.613381+00	973	Answer object (973)	3		11	3
+866	2023-10-26 15:05:05.617696+00	972	Answer object (972)	3		11	3
+867	2023-10-26 15:05:05.621746+00	971	Answer object (971)	3		11	3
+868	2023-10-26 15:05:05.626272+00	970	Answer object (970)	3		11	3
+869	2023-10-26 15:05:05.630834+00	969	Answer object (969)	3		11	3
+870	2023-10-26 15:05:05.635075+00	968	Answer object (968)	3		11	3
+871	2023-10-26 15:05:05.639408+00	967	Answer object (967)	3		11	3
+872	2023-10-26 15:05:05.643752+00	966	Answer object (966)	3		11	3
+873	2023-10-26 15:05:05.648243+00	965	Answer object (965)	3		11	3
+874	2023-10-26 15:05:05.65276+00	955	Answer object (955)	3		11	3
+875	2023-10-26 15:05:05.656832+00	954	Answer object (954)	3		11	3
+876	2023-10-26 15:05:05.660849+00	953	Answer object (953)	3		11	3
+877	2023-10-26 15:05:05.664935+00	952	Answer object (952)	3		11	3
+878	2023-10-26 15:05:05.669104+00	951	Answer object (951)	3		11	3
+879	2023-10-26 15:17:25.910742+00	964	Answer object (964)	3		11	3
+880	2023-10-26 15:17:25.930217+00	963	Answer object (963)	3		11	3
+881	2023-10-26 15:17:25.934195+00	962	Answer object (962)	3		11	3
+882	2023-10-26 15:17:25.938449+00	961	Answer object (961)	3		11	3
+883	2023-10-26 15:17:25.942617+00	960	Answer object (960)	3		11	3
+884	2023-10-26 15:17:25.947053+00	959	Answer object (959)	3		11	3
+885	2023-10-26 15:17:25.95128+00	958	Answer object (958)	3		11	3
+886	2023-10-26 15:17:25.95523+00	957	Answer object (957)	3		11	3
+887	2023-10-26 15:17:25.959127+00	956	Answer object (956)	3		11	3
+888	2023-10-26 15:17:25.963079+00	950	Answer object (950)	3		11	3
+889	2023-10-26 15:17:25.967204+00	949	Answer object (949)	3		11	3
+890	2023-10-26 15:17:25.97142+00	948	Answer object (948)	3		11	3
+891	2023-10-26 15:17:25.975503+00	947	Answer object (947)	3		11	3
+892	2023-10-26 15:17:25.979348+00	946	Answer object (946)	3		11	3
+893	2023-10-26 15:17:25.983238+00	945	Answer object (945)	3		11	3
+894	2023-10-26 15:17:25.987553+00	944	Answer object (944)	3		11	3
+895	2023-10-26 15:17:25.992533+00	943	Answer object (943)	3		11	3
+896	2023-10-26 15:17:25.997183+00	942	Answer object (942)	3		11	3
+897	2023-10-26 15:17:26.001572+00	941	Answer object (941)	3		11	3
+898	2023-10-26 15:17:26.006378+00	940	Answer object (940)	3		11	3
 \.
 
 
@@ -1600,6 +1709,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 41	answers	0005_alter_answer_block	2023-10-18 11:33:05.737545+00
 42	answers	0006_alter_answer_block	2023-10-18 11:42:42.403665+00
 43	answers	0007_alter_answer_block	2023-10-19 09:36:47.710979+00
+44	questions	0015_questionblock_operating	2023-10-26 10:10:54.772864+00
 \.
 
 
@@ -1608,6 +1718,9 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 --
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+y8zfb1jjcypf86xip61d0lqy9h3qriqf	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qxmHS:_Prx_iKKwAKlqTOmNZe8iYoZGZI5NO1i4B07bnQIvUc	2023-10-31 11:17:30.237126+00
+l736kks93nd8brhasr094p6prkbw3grd	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qwIaC:yaaLIn_o0NyMNEtxRHGtmMP7gxshWd5rLzEdHVTr6Is	2023-10-27 08:53:14.405832+00
+3u4p7ukfu2e6gddz4jqmgw00xnmwm5kh	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qwK0q:hARHzRTwc3IAfMtlklCm2LolxDSk6GYgHyNCXbbfWbI	2023-10-27 10:54:20.210243+00
 5nx486gzy9xsfxsaeoqftjg718lnkdoa	.eJxVjMsOwiAQRf-FtSHyBpfu-w0EZgapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2YUJdvrdcoIHtR3gPbVb59DbusyZ7wo_6OBTR3peD_fvoKZRvzV4gwaUVyFowkxSO200CG8tgZZeSIvoICvjEhUrzgVyCc4bTdIDFfb-AN3ZOCM:1qKaga:TxuvODuVy8Lut2HUyAREz2UVduKq7IonIjtGx46pzH0	2023-07-29 08:31:28.006053+00
 oxp73atdnfx3wto5mp6h3gc4xxbe95oj	.eJxVjMsOwiAQRf-FtSHyBpfu-w0EZgapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2YUJdvrdcoIHtR3gPbVb59DbusyZ7wo_6OBTR3peD_fvoKZRvzV4gwaUVyFowkxSO200CG8tgZZeSIvoICvjEhUrzgVyCc4bTdIDFfb-AN3ZOCM:1qO12b:jt00BibYCMazkyCpDKxMSiJH2FOBgiT7i-QXYc0kk1o	2023-08-07 19:16:21.606015+00
 vnspj6zronh2k79yz97yrj5sie47m2ot	.eJxVjEEOwiAQRe_C2pCBghSX7j0DYWZAqgaS0q6Md7dNutDtf-_9twhxXUpYe5rDxOIitDj9bhjpmeoO-BHrvUlqdZknlLsiD9rlrXF6XQ_376DEXraaMnqyQJm00XawrA2orJJBZq8yZYgjOBjOGdA6BscKwW2A02D9aMXnC_evOCA:1qPn42:GW277CYCc8eKGCgEpH-YsffKoDxOTWgmm6nD_h1mKcM	2023-08-12 16:45:10.286331+00
@@ -1615,8 +1728,8 @@ fkx35a464c578oa7yym4jl1g9rkblvia	.eJxVjEEOwiAQRe_C2pCBghSX7j0DYWZAqgaS0q6Md7dNut
 4g6s5ebcdvwr2mhux8d17ktyu0d033bm	.eJxVjMsOwiAQRf-FtSHyBpfu-w0EZgapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2YUJdvrdcoIHtR3gPbVb59DbusyZ7wo_6OBTR3peD_fvoKZRvzV4gwaUVyFowkxSO200CG8tgZZeSIvoICvjEhUrzgVyCc4bTdIDFfb-AN3ZOCM:1qRDoa:VZ7DyMiQH4d6QxdAgxu_HUHYT2jC4GnHSlCfQlVNBvs	2023-08-16 15:31:08.552061+00
 gop41j1uspjywx5y1i6ypi0gdolxqa3w	.eJxVjM0OwiAQhN-FsyHAArIevfsMZPmTqqFJaU_Gd5cmPehlkplvZt7M07ZWv_W8-CmxCwN2-s0CxWduO0gPaveZx7mtyxT4XuEH7fw2p_y6Ht2_g0q9jrUWYCmWYlCYLIdSNEmjw6CcpiJBgA5ocPizTqIQZHQ2KDQGlLSFfb7LPTb0:1qsJAf:JhujFKcdQfzL13HkKyucQJmq5nsmtB4JoO-TZTU4mgs	2023-10-30 08:41:53.235852+00
 daylbke6ef1yt7y462mtv4ugsqjzkbba	.eJxVjM0OwiAQhN-FsyHAArIevfsMZPmTqqFJaU_Gd5cmPehlkplvZt7M07ZWv_W8-CmxCwN2-s0CxWduO0gPaveZx7mtyxT4XuEH7fw2p_y6Ht2_g0q9jrUWYCmWYlCYLIdSNEmjw6CcpiJBgA5ocPizTqIQZHQ2KDQGlLSFfb7LPTb0:1qsfiZ:n1VcONSlccV20Xh2eH9rC4F9lAa_X-nLU5hbzi64lFU	2023-10-31 08:46:23.166163+00
-yqmvjdells6nlkk3inbu3ti9t4hmt37p	.eJxVjM0OwiAQhN-FsyHAArIevfsMZPmTqqFJaU_Gd5cmPehlkplvZt7M07ZWv_W8-CmxCwN2-s0CxWduO0gPaveZx7mtyxT4XuEH7fw2p_y6Ht2_g0q9jrUWYCmWYlCYLIdSNEmjw6CcpiJBgA5ocPizTqIQZHQ2KDQGlLSFfb7LPTb0:1qvahl:lOHCNY7xNUl8pW0-tPcJuxAp0b1D2_jHexsHi5bv2Oc	2023-11-08 10:01:37.519374+00
 f1aw5tkny9p0wwn85mqj8n43u3secn1m	.eJxVjL0OwiAURt-F2RD-EUf3PgO5lwtSNTQp7WR8dyXpoMO3fOfkvFiEfatx73mNM7EL0-z0-yGkR24D0B3abeFpads6Ix8KP2jn00L5eT3cv0CFXkdWeV9AGZvpu-JBgzwDksZAxUhpitLeh2KVAKOtDTYJ5zCIoCkjOPb-AOF3N6Y:1qgjJX:plRf-_33Gxmhhk2aUc_V1CBccAsMZeCdILUySuf8EP4	2023-09-28 10:11:11.260923+00
+5p9pe68qzejksuw7zkxkp8p1sol24pcv	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qwIYH:BBCsMyf7rf9cCMJWQ8vY_VTWSlKUQ0CaMCAgXOwPRJM	2023-10-27 08:51:15.495919+00
 kjkvbtu2btu2skykootqg7ilb2g42z7l	.eJxVjL0OwiAURt-F2RD-EUf3PgO5lwtSNTQp7WR8dyXpoMO3fOfkvFiEfatx73mNM7EL0-z0-yGkR24D0B3abeFpads6Ix8KP2jn00L5eT3cv0CFXkdWeV9AGZvpu-JBgzwDksZAxUhpitLeh2KVAKOtDTYJ5zCIoCkjOPb-AOF3N6Y:1qgjwt:AAM8rWdlGqKj1rdDb5Q_iAnAQVWi3ekfMoTuDfQ1M7Y	2023-09-28 10:51:51.503066+00
 \.
 
@@ -1626,6 +1739,8 @@ kjkvbtu2btu2skykootqg7ilb2g42z7l	.eJxVjL0OwiAURt-F2RD-EUf3PgO5lwtSNTQp7WR8dyXpoM
 --
 
 COPY public.questions_posibleanswers (id, texto, question_id) FROM stdin;
+583	Muy insatisfecho	65
+584	Insatisfecho	65
 3	Nada o muy ligeramente	2
 4	Un poco	2
 5	Moderadamente	2
@@ -1676,6 +1791,7 @@ COPY public.questions_posibleanswers (id, texto, question_id) FROM stdin;
 50	Moderadamente	11
 51	Bastante	11
 52	Mucho	11
+585	Satisfecho	65
 77	Totalmente en desacuerdo	20
 78	Ligeramente en desacuerdo	20
 79	Ni de acuerdo ni en desacuerdo	20
@@ -1747,6 +1863,9 @@ COPY public.questions_posibleanswers (id, texto, question_id) FROM stdin;
 145	Varios dias	35
 146	Mas de la mitad de los dias	35
 147	casi todos los dias	35
+586	Muy insatisfecho	63
+587	Insatisfecho	63
+588	Satisfecho	63
 511	Totalmente en desacuerdo	73
 512	En desacuerdo	73
 513	Ligeramente en desacuerdo	73
@@ -1836,15 +1955,9 @@ COPY public.questions_posibleanswers (id, texto, question_id) FROM stdin;
 265	Muy insatisfecho	62
 266	Insatisfecho	62
 267	Satisfecho	62
-268	Muy insatisfecho	63
-269	Insatisfecho	63
-270	Satisfecho	63
 271	Muy insatisfecho	64
 272	Insatisfecho	64
 273	Satisfecho	64
-274	Muy insatisfecho	65
-275	Insatisfecho	65
-276	Satisfecho	65
 291	Nunca es verdad	68
 292	Muy raramente es verdad	68
 293	Raramente es verdad	68
@@ -1967,8 +2080,10 @@ COPY public.questions_posibleanswers (id, texto, question_id) FROM stdin;
 --
 
 COPY public.questions_question (id, title, "create", creator_id) FROM stdin;
+65	El área donde vives	2023-07-12 16:29:43.79022+00	1
 27	Has tenido poco interes o placer en hacer cosas	2023-07-12 11:43:05.906996+00	1
 28	Te has sentido decaído/a, deprimido/a o sin esperanzas	2023-07-12 11:43:13.696664+00	1
+63	Tu salud física	2023-07-12 16:29:24.4249+00	1
 10	Miedoso/a	2023-07-12 11:23:34.065755+00	1
 18	En general, ¿que tan satisfecho/a estas con tu salud mental?	2023-07-12 11:27:10.655114+00	1
 47	Es dificil para mi recuperarme cuando me ocurre algo malo	2023-07-12 12:09:33.946902+00	1
@@ -1992,7 +2107,6 @@ COPY public.questions_question (id, title, "create", creator_id) FROM stdin;
 19	En general, ¿que tan satisfecho/a estas con el área donde vive?	2023-07-12 11:27:28.134607+00	1
 69	Mis recuerdos dolorosos me impiden llevar una vida plena	2023-07-12 16:33:20.90175+00	1
 37	No has podido parar o controlar tu preocupación	2023-07-12 12:00:41.406736+00	1
-65	El area donde vives	2023-07-12 16:29:43.79022+00	1
 42	Has sentido miedo de que algo terrible fuera a pasar	2023-07-12 12:02:16.328251+00	1
 9	Concentrado/a	2023-07-12 11:23:24.906296+00	1
 30	Te has sentido cansado/a o con poca energia	2023-07-12 11:43:53.213433+00	1
@@ -2024,7 +2138,6 @@ COPY public.questions_question (id, title, "create", creator_id) FROM stdin;
 73	Soy competente y capaz en las tareas que son importantes para mi	2023-07-12 17:12:06.53865+00	1
 11	Activo/a	2023-07-12 11:23:43.364701+00	1
 64	Tu salud mental	2023-07-12 16:29:34.427959+00	1
-63	Tu salud fisica	2023-07-12 16:29:24.4249+00	1
 66	Mis experiencias y recuerdos dolorosos hacen que me sea dificil vivir la vida que querria	2023-07-12 16:32:30.798983+00	1
 68	Me preocupa no ser capaz de controlar mis preocupaciones y sentimientos	2023-07-12 16:33:07.421081+00	1
 21	Mis relaciones sociales son gratificantes y me ofrecen el apoyo que necesito	2023-07-12 11:34:54.755219+00	1
@@ -2045,17 +2158,17 @@ COPY public.questions_question (id, title, "create", creator_id) FROM stdin;
 -- Data for Name: questions_questionblock; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.questions_questionblock (id, block, active, frecuency, importance, "time", days, "create", creator_id, duration) FROM stdin;
-117	Bloque PANAS	t	O	2	11:57:30	thu	2023-10-19 09:56:39+00	1	60
-3	Bloque Satisfaccion	f	D	1	17:18:10	mon	2023-10-10 11:06:06+00	1	60
-4	Bloque Flourishing	f	O	2	13:55:10	tue	2023-10-10 11:06:06+00	1	60
-105	Bloque Satisfaccion semanal	f	W	2	10:41:00	mon	2023-10-16 08:39:53+00	1	60
-106	Bloque COVID-19	f	W	2	10:50:00	mon	2023-10-16 08:40:20+00	1	60
-116	Bloque Diario	f	D	1	11:51:00	thu	2023-10-19 09:50:14+00	1	60
-7	Bloque BRS	f	O	1	07:18:10	mon	2023-10-10 11:06:06.202487+00	1	60
-102	Bloque GAD-7	t	O	1	17:09:50	wed	2023-10-11 15:09:27.847848+00	1	60
-5	Bloque PHQ-9	t	O	3	10:48:10	mon	2023-10-10 11:06:06.202487+00	1	60
-11	Bloque AAQ-II	f	O	2	09:10:10	wed	2023-10-10 11:06:06.202487+00	1	60
+COPY public.questions_questionblock (id, block, active, frecuency, importance, "time", days, "create", creator_id, duration, operating) FROM stdin;
+175	Bloque COVID-19	t	W	2	13:35:00	tue	2023-10-31 10:47:23.170035+00	1	1	f
+176	Bloque Flourishing	t	O	2	13:35:00	tue	2023-10-31 10:47:30.04363+00	1	60	f
+138	Bloque PHQ-9	f	O	3	10:48:10	mon	2023-10-26 10:46:15.639919+00	1	60	f
+105	Bloque Satisfaccion semanal	f	W	2	10:41:00	mon	2023-10-16 08:39:53+00	1	60	f
+160	Bloque AAQ-II	t	O	2	17:30:10	thu	2023-10-26 15:29:17.476123+00	1	60	t
+136	Bloque PANAS	f	O	2	12:49:00	thu	2023-10-26 10:45:38.692246+00	1	60	t
+161	Bloque GAD-7	t	O	1	17:32:00	thu	2023-10-26 15:31:10.086393+00	1	2	t
+7	Bloque BRS	f	O	1	07:18:10	mon	2023-10-10 11:06:06.202487+00	1	60	f
+172	Bloque Diario	t	D	1	13:40:00	thu	2023-10-31 10:44:13.305388+00	1	60	f
+174	Bloque Satisfaccion	f	D	1	12:20:00	fri	2023-10-31 10:45:05.320047+00	1	2	f
 \.
 
 
@@ -2064,17 +2177,17 @@ COPY public.questions_questionblock (id, block, active, frecuency, importance, "
 --
 
 COPY public.questions_questionblock_context (id, questionblock_id, context_id) FROM stdin;
-3	3	3
-4	4	4
-5	5	5
+175	138	5
+228	174	3
+230	175	9
+231	176	4
 7	7	7
 123	105	10
-11	11	11
-124	106	9
-136	116	8
-137	116	3
-138	117	2
-120	102	6
+210	160	11
+211	161	6
+225	172	8
+226	172	3
+173	136	2
 \.
 
 
@@ -2083,12 +2196,13 @@ COPY public.questions_questionblock_context (id, questionblock_id, context_id) F
 --
 
 COPY public.questions_questionblock_question (id, questionblock_id, question_id) FROM stdin;
-1141	116	52
-1142	116	51
-1143	116	50
-1144	117	11
-1145	117	10
-1146	117	9
+1345	161	42
+1346	161	41
+1347	161	40
+1348	161	39
+1349	161	38
+1350	161	37
+1351	161	36
 1091	105	65
 1092	105	64
 1093	105	63
@@ -2096,62 +2210,61 @@ COPY public.questions_questionblock_question (id, questionblock_id, question_id)
 1095	105	61
 1096	105	60
 1097	105	59
-1098	106	58
-1099	106	57
-1100	106	56
-1101	106	55
-1102	106	54
-511	11	66
-512	11	67
-513	11	68
-514	11	69
-515	11	70
-516	11	71
-517	11	72
-1147	117	8
-1148	117	7
-1149	117	6
-1150	117	5
-1151	117	4
-1152	117	3
-1153	117	2
-822	3	12
-823	3	13
-824	3	14
-825	3	15
-826	3	16
-827	3	17
-828	3	18
-829	3	19
-754	5	32
-755	5	33
-756	5	34
-757	5	35
-758	5	27
-759	5	28
-760	5	29
-761	5	30
-762	5	31
-313	4	73
-314	4	20
-315	4	21
-316	4	22
-317	4	23
-318	4	24
-319	4	25
-320	4	26
+1413	174	19
+1414	174	18
+1213	136	11
+1214	136	10
+1215	136	9
+1216	136	8
+1217	136	7
+1218	136	6
+1415	174	17
+1219	136	5
+1220	136	4
+1221	136	3
+1222	136	2
+1416	174	16
+1417	174	15
+1418	174	14
+1419	174	13
+1420	174	12
+1426	175	58
+1427	175	57
+1428	175	56
+1231	138	35
+1232	138	34
+1233	138	33
+1234	138	32
+1235	138	31
+1236	138	30
+1237	138	29
+1238	138	28
+1239	138	27
+1429	175	55
+1430	175	54
+1431	176	73
+1432	176	26
+1433	176	25
+1434	176	24
+1435	176	23
+1436	176	22
+1437	176	21
+1438	176	20
+1402	172	52
+1403	172	51
+1404	172	50
 773	7	43
 774	7	44
 775	7	47
 776	7	48
-1075	102	42
 777	7	49
-1076	102	41
-1077	102	40
-1078	102	39
-1079	102	38
-1080	102	37
-1081	102	36
+1338	160	72
+1339	160	71
+1340	160	70
+1341	160	69
+1342	160	68
+1343	160	67
+1344	160	66
 \.
 
 
@@ -2172,12 +2285,12 @@ COPY public.usuarios_suscriber (id, chatid, name, surname, username, gender) FRO
 --
 
 COPY public.usuarios_user (id, password, last_login, username, email, is_staff, is_superuser) FROM stdin;
+3	pbkdf2_sha256$390000$wfSYZOL0rJfSth7cb0D7Im$Z5glP2mUKTiupqtrsCGEkcnpp2c+Qy4hClhu/VtQ+sY=	2023-10-31 10:05:14.571216+00	juanito2	jgomezdrg@gmail.com	t	t
 7	pbkdf2_sha256$390000$0CzMwNn1OaPjdwtBWGm3p1$zPYga8bHHUrMQVenSRDvswKAu3Jqx9R97vej5rCrVv8=	2023-10-10 15:27:01.927123+00	admin	juanitodrg@gmail.com	t	t
 1	pbkdf2_sha256$390000$u0ehXU6sBux68LqmwMmVNl$8ddeUnfVogTiaOcGbHNbP3MKH6Azzi8TBKB/lAj2K7c=	2023-08-02 15:31:08.522703+00	juanito	juanito@gmail.com	t	t
 5	pbkdf2_sha256$390000$lvpW2C1dJOJWW8zBOWDMX1$SKmf4yFIssguWMitoazuJ7cHp8MTZh1o369UvD+GtLw=	\N	juanito224	jasldf@gmail.com	t	t
 2	pbkdf2_sha256$390000$qT8Mm1Aig5m7cSX2aQo9WR$Si7B8wWwQYZjvhpUF2Avh0FF2I7NOlqMyiO28WcHRT8=	2023-09-06 17:51:57.241085+00	juanito22	juanitodrg@correo.ugr.es	t	t
 6	pbkdf2_sha256$390000$85yAZvWeeLjIgRGEp1wJUG$XDOjPow/Wbhyca/RkxbK5pzto9CHkNZJh5vYje++vzw=	2023-09-06 17:55:54.953254+00	pepillo22	pepillo@gmail.com	t	t
-3	pbkdf2_sha256$390000$4LV0GYar6z1dJO2Rhx2Uwn$iEK4qlsRF5ec+l3y8UGQo25SoKFYprpy8Y6oZ3cJTdU=	2023-10-25 10:01:37.47377+00	juanito2	jgomezdrg@gmail.com	t	t
 \.
 
 
@@ -2201,7 +2314,7 @@ COPY public.usuarios_user_user_permissions (id, user_id, permission_id) FROM std
 -- Name: answers_answer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.answers_answer_id_seq', 924, true);
+SELECT pg_catalog.setval('public.answers_answer_id_seq', 1040, true);
 
 
 --
@@ -2229,21 +2342,21 @@ SELECT pg_catalog.setval('public.auth_permission_id_seq', 52, true);
 -- Name: contexts_context_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.contexts_context_id_seq', 22, true);
+SELECT pg_catalog.setval('public.contexts_context_id_seq', 24, true);
 
 
 --
 -- Name: contexts_message_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.contexts_message_id_seq', 177, true);
+SELECT pg_catalog.setval('public.contexts_message_id_seq', 184, true);
 
 
 --
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 666, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 898, true);
 
 
 --
@@ -2257,14 +2370,14 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 13, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 43, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 44, true);
 
 
 --
 -- Name: questions_posibleanswers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questions_posibleanswers_id_seq', 582, true);
+SELECT pg_catalog.setval('public.questions_posibleanswers_id_seq', 588, true);
 
 
 --
@@ -2278,21 +2391,21 @@ SELECT pg_catalog.setval('public.questions_question_id_seq', 103, true);
 -- Name: questions_questionblock_context_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questions_questionblock_context_id_seq', 139, true);
+SELECT pg_catalog.setval('public.questions_questionblock_context_id_seq', 231, true);
 
 
 --
 -- Name: questions_questionblock_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questions_questionblock_id_seq', 118, true);
+SELECT pg_catalog.setval('public.questions_questionblock_id_seq', 176, true);
 
 
 --
 -- Name: questions_questionblock_question_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questions_questionblock_question_id_seq', 1163, true);
+SELECT pg_catalog.setval('public.questions_questionblock_question_id_seq', 1438, true);
 
 
 --
