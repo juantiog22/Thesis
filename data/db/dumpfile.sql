@@ -549,6 +549,7 @@ ALTER TABLE public.usuarios_user_user_permissions ALTER COLUMN id ADD GENERATED 
 --
 
 COPY public.answers_answer (id, response, date, question_id, suscriber_id, block_id) FROM stdin;
+1071	Normal	2023-11-12 16:26:44.975516+00	51	1	180
 1002	Mas de la mitad de los dias	2023-10-26 15:34:15.025882+00	36	34	161
 1003	Casi todos los dias	2023-10-26 15:34:18.898905+00	37	34	161
 1004	Varios dias	2023-10-26 15:34:19.697489+00	38	34	161
@@ -556,12 +557,26 @@ COPY public.answers_answer (id, response, date, question_id, suscriber_id, block
 1006	Ningun dia	2023-10-26 15:34:21.079742+00	40	34	161
 1007	Varios dias	2023-10-26 15:34:21.855957+00	41	34	161
 1008	Mas de la mitad de los dias	2023-10-26 15:34:22.497069+00	42	34	161
+1072	Normal	2023-11-12 16:26:47.046061+00	52	1	180
+1073	Satisfecho	2023-11-12 16:27:10.842718+00	12	1	186
+978	Ni mal ni bien	2023-10-26 15:25:49.38253+00	50	1	180
+979	Sin energía	2023-10-26 15:25:50.400928+00	51	1	180
+980	Tranquilo/a	2023-10-26 15:25:51.208615+00	52	1	180
+1009	Ni mal ni bien	2023-10-26 15:34:25.699769+00	50	34	180
+1010	Poca energía	2023-10-26 15:34:26.364319+00	51	34	180
+1011	Muy tranquilo/a	2023-10-26 15:34:27.120126+00	52	34	180
+1041	No tengo sintomas	2023-11-05 20:53:10.264108+00	54	1	179
 981	Raramente es verdad	2023-10-26 15:30:25.109752+00	66	1	160
 982	Muy raramente es verdad	2023-10-26 15:30:26.018285+00	67	1	160
-1035	Satisfecho	2023-10-27 10:21:26.224784+00	19	34	174
+1042	Desempleado/a	2023-11-05 20:53:11.581896+00	55	1	179
+1043	Teletrabajo exclusivo	2023-11-05 20:53:12.337411+00	56	1	179
+1044	Menos de 2h	2023-11-05 20:53:13.095855+00	57	1	179
+1045	Me falta una dosis de la vacuna	2023-11-05 20:53:13.840962+00	58	1	179
 1015	Ligeramente de acuerdo	2023-10-27 10:19:09.053377+00	23	1	176
+1046	Mal	2023-11-05 20:53:42.265941+00	50	1	180
 1016	Ni de acuerdo ni en desacuerdo	2023-10-27 10:19:09.977373+00	24	1	176
 1017	Ligeramente en desacuerdo	2023-10-27 10:19:10.9005+00	25	1	176
+1047	Sin energía	2023-11-05 20:53:43.158328+00	51	1	180
 1018	Totalmente en desacuerdo	2023-10-27 10:19:11.82427+00	26	1	176
 983	A veces es verdad	2023-10-26 15:30:26.956526+00	68	1	160
 984	Nunca es verdad	2023-10-26 15:30:27.792637+00	69	1	160
@@ -580,33 +595,42 @@ COPY public.answers_answer (id, response, date, question_id, suscriber_id, block
 997	Ningun dia	2023-10-26 15:32:19.138032+00	38	1	161
 998	Mas de la mitad de los dias	2023-10-26 15:32:19.949588+00	39	1	161
 1019	En desacuerdo	2023-10-27 10:19:12.642938+00	73	1	176
+1048	Normal	2023-11-05 20:53:43.977512+00	52	1	180
 1020	Totalmente en desacuerdo	2023-10-27 10:20:55.045797+00	20	34	176
 999	Casi todos los dias	2023-10-26 15:32:20.619858+00	40	1	161
 1000	Mas de la mitad de los dias	2023-10-26 15:32:21.298328+00	41	1	161
 1001	Casi todos los dias	2023-10-26 15:32:21.937856+00	42	1	161
+1074	Insatisfecho	2023-11-12 16:27:12.654998+00	13	1	186
+1075	Muy satisfecho	2023-11-12 16:27:15.100793+00	14	1	186
 1021	Ligeramente en desacuerdo	2023-10-27 10:21:09.477473+00	21	34	176
+1076	Muy insatisfecho	2023-11-12 16:27:18.222745+00	15	1	186
 1022	Totalmente en desacuerdo	2023-10-27 10:21:10.216748+00	22	34	176
 1023	Ni de acuerdo ni en desacuerdo	2023-10-27 10:21:10.938098+00	23	34	176
 1025	Ligeramente de acuerdo	2023-10-27 10:21:12.592437+00	25	34	176
+1077	Satisfecho	2023-11-12 16:27:21.062821+00	16	1	186
 1012	Ligeramente en desacuerdo	2023-10-27 10:19:06.936692+00	20	1	176
 1013	Ni de acuerdo ni en desacuerdo	2023-10-27 10:19:07.618442+00	21	1	176
+1078	Satisfecho	2023-11-12 16:27:23.824456+00	17	1	186
 1014	Totalmente en desacuerdo	2023-10-27 10:19:08.257488+00	22	1	176
 1024	Ligeramente en desacuerdo	2023-10-27 10:21:11.631305+00	24	34	176
+1079	Insatisfecho	2023-11-12 16:27:26.81895+00	18	1	186
 1026	Ni de acuerdo ni en desacuerdo	2023-10-27 10:21:15.419529+00	26	34	176
 1027	Ligeramente en desacuerdo	2023-10-27 10:21:16.757609+00	73	34	176
-978	Ni mal ni bien	2023-10-26 15:25:49.38253+00	50	1	172
-979	Sin energía	2023-10-26 15:25:50.400928+00	51	1	172
-980	Tranquilo/a	2023-10-26 15:25:51.208615+00	52	1	172
-1009	Ni mal ni bien	2023-10-26 15:34:25.699769+00	50	34	172
-1010	Poca energía	2023-10-26 15:34:26.364319+00	51	34	172
-1011	Muy tranquilo/a	2023-10-26 15:34:27.120126+00	52	34	172
-1028	Muy insatisfecho	2023-10-27 10:21:19.420527+00	12	34	174
-1029	Insatisfecho	2023-10-27 10:21:20.446524+00	13	34	174
-1030	Satisfecho	2023-10-27 10:21:21.161897+00	14	34	174
-1031	Muy satisfecho	2023-10-27 10:21:22.186621+00	15	34	174
-1032	Satisfecho	2023-10-27 10:21:23.447474+00	16	34	174
-1033	Insatisfecho	2023-10-27 10:21:24.444086+00	17	34	174
-1034	Satisfecho	2023-10-27 10:21:25.367965+00	18	34	174
+1080	Satisfecho	2023-11-12 16:27:29.603264+00	19	1	186
+1031	Muy satisfecho	2023-10-27 10:21:22.186621+00	15	34	186
+1032	Satisfecho	2023-10-27 10:21:23.447474+00	16	34	186
+1033	Insatisfecho	2023-10-27 10:21:24.444086+00	17	34	186
+1034	Satisfecho	2023-10-27 10:21:25.367965+00	18	34	186
+1065	Tengo sintomas pero no me han diagnosticado	2023-11-12 16:26:26.615521+00	54	1	179
+1066	Empleado/a	2023-11-12 16:26:28.513572+00	55	1	179
+1035	Satisfecho	2023-10-27 10:21:26.224784+00	19	34	186
+1028	Muy insatisfecho	2023-10-27 10:21:19.420527+00	12	34	186
+1029	Insatisfecho	2023-10-27 10:21:20.446524+00	13	34	186
+1030	Satisfecho	2023-10-27 10:21:21.161897+00	14	34	186
+1067	Teletrabajo parcial	2023-11-12 16:26:31.182848+00	56	1	179
+1068	6 a 8h	2023-11-12 16:26:34.312084+00	57	1	179
+1069	No estoy vacunado/a	2023-11-12 16:26:37.191193+00	58	1	179
+1070	Bien	2023-11-12 16:26:41.117823+00	50	1	180
 \.
 
 
@@ -1637,6 +1661,22 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 896	2023-10-26 15:17:25.997183+00	942	Answer object (942)	3		11	3
 897	2023-10-26 15:17:26.001572+00	941	Answer object (941)	3		11	3
 898	2023-10-26 15:17:26.006378+00	940	Answer object (940)	3		11	3
+899	2023-11-12 16:22:42.372887+00	1064	Answer object (1064)	3		11	9
+900	2023-11-12 16:22:42.408925+00	1063	Answer object (1063)	3		11	9
+901	2023-11-12 16:22:42.413369+00	1062	Answer object (1062)	3		11	9
+902	2023-11-12 16:22:42.417798+00	1061	Answer object (1061)	3		11	9
+903	2023-11-12 16:22:42.422207+00	1060	Answer object (1060)	3		11	9
+904	2023-11-12 16:22:42.426642+00	1059	Answer object (1059)	3		11	9
+905	2023-11-12 16:22:42.430714+00	1058	Answer object (1058)	3		11	9
+906	2023-11-12 16:22:42.434837+00	1057	Answer object (1057)	3		11	9
+907	2023-11-12 16:26:05.239619+00	1056	Answer object (1056)	3		11	9
+908	2023-11-12 16:26:05.268575+00	1055	Answer object (1055)	3		11	9
+909	2023-11-12 16:26:05.273344+00	1054	Answer object (1054)	3		11	9
+910	2023-11-12 16:26:05.278073+00	1053	Answer object (1053)	3		11	9
+911	2023-11-12 16:26:05.282719+00	1052	Answer object (1052)	3		11	9
+912	2023-11-12 16:26:05.287861+00	1051	Answer object (1051)	3		11	9
+913	2023-11-12 16:26:05.292511+00	1050	Answer object (1050)	3		11	9
+914	2023-11-12 16:26:05.297251+00	1049	Answer object (1049)	3		11	9
 \.
 
 
@@ -1718,11 +1758,12 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 --
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
-y8zfb1jjcypf86xip61d0lqy9h3qriqf	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qxmHS:_Prx_iKKwAKlqTOmNZe8iYoZGZI5NO1i4B07bnQIvUc	2023-10-31 11:17:30.237126+00
 l736kks93nd8brhasr094p6prkbw3grd	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qwIaC:yaaLIn_o0NyMNEtxRHGtmMP7gxshWd5rLzEdHVTr6Is	2023-10-27 08:53:14.405832+00
 3u4p7ukfu2e6gddz4jqmgw00xnmwm5kh	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qwK0q:hARHzRTwc3IAfMtlklCm2LolxDSk6GYgHyNCXbbfWbI	2023-10-27 10:54:20.210243+00
+y8zfb1jjcypf86xip61d0lqy9h3qriqf	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qxmMf:B5ck4aAaBBIJBZOXnlLH_tCDzwOLmeCq8JMy5Axzlmo	2023-10-31 11:22:53.649154+00
 5nx486gzy9xsfxsaeoqftjg718lnkdoa	.eJxVjMsOwiAQRf-FtSHyBpfu-w0EZgapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2YUJdvrdcoIHtR3gPbVb59DbusyZ7wo_6OBTR3peD_fvoKZRvzV4gwaUVyFowkxSO200CG8tgZZeSIvoICvjEhUrzgVyCc4bTdIDFfb-AN3ZOCM:1qKaga:TxuvODuVy8Lut2HUyAREz2UVduKq7IonIjtGx46pzH0	2023-07-29 08:31:28.006053+00
 oxp73atdnfx3wto5mp6h3gc4xxbe95oj	.eJxVjMsOwiAQRf-FtSHyBpfu-w0EZgapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2YUJdvrdcoIHtR3gPbVb59DbusyZ7wo_6OBTR3peD_fvoKZRvzV4gwaUVyFowkxSO200CG8tgZZeSIvoICvjEhUrzgVyCc4bTdIDFfb-AN3ZOCM:1qO12b:jt00BibYCMazkyCpDKxMSiJH2FOBgiT7i-QXYc0kk1o	2023-08-07 19:16:21.606015+00
+3lcnmonyulvjyax7t6wftfe08vzycvei	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qxnsL:GTEP2S6up0Y6VGWqombeJp_D8Elm7IJkWqVMFDsusNc	2023-10-31 12:59:41.22649+00
 vnspj6zronh2k79yz97yrj5sie47m2ot	.eJxVjEEOwiAQRe_C2pCBghSX7j0DYWZAqgaS0q6Md7dNutDtf-_9twhxXUpYe5rDxOIitDj9bhjpmeoO-BHrvUlqdZknlLsiD9rlrXF6XQ_376DEXraaMnqyQJm00XawrA2orJJBZq8yZYgjOBjOGdA6BscKwW2A02D9aMXnC_evOCA:1qPn42:GW277CYCc8eKGCgEpH-YsffKoDxOTWgmm6nD_h1mKcM	2023-08-12 16:45:10.286331+00
 fkx35a464c578oa7yym4jl1g9rkblvia	.eJxVjEEOwiAQRe_C2pCBghSX7j0DYWZAqgaS0q6Md7dNutDtf-_9twhxXUpYe5rDxOIitDj9bhjpmeoO-BHrvUlqdZknlLsiD9rlrXF6XQ_376DEXraaMnqyQJm00XawrA2orJJBZq8yZYgjOBjOGdA6BscKwW2A02D9aMXnC_evOCA:1qPnNN:DKBF2DEDF_kyPYE0Ck4b_Tq4M_qe84EtnT1_YS8BJU4	2023-08-12 17:05:09.542101+00
 4g6s5ebcdvwr2mhux8d17ktyu0d033bm	.eJxVjMsOwiAQRf-FtSHyBpfu-w0EZgapGkhKuzL-uzbpQrf3nHNfLKZtrXEbtMQZ2YUJdvrdcoIHtR3gPbVb59DbusyZ7wo_6OBTR3peD_fvoKZRvzV4gwaUVyFowkxSO200CG8tgZZeSIvoICvjEhUrzgVyCc4bTdIDFfb-AN3ZOCM:1qRDoa:VZ7DyMiQH4d6QxdAgxu_HUHYT2jC4GnHSlCfQlVNBvs	2023-08-16 15:31:08.552061+00
@@ -1731,6 +1772,8 @@ daylbke6ef1yt7y462mtv4ugsqjzkbba	.eJxVjM0OwiAQhN-FsyHAArIevfsMZPmTqqFJaU_Gd5cmPe
 f1aw5tkny9p0wwn85mqj8n43u3secn1m	.eJxVjL0OwiAURt-F2RD-EUf3PgO5lwtSNTQp7WR8dyXpoMO3fOfkvFiEfatx73mNM7EL0-z0-yGkR24D0B3abeFpads6Ix8KP2jn00L5eT3cv0CFXkdWeV9AGZvpu-JBgzwDksZAxUhpitLeh2KVAKOtDTYJ5zCIoCkjOPb-AOF3N6Y:1qgjJX:plRf-_33Gxmhhk2aUc_V1CBccAsMZeCdILUySuf8EP4	2023-09-28 10:11:11.260923+00
 5p9pe68qzejksuw7zkxkp8p1sol24pcv	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qwIYH:BBCsMyf7rf9cCMJWQ8vY_VTWSlKUQ0CaMCAgXOwPRJM	2023-10-27 08:51:15.495919+00
 kjkvbtu2btu2skykootqg7ilb2g42z7l	.eJxVjL0OwiAURt-F2RD-EUf3PgO5lwtSNTQp7WR8dyXpoMO3fOfkvFiEfatx73mNM7EL0-z0-yGkR24D0B3abeFpads6Ix8KP2jn00L5eT3cv0CFXkdWeV9AGZvpu-JBgzwDksZAxUhpitLeh2KVAKOtDTYJ5zCIoCkjOPb-AOF3N6Y:1qgjwt:AAM8rWdlGqKj1rdDb5Q_iAnAQVWi3ekfMoTuDfQ1M7Y	2023-09-28 10:51:51.503066+00
+kq54ws6rhbemul0evttym6hosn7bysyl	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qxo8C:D2llffQQqtCEoPuNGZtZ1L7uNI4Q3KrduINKdw7eKUU	2023-10-31 13:16:04.897883+00
+xz8q2kqsj6cpxtr33jllf0mhu9cay2mq	.eJxVjDsOwjAQBe_iGlnxbvDGlPQ5g7XrDw4gR4qTCnF3iJQC2jcz76U8b2vxW0uLn6K6KFSn3004PFLdQbxzvc06zHVdJtG7og_a9DjH9Lwe7t9B4Va-NfXRRpvIGIcArhMQAZtFjGFOmTo0iWhgR4SUAWnIDBhDDr07i8nq_QHXMzfX:1qztsr:sDyeiJVjLpyWb_mDhBbrDv6bOtpmwIFFp6VPZd1LnLc	2023-11-06 07:48:53.766489+00
 \.
 
 
@@ -2159,16 +2202,16 @@ COPY public.questions_question (id, title, "create", creator_id) FROM stdin;
 --
 
 COPY public.questions_questionblock (id, block, active, frecuency, importance, "time", days, "create", creator_id, duration, operating) FROM stdin;
-175	Bloque COVID-19	t	W	2	13:35:00	tue	2023-10-31 10:47:23.170035+00	1	1	f
 176	Bloque Flourishing	t	O	2	13:35:00	tue	2023-10-31 10:47:30.04363+00	1	60	f
+179	Bloque COVID-19	t	W	2	21:53:00	sun	2023-11-05 20:52:25.887679+00	1	60	t
+180	Bloque Diario	t	D	1	21:53:30	sun	2023-11-05 20:52:31.664305+00	1	60	t
 138	Bloque PHQ-9	f	O	3	10:48:10	mon	2023-10-26 10:46:15.639919+00	1	60	f
 105	Bloque Satisfaccion semanal	f	W	2	10:41:00	mon	2023-10-16 08:39:53+00	1	60	f
 160	Bloque AAQ-II	t	O	2	17:30:10	thu	2023-10-26 15:29:17.476123+00	1	60	t
 136	Bloque PANAS	f	O	2	12:49:00	thu	2023-10-26 10:45:38.692246+00	1	60	t
 161	Bloque GAD-7	t	O	1	17:32:00	thu	2023-10-26 15:31:10.086393+00	1	2	t
 7	Bloque BRS	f	O	1	07:18:10	mon	2023-10-10 11:06:06.202487+00	1	60	f
-172	Bloque Diario	t	D	1	13:40:00	thu	2023-10-31 10:44:13.305388+00	1	60	f
-174	Bloque Satisfaccion	f	D	1	12:20:00	fri	2023-10-31 10:45:05.320047+00	1	2	f
+186	Bloque Satisfaccion	t	D	1	17:27:00	sun	2023-11-12 16:26:11.032425+00	1	30	f
 \.
 
 
@@ -2178,15 +2221,15 @@ COPY public.questions_questionblock (id, block, active, frecuency, importance, "
 
 COPY public.questions_questionblock_context (id, questionblock_id, context_id) FROM stdin;
 175	138	5
-228	174	3
-230	175	9
 231	176	4
 7	7	7
 123	105	10
+235	179	9
+236	180	8
+237	180	3
+244	186	3
 210	160	11
 211	161	6
-225	172	8
-226	172	3
 173	136	2
 \.
 
@@ -2210,27 +2253,24 @@ COPY public.questions_questionblock_question (id, questionblock_id, question_id)
 1095	105	61
 1096	105	60
 1097	105	59
-1413	174	19
-1414	174	18
 1213	136	11
 1214	136	10
 1215	136	9
 1216	136	8
 1217	136	7
 1218	136	6
-1415	174	17
+1490	186	19
 1219	136	5
 1220	136	4
 1221	136	3
 1222	136	2
-1416	174	16
-1417	174	15
-1418	174	14
-1419	174	13
-1420	174	12
-1426	175	58
-1427	175	57
-1428	175	56
+1491	186	18
+1492	186	17
+1493	186	16
+1494	186	15
+1495	186	14
+1496	186	13
+1497	186	12
 1231	138	35
 1232	138	34
 1233	138	33
@@ -2240,8 +2280,6 @@ COPY public.questions_questionblock_question (id, questionblock_id, question_id)
 1237	138	29
 1238	138	28
 1239	138	27
-1429	175	55
-1430	175	54
 1431	176	73
 1432	176	26
 1433	176	25
@@ -2250,9 +2288,14 @@ COPY public.questions_questionblock_question (id, questionblock_id, question_id)
 1436	176	22
 1437	176	21
 1438	176	20
-1402	172	52
-1403	172	51
-1404	172	50
+1447	179	58
+1448	179	57
+1449	179	56
+1450	179	55
+1451	179	54
+1452	180	52
+1453	180	51
+1454	180	50
 773	7	43
 774	7	44
 775	7	47
@@ -2285,7 +2328,9 @@ COPY public.usuarios_suscriber (id, chatid, name, surname, username, gender) FRO
 --
 
 COPY public.usuarios_user (id, password, last_login, username, email, is_staff, is_superuser) FROM stdin;
-3	pbkdf2_sha256$390000$wfSYZOL0rJfSth7cb0D7Im$Z5glP2mUKTiupqtrsCGEkcnpp2c+Qy4hClhu/VtQ+sY=	2023-10-31 10:05:14.571216+00	juanito2	jgomezdrg@gmail.com	t	t
+3	pbkdf2_sha256$390000$wfSYZOL0rJfSth7cb0D7Im$Z5glP2mUKTiupqtrsCGEkcnpp2c+Qy4hClhu/VtQ+sY=	2023-11-12 16:10:07.835258+00	juanito2	jgomezdrg@gmail.com	t	t
+8	pbkdf2_sha256$390000$CszG4psSsqacu5Uvgnjpbv$NaoA6MmmpIut7ibRgYbbSJ84fpom6RbbiX391AurjnE=	2023-11-12 16:14:34.787126+00	juanitodelrio	juanitodrg1234@gmail.com	t	t
+9	pbkdf2_sha256$390000$U6KYwyfET2VnbzetZJRM9a$fK47+7TaX36+wgnZAq5j7dk0KWLHyzglMliJqOsnOU4=	2023-11-12 16:18:46.385518+00	juandelrio	jgomez22@gmail.com	t	t
 7	pbkdf2_sha256$390000$0CzMwNn1OaPjdwtBWGm3p1$zPYga8bHHUrMQVenSRDvswKAu3Jqx9R97vej5rCrVv8=	2023-10-10 15:27:01.927123+00	admin	juanitodrg@gmail.com	t	t
 1	pbkdf2_sha256$390000$u0ehXU6sBux68LqmwMmVNl$8ddeUnfVogTiaOcGbHNbP3MKH6Azzi8TBKB/lAj2K7c=	2023-08-02 15:31:08.522703+00	juanito	juanito@gmail.com	t	t
 5	pbkdf2_sha256$390000$lvpW2C1dJOJWW8zBOWDMX1$SKmf4yFIssguWMitoazuJ7cHp8MTZh1o369UvD+GtLw=	\N	juanito224	jasldf@gmail.com	t	t
@@ -2314,7 +2359,7 @@ COPY public.usuarios_user_user_permissions (id, user_id, permission_id) FROM std
 -- Name: answers_answer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.answers_answer_id_seq', 1040, true);
+SELECT pg_catalog.setval('public.answers_answer_id_seq', 1080, true);
 
 
 --
@@ -2356,7 +2401,7 @@ SELECT pg_catalog.setval('public.contexts_message_id_seq', 184, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 898, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 914, true);
 
 
 --
@@ -2377,35 +2422,35 @@ SELECT pg_catalog.setval('public.django_migrations_id_seq', 44, true);
 -- Name: questions_posibleanswers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questions_posibleanswers_id_seq', 588, true);
+SELECT pg_catalog.setval('public.questions_posibleanswers_id_seq', 604, true);
 
 
 --
 -- Name: questions_question_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questions_question_id_seq', 103, true);
+SELECT pg_catalog.setval('public.questions_question_id_seq', 106, true);
 
 
 --
 -- Name: questions_questionblock_context_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questions_questionblock_context_id_seq', 231, true);
+SELECT pg_catalog.setval('public.questions_questionblock_context_id_seq', 244, true);
 
 
 --
 -- Name: questions_questionblock_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questions_questionblock_id_seq', 176, true);
+SELECT pg_catalog.setval('public.questions_questionblock_id_seq', 186, true);
 
 
 --
 -- Name: questions_questionblock_question_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.questions_questionblock_question_id_seq', 1438, true);
+SELECT pg_catalog.setval('public.questions_questionblock_question_id_seq', 1497, true);
 
 
 --
@@ -2426,7 +2471,7 @@ SELECT pg_catalog.setval('public.usuarios_user_groups_id_seq', 1, false);
 -- Name: usuarios_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuarios_user_id_seq', 7, true);
+SELECT pg_catalog.setval('public.usuarios_user_id_seq', 9, true);
 
 
 --

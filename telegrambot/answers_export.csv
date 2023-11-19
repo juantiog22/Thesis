@@ -1,0 +1,83 @@
+Block;Question;Response;Subscriber;Date
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estas con el área donde vive?;Satisfecho;Juanitodrg22;2023-11-12
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estas con tu salud mental?;Insatisfecho;Juanitodrg22;2023-11-12
+Bloque Satisfaccion;En general, ¿qué tan satisfecho/a estás con tu salud física?;Satisfecho;Juanitodrg22;2023-11-12
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estás con tu tiempo libre?;Satisfecho;Juanitodrg22;2023-11-12
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estas con tu situación financiera?;Muy insatisfecho;Juanitodrg22;2023-11-12
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estás con tu situación laboral?;Muy satisfecho;Juanitodrg22;2023-11-12
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estas con tus relaciones personales?;Insatisfecho;Juanitodrg22;2023-11-12
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estás con tu vida?;Satisfecho;Juanitodrg22;2023-11-12
+Bloque Diario;¿Podrías decirme como te sientes en ese momento?;Normal;Juanitodrg22;2023-11-12
+Bloque Diario;¿Como definirias tu nivel de energía?;Normal;Juanitodrg22;2023-11-12
+Bloque Diario;¿Como te sientes ahora?;Bien;Juanitodrg22;2023-11-12
+Bloque COVID-19;Vacuna;No estoy vacunado/a;Juanitodrg22;2023-11-12
+Bloque COVID-19;Ejercicio fisico semanal;6 a 8h;Juanitodrg22;2023-11-12
+Bloque COVID-19;Efectos de la crisis en tu situacion actual;Teletrabajo parcial;Juanitodrg22;2023-11-12
+Bloque COVID-19;Situacion laboral actual;Empleado/a;Juanitodrg22;2023-11-12
+Bloque COVID-19;Estado de salud;Tengo sintomas pero no me han diagnosticado;Juanitodrg22;2023-11-12
+Bloque Diario;¿Podrías decirme como te sientes en ese momento?;Normal;Juanitodrg22;2023-11-05
+Bloque Diario;¿Como definirias tu nivel de energía?;Sin energía;Juanitodrg22;2023-11-05
+Bloque Diario;¿Como te sientes ahora?;Mal;Juanitodrg22;2023-11-05
+Bloque COVID-19;Vacuna;Me falta una dosis de la vacuna;Juanitodrg22;2023-11-05
+Bloque COVID-19;Ejercicio fisico semanal;Menos de 2h;Juanitodrg22;2023-11-05
+Bloque COVID-19;Efectos de la crisis en tu situacion actual;Teletrabajo exclusivo;Juanitodrg22;2023-11-05
+Bloque COVID-19;Situacion laboral actual;Desempleado/a;Juanitodrg22;2023-11-05
+Bloque COVID-19;Estado de salud;No tengo sintomas;Juanitodrg22;2023-11-05
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estas con el área donde vive?;Satisfecho;jrojas_14;2023-10-27
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estas con tu salud mental?;Satisfecho;jrojas_14;2023-10-27
+Bloque Satisfaccion;En general, ¿qué tan satisfecho/a estás con tu salud física?;Insatisfecho;jrojas_14;2023-10-27
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estás con tu tiempo libre?;Satisfecho;jrojas_14;2023-10-27
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estas con tu situación financiera?;Muy satisfecho;jrojas_14;2023-10-27
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estás con tu situación laboral?;Satisfecho;jrojas_14;2023-10-27
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estas con tus relaciones personales?;Insatisfecho;jrojas_14;2023-10-27
+Bloque Satisfaccion;En general, ¿que tan satisfecho/a estás con tu vida?;Muy insatisfecho;jrojas_14;2023-10-27
+Bloque Flourishing;Soy competente y capaz en las tareas que son importantes para mi;Ligeramente en desacuerdo;jrojas_14;2023-10-27
+Bloque Flourishing;La gente me respeta;Ni de acuerdo ni en desacuerdo;jrojas_14;2023-10-27
+Bloque Flourishing;Veo mi futuro con optimismo;Ligeramente de acuerdo;jrojas_14;2023-10-27
+Bloque Flourishing;Soy una buena persona y tengo una buena vida;Ligeramente en desacuerdo;jrojas_14;2023-10-27
+Bloque Flourishing;Contribuyo activamente a la felicidad y el bienestar del otro;Ni de acuerdo ni en desacuerdo;jrojas_14;2023-10-27
+Bloque Flourishing;Me implico y me intereso en mis actividades diarias;Totalmente en desacuerdo;jrojas_14;2023-10-27
+Bloque Flourishing;Mis relaciones sociales son gratificantes y me ofrecen el apoyo que necesito;Ligeramente en desacuerdo;jrojas_14;2023-10-27
+Bloque Flourishing;Mi objetivo es conseguir una vida plena y significativa;Totalmente en desacuerdo;jrojas_14;2023-10-27
+Bloque Flourishing;Soy competente y capaz en las tareas que son importantes para mi;En desacuerdo;Juanitodrg22;2023-10-27
+Bloque Flourishing;La gente me respeta;Totalmente en desacuerdo;Juanitodrg22;2023-10-27
+Bloque Flourishing;Veo mi futuro con optimismo;Ligeramente en desacuerdo;Juanitodrg22;2023-10-27
+Bloque Flourishing;Soy una buena persona y tengo una buena vida;Ni de acuerdo ni en desacuerdo;Juanitodrg22;2023-10-27
+Bloque Flourishing;Contribuyo activamente a la felicidad y el bienestar del otro;Ligeramente de acuerdo;Juanitodrg22;2023-10-27
+Bloque Flourishing;Me implico y me intereso en mis actividades diarias;Totalmente en desacuerdo;Juanitodrg22;2023-10-27
+Bloque Flourishing;Mis relaciones sociales son gratificantes y me ofrecen el apoyo que necesito;Ni de acuerdo ni en desacuerdo;Juanitodrg22;2023-10-27
+Bloque Flourishing;Mi objetivo es conseguir una vida plena y significativa;Ligeramente en desacuerdo;Juanitodrg22;2023-10-27
+Bloque Diario;¿Podrías decirme como te sientes en ese momento?;Muy tranquilo/a;jrojas_14;2023-10-26
+Bloque Diario;¿Como definirias tu nivel de energía?;Poca energía;jrojas_14;2023-10-26
+Bloque Diario;¿Como te sientes ahora?;Ni mal ni bien;jrojas_14;2023-10-26
+Bloque GAD-7;Has sentido miedo de que algo terrible fuera a pasar;Mas de la mitad de los dias;jrojas_14;2023-10-26
+Bloque GAD-7;Te has enfadado o irritado fácilmente;Varios dias;jrojas_14;2023-10-26
+Bloque GAD-7;Te has sentido tan intranquilo/a que no has podido quedarte quieto/a;Ningun dia;jrojas_14;2023-10-26
+Bloque GAD-7;Has tenido dificultad para relajarte;Mas de la mitad de los dias;jrojas_14;2023-10-26
+Bloque GAD-7;Te has preocupado demasiado por motivos diferentes;Varios dias;jrojas_14;2023-10-26
+Bloque GAD-7;No has podido parar o controlar tu preocupación;Casi todos los dias;jrojas_14;2023-10-26
+Bloque GAD-7;Te has sentido nervioso/a, ansioso/a o con los pelos de punta;Mas de la mitad de los dias;jrojas_14;2023-10-26
+Bloque GAD-7;Has sentido miedo de que algo terrible fuera a pasar;Casi todos los dias;Juanitodrg22;2023-10-26
+Bloque GAD-7;Te has enfadado o irritado fácilmente;Mas de la mitad de los dias;Juanitodrg22;2023-10-26
+Bloque GAD-7;Te has sentido tan intranquilo/a que no has podido quedarte quieto/a;Casi todos los dias;Juanitodrg22;2023-10-26
+Bloque GAD-7;Has tenido dificultad para relajarte;Mas de la mitad de los dias;Juanitodrg22;2023-10-26
+Bloque GAD-7;Te has preocupado demasiado por motivos diferentes;Ningun dia;Juanitodrg22;2023-10-26
+Bloque GAD-7;No has podido parar o controlar tu preocupación;Varios dias;Juanitodrg22;2023-10-26
+Bloque GAD-7;Te has sentido nervioso/a, ansioso/a o con los pelos de punta;Mas de la mitad de los dias;Juanitodrg22;2023-10-26
+Bloque AAQ-II;Mis preocupaciones interfieren en el camino de lo que quiero conseguir;Raramente es verdad;jrojas_14;2023-10-26
+Bloque AAQ-II;Parece que la mayoria de la gente lleva su vida mejor que yo;Muy raramente es verdad;jrojas_14;2023-10-26
+Bloque AAQ-II;Mis emociones interfieren en como me gustaria que fuera mi vida;Raramente es verdad;jrojas_14;2023-10-26
+Bloque AAQ-II;Mis recuerdos dolorosos me impiden llevar una vida plena;A veces es verdad;jrojas_14;2023-10-26
+Bloque AAQ-II;Me preocupa no ser capaz de controlar mis preocupaciones y sentimientos;Nunca es verdad;jrojas_14;2023-10-26
+Bloque AAQ-II;Tengo miedo de mis sentimientos;Muy raramente es verdad;jrojas_14;2023-10-26
+Bloque AAQ-II;Mis experiencias y recuerdos dolorosos hacen que me sea dificil vivir la vida que querria;Raramente es verdad;jrojas_14;2023-10-26
+Bloque AAQ-II;Mis preocupaciones interfieren en el camino de lo que quiero conseguir;A veces es verdad;Juanitodrg22;2023-10-26
+Bloque AAQ-II;Parece que la mayoria de la gente lleva su vida mejor que yo;Muy raramente es verdad;Juanitodrg22;2023-10-26
+Bloque AAQ-II;Mis emociones interfieren en como me gustaria que fuera mi vida;Raramente es verdad;Juanitodrg22;2023-10-26
+Bloque AAQ-II;Mis recuerdos dolorosos me impiden llevar una vida plena;Nunca es verdad;Juanitodrg22;2023-10-26
+Bloque AAQ-II;Me preocupa no ser capaz de controlar mis preocupaciones y sentimientos;A veces es verdad;Juanitodrg22;2023-10-26
+Bloque AAQ-II;Tengo miedo de mis sentimientos;Muy raramente es verdad;Juanitodrg22;2023-10-26
+Bloque AAQ-II;Mis experiencias y recuerdos dolorosos hacen que me sea dificil vivir la vida que querria;Raramente es verdad;Juanitodrg22;2023-10-26
+Bloque Diario;¿Podrías decirme como te sientes en ese momento?;Tranquilo/a;Juanitodrg22;2023-10-26
+Bloque Diario;¿Como definirias tu nivel de energía?;Sin energía;Juanitodrg22;2023-10-26
+Bloque Diario;¿Como te sientes ahora?;Ni mal ni bien;Juanitodrg22;2023-10-26

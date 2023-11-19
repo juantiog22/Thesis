@@ -1,18 +1,13 @@
-\chapter{Despliegue e instalación}\vspace{0.3cm}
+\chapter{Despliegue e instalación}\vspace{1cm}
 
 
 \section{Despliegue}
 
 El despliegue del proyecto se ha realizado en un repositorio público de mi cuenta de \href{https://github.com/juantiog22}{GitHub}, en el que encontramos todo el código disponible. \vspace{0.3cm}
 
-Para la creación del bot y que se encuentre activo para todo aquel que quiera conversar se ha utilizado la API de Telegram. La aplicación de mensajería pone a disposición de cualquier usuario la creación de bots en su plataforma de manera relativamente sencilla con la ayuda de su robot \textit{BotFather}. Se trata de un bot disponible en cualquier versión de Telegram, escritorio o app móvil, y que se encarga de controlar otros bots.
+Para la creación del bot y que se encuentre activo para todo aquel que quiera conversar se ha utilizado la API de Telegram. La aplicación de mensajería pone a disposición de cualquier usuario la creación de bots en su plataforma de manera relativamente sencilla con la ayuda de su robot \textit{BotFather}. Se trata de un bot disponible en cualquier versión de Telegram, escritorio o app móvil, y que se encarga de controlar otros bots. Gracias a la API de que dispone Telegram para bots vamos a poder acceder a una gran cantidad de herramientas que nos ayuda a la hora de desarrrollar la lógica de nuestro bot. Para ello debemos bucar a \textit{@BotFather} en el buscador de Telegram y empezar una conversación con él. Este es el bot oficial que te permitirá crear y administrar tus propios bots. 
 
-Gracias a la API de que dispone Telegram para bots vamos a poder acceder a una gran cantidad de herramientas que nos ayuda a la hora de desarrrollar la lógica de nuestro bot.
-
-
-Para ello debemos bucar a \textit{@BotFather} en el buscador de Telegram y empezar una conversación con él. Este es el bot oficial que te permitirá crear y administrar tus propios bots. 
-
-Como observamos en la \textit{\hyperref[fig:creacion-bot]{figura 7.1}}, escribiendo el comando /newbot iniciamos el proceso de creación. Nos solicitará que elijamos un nombre, que será el mostrado en las conversaciones, y un username que deberá de terminar en \_bot o Bot. Ya creado, nos proporcionará un token de acceso único para nuestro bot. Este es el token con el que vamos a interactuar con la API de Telegram. \vspace{2cm}
+Como observamos en la \textit{\hyperref[fig:creacion-bot]{Figura 6.1}}, escribiendo el comando /newbot iniciamos el proceso de creación. Nos solicitará que elijamos un nombre, que será el mostrado en las conversaciones, y un username que deberá de terminar en \_bot o Bot. Una vez creado, nos proporcionará un token de acceso único para nuestro bot. Este es el token con el que vamos a interactuar con la API de Telegram. \vspace{2cm}
 
 \begin{figure}[!ht]
     \centering
@@ -22,7 +17,7 @@ Como observamos en la \textit{\hyperref[fig:creacion-bot]{figura 7.1}}, escribie
 \end{figure}
 
 
-Hecho esto, tal como se muestra en la \textit{\hyperref[fig:customize-bot]{figura 7.2}}, podemos personalizar nuestro bot como deseemos, cambiando la descripción, el estado, la foto de perfil, comandos personalizados...
+Hecho esto, tal como se muestra en la \textit{\hyperref[fig:customize-bot]{Figura 6.2}}, podemos personalizar nuestro bot como deseemos, cambiando la descripción, el estado, la foto de perfil, comandos personalizados...
 
 \begin{figure}[!ht]
     \centering
@@ -79,23 +74,22 @@ Una vez tengamos todo lo necesario, ya podemos pasar al montaje del proyecto. Pa
     $ git clone https://github.com/juantiog22/Thesis.git
 \end{minted}
 
-Se ha usado Docker ya que permite entregar código con mayor rapidez, estandarizar las operaciones de las aplicaciones, transferir el código con facilidad y ahorrar dinero al mejorar el uso de recursos. Con Docker, obtiene un solo objeto que se puede ejecutar de manera fiable en cualquier lugar. La sintaxis sencilla y simple de Docker le aporta un control absoluto. Por lo que todo lo necesario a la implantación del proyecto ya se encuentra proporcionado. Dentro de la carpeta de \textit{/Thesis} ejecutamos este comando:
+Se ha usado Docker ya que permite entregar código con mayor rapidez, estandarizar las operaciones de las aplicaciones, transferir el código con facilidad y ahorrar dinero al mejorar el uso de recursos. Con Docker, obtiene un solo objeto que se puede ejecutar de manera fiable en cualquier lugar. La sintaxis sencilla y simple de Docker le aporta un control absoluto, por lo que todo lo necesario a la implantación del proyecto ya se encuentra proporcionado. Dentro de la carpeta de \textit{/Thesis} ejecutamos este comando:
 
 \begin{minted}{bash}
     $ docker-compose up -d --build  
 \end{minted}
 
 Esto creará las imágenes de docker correspondientes a la interfaz web, el bot y la base de datos. Además instalará todos los paquetes necesarios situado dentro del archivo \textit{'requirements.txt'}. 
-Para la creación de la base de datos, he exportado la mía que se encuentra dentro del archivo \textit{'dumpfile.dump'}. Esta base de datos cuenta con preguntas, bloques y contextos previamente creados con ejemplos reales de como serían algunos cuestionarios guiándome según las reglas e información relevante que me proveen desde \textit({\cite{postcovid})}. En el caso de querer establecer esta base de datos tras haber hecho el paso anterior debemos restaurar la nuestra con la información que contiene este archivo. Para ello:
+Para la creación de la base de datos, se ha exportado una por defecto que se encuentra dentro del archivo \textit{'dumpfile.sql'}. Esta base de datos cuenta con preguntas, bloques y preámbulos previamente creados con ejemplos reales de como serían algunos cuestionarios guiándome según las reglas e información relevante que me proveen desde \textit({\cite{postcovid})}. En el caso de querer establecer esta base de datos tras haber hecho el paso anterior debemos restaurar la nuestra con la información que contiene este archivo. Para ello:
 
 \begin{minted}{bash}
     $ docker-compose exec db bash
-    $ pg_restore -U postgres -d postgres dumpfile.dump
+    $ pg_restore -U postgres -d postgres /var/lib/postgres/data
+    /dumpfile.sql
 \end{minted}
 
-Esto vuelca toda la información en nuestra base de datos y migrará todos los datos de forma automática en la base de datos que provee PostgreSQL por defecto. 
-
-En el caso de no querer usar esa base de datos y querer crear otra nueva pero con todos los cambios debemos de crearla previamente. Desde la terminal de psql podemos hacerlo con el siguiente comando:
+Esto vuelca toda la información en nuestra base de datos y migrará todos los datos de forma automática en la base de datos que provee PostgreSQL por defecto. En el caso de no querer usar esa base de datos y querer crear otra nueva pero con todos los cambios debemos de crearla previamente. Desde la terminal de psql podemos hacerlo con el siguiente comando:
 
 \begin{minted}{bash}
     $ createdb -U "nombre_propietario" "nombre_base_datos"
@@ -125,18 +119,14 @@ DATABASES = {
 }
 \end{minted}
 
-Tendríamos que cambiar los datos relacionados al usuario, contraseña y nombre. 
-
-Si queremos crear una base de datos desde cero y completamente nueva, simplemente tras construir la imágenes de docker ejecutamos lo siguiente:
+Tendríamos que cambiar los datos relacionados al usuario, contraseña y nombre. Si queremos crear una base de datos desde cero y completamente nueva, simplemente tras construir la imágenes de docker ejecutamos lo siguiente:
 
 \begin{minted}{bash}
     $ docker-compose run web python manage.py makemigrations
     $ docker-compose run web python manage.py migrate
 \end{minted}
 
-Esto nos creará una nueva base de datos con todas las tablas correspondiente y lista para funcionar, pero sin ningún registro. 
-
-Una vez todo esté listo, ejecutamos este comando y nuestro proyecto estará corriendo y listo para utilizar.
+Esto generará una base de datos completamente nueva con todas las tablas necesarias, lista para funcionar, aunque estará vacía de registros. Una vez que se haya completado esta fase, ejecutamos el siguiente comando, y nuestro proyecto estará en funcionamiento y preparado para su uso.
 
 \begin{minted}{bash}
     $ docker-compose up

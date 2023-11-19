@@ -98,7 +98,7 @@ messages = {
         '2': '¿Por qué los esqueletos no pelean entre ellos?, Porque tienen "buena estructura" de convivencia.',
     },
     'name':{
-        '0': 'Mi nombre es POSTCOVID-AI TelegramBot',
+        '0': 'Mi nombre es POSTCOVID-AI Chatbot',
     },
     'mood':{
         '0': 'Estoy muy bien, gracias por preguntar'

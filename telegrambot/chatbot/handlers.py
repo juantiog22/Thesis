@@ -109,7 +109,7 @@ def start_handler(update, context):
         return SECOND_STATE
 
 
-
+#Function that search for updates on the blocks and update the job queue
 def actualize(context):
     global aux_blocks
     current_blocks = list(QuestionBlock.objects.all().values('id'))
@@ -129,7 +129,7 @@ def actualize(context):
     aux_blocks = current_blocks
 
 
-
+#Initialize the job queue
 def start(context): 
     global executed
     blocks = QuestionBlock.objects.filter(active=True)
@@ -237,6 +237,7 @@ def find_context(response):
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+#Create job queue for planning blocks
 class ScheduleJob(object):
 
     def __init__(self, context, block, scheduler):
